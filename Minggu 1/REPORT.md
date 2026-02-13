@@ -8,5 +8,7 @@ kalau sudah terkadang kadang, ya dilanjutin aja kadangnya.
 
 # Picture
 
-kuda one one
+![JEW JEW JEW JEW JEW JEW](Minggu 1/Images /download (4).jpg)
+
+
 
