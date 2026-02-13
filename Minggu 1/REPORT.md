@@ -6,5 +6,7 @@ Terkadang-kadang
 
 kalau sudah terkadang kadang, ya dilanjutin aja kadangnya.
 
-# Pciture
+# Picture
+
+kuda one one
 
