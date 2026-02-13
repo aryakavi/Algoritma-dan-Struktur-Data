@@ -6,5 +6,9 @@ Terkadang-kadang
 
 kalau sudah terkadang kadang, ya dilanjutin aja kadangnya.
 
-# Pciture
+# Picture
+
+![JEW JEW JEW JEW JEW JEW](Images/jews.jpg)
+
+
 
