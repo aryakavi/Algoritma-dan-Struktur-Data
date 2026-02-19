@@ -1,14 +1,16 @@
-# Title
+|  | Algoritma dan Struktur Data |
+|--|--|
+| NIM |  254107020087|
+| Nama |  Aryakavi Raditya Imaran |
+| Kelas | TI - 1F |
+| Repository | ([https://github.com/jti-polinema/-01-contoh-laporan-react](https://github.com/aryakavi/Algoritma-dan-Struktur-Data)) |
 
-Terkadang-kadang 
+# JOBSHEET 1 : KONSEP DASAR PEMROGRAMAN
 
-## Sub-Title
+## 2.1 Pemilihan
 
-kalau sudah terkadang kadang, ya dilanjutin aja kadangnya.
+### 2.2.1 Praktikum Pemilihan 
 
-# Picture
-
-![JEW JEW JEW JEW JEW JEW](Images/jews.jpg)
 
 
 
