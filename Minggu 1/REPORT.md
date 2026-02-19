@@ -68,3 +68,12 @@ The Answers
 
 ![Screenshot](Images/PlatNomorKota1.png)
 ![Screenshot](Images/PlatNomorKota2.png)
+
+### Tugas 2
+The Code
+
+![Screenshot](Images/JadwalKuliahMahasiswa.png)
+
+The Answers
+
+![Screenshot](Images/JadwalKuliahMahasiswa1.png)
