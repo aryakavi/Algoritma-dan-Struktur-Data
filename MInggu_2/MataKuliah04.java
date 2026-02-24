@@ -33,7 +33,7 @@ public class MataKuliah04 {
                 jumlahJam4 -= jam4;
                 System.out.println("Pengurangan berhasil. Jumlah jam sekarang : " + jumlahJam4);
             } else {
-                System.out.println("Pengurangan tidak dapat dilakukan! Jumlah jam awal lebih kecil dari jam pengurang!!");
+                System.out.println("Pengurangan tidak dapat dilakukan!\n Jumlah jam awal lebih kecil dari jam pengurang!!");
             }
         }
     }

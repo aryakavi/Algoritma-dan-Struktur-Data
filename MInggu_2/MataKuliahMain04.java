@@ -13,6 +13,8 @@ public class MataKuliahMain04 {
         matkul1.tampilkanInformasi();
 
         MataKuliah04 matkul2 = new MataKuliah04("A2", "Porter Robinson", 4, 3);
+        matkul2.tampilkanInformasi();
+
         matkul2.ubahSKS(3);
         matkul2.kurangiJam(4);
         matkul2.tampilkanInformasi();
