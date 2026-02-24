@@ -40,12 +40,25 @@ Mahasiswa? Sebutkan apa saja atributnya!
    - nilaiKinerja()
   
 4. Perhatikan method updateIpk() yang terdapat di dalam class Mahasiswa. Modifikasi isi method tersebut sehingga IPK yang dimasukkan valid yaitu terlebih dahulu dilakukan pengecekan apakah IPK yang dimasukkan di dalam rentang 0.0 sampai dengan 4.0 (0.0 <= IPK <= 4.0). Jika IPK tidak pada rentang tersebut maka dikeluarkan pesan: "IPK tidak valid. Harus antara 0.0 dan 4.0".
+   
+   ![Screenshot](Images/Percobaan1Pertanyaan4A.png)
+   
+   ![Screenshot](Images/Percobaan1Pertanyaan4B.png)
 
-5. Jelaskan bagaimana cara kerja method nilaiKinerja() dalam mengevaluasi kinerja mahasiswa,  
+6. Jelaskan bagaimana cara kerja method nilaiKinerja() dalam mengevaluasi kinerja mahasiswa,  
 kriteria apa saja yang digunakan untuk menentukan nilai kinerja tersebut, dan apa yang 
 dikembalikan (di-return-kan) oleh method nilaiKinerja() tersebut?
+   - Cara kerja :
+        Method bekerja menggunakan struktur kontrol percabangan (if-else if-else). Method memerika nilai yang tersimpan di ipk4. Pengecekan dilakukan secara berurutan dari nilai terbesar ke tersecil. Begitu satu kondisi terpenuhi, method akan langsung mengembalikan nilai string yang sesuai dan berhenti mengecek kondisi dibawahnya.
+   - Kriteria :
+     1. Jika ipk4 lebih besar atau sama dengan 3.5, statusnya "Kinerja sangat baik".
+     2. Jika ipk4 lebih besar atau sama dengan 3.0 (tetapi di bawah 3.5), statusnya "Kinera baik" (sesuai teks asli kode Anda).
+     3. Jika ipk4 lebih besar atau sama dengan 2.0 (tetapi di bawah 3.0), statusnya "Kinerja cukup".
+     4. Jika ipk4 kurang dari 2.0, statusnya "Kinerja kurang".
+   - Yang dikembalikan (return) :
+        Method mengembalikan data bertipe String, yang berisi kalimat status kinerja mahasiswa sesuai kriteria. (contoh: " Kinerja sangat baik").
 
-6. Commit dan push kode program ke Github
+8. Commit dan push kode program ke Github
    Baiklah 👍
 
 
@@ -131,6 +144,7 @@ public Mahasiswa04(String nm4, String nim4, double ipk4, String kls4 ){
 berparameter dari class Mahasiswa!
 
 6. Commit dan push kode program ke Github!
+
    Baiklah 👍
 
 ## 2.4 Latihan Praktikum
@@ -159,6 +173,7 @@ Sementara saat di jalankan kode tersebut akan mengeluarkan hasil seperti ini :
 Sekian saya lampirkan kode saya untuk di nilai dan diberikan arahan, apabila ada masukkan atau kesalahan bisa kontak saya melalui
 
 Whatsapp : 081358358676
+
 Email    : aryakaviimaran2007@gmail.com
 
 Terimakasih
