@@ -21,13 +21,13 @@ public class Mahasiswa04{
 
         String nilaiKinerja(){
             if (ipk4 >= 3.5) {
-                return "Kinerja sangat baik";
+                return "Kinerja sangat baik ";
             }else if (ipk4 >= 3.0) {
-                return "Kinera baik";
+                return "Kinera baik ";
             }else if (ipk4 >= 2.0) {
-                return "Kinerja cukup";
+                return "Kinerja cukup ";
             }else {
-                return "Kinerja kurang";
+                return "Kinerja kurang ";
             }
         }
     }
