@@ -59,7 +59,7 @@ dikembalikan (di-return-kan) oleh method nilaiKinerja() tersebut?
         Method mengembalikan data bertipe String, yang berisi kalimat status kinerja mahasiswa sesuai kriteria. (contoh: " Kinerja sangat baik").
 
 8. Commit dan push kode program ke Github
-   Baiklah 👍
+   - Baiklah 👍
 
 
 
@@ -133,19 +133,28 @@ public Mahasiswa04(String nm4, String nim4, double ipk4, String kls4 ){
    - Memanggil konstruktor berparameter untuk mengisi nilai awal atribut nama4, nim4, ipk4, dan kelas4 dengan data yang ada di dalam kurung ("Annisa Nabila", "2141720160", dst) saat objek tersebut pertama kali dibuat.
   
 3. Hapus konstruktor default pada class Mahasiswa, kemudian compile dan run program. Bagaimana hasilnya? Jelaskan mengapa hasilnya demikian!
+   - Hasilnya program akan error, penyebab error terjadi pada baris _Mahasiswa04 mhs1 = new Mahasiswa04();_ di _MahasiswaMain04_
+     - Jika sudah membuat konstruktor berparameter secara manual, maka Java tidak perlu membuatkan konstruktor default secara otomatis. Karena konstruktor default dihapus manual dan Java tidak menyediakannya lagi, maka perintah _new Mahasiswa()_ kehilangan rujukan konstruktornya sehingga program jadi error.
 
-4. Setelah melakukan instansiasi object, apakah method di dalam class Mahasiswa harus diakses secara berurutan? Jelaskan alasannya!
+   ![Screenshot](Images/Percobaan3Pertanyaan3A.png)
+   
+   ![Screenshot](Images/Percobaan3Pertanyaan3B.png)
+   
+5. Setelah melakukan instansiasi object, apakah method di dalam class Mahasiswa harus diakses secara berurutan? Jelaskan alasannya!
    - Tidak, method tidak harus diakses secara berurutan sesuai urutan penulisan di class.
    - Method bersifat independen, bebas memanggil method mana saja kapanpun sesuai dengan kebutuhan.
    _Contoh : **ubahKelas()** boleh dipanggil terlebih dahulu baru **tampilkanInformasi()**, atau sebaliknya_
    _Namun meskipun urutan pembanggilan bebas secara sintaks, urutan pemanggilan akan akan mempengaruhi data/output. (misalnya jika menampilkan info sebelum di update data yang lama akan muncul)._
 
-5. Buat object baru dengan nama mhs<NamaMahasiswa> menggunakan konstruktor 
+6. Buat object baru dengan nama mhs<NamaMahasiswa> menggunakan konstruktor 
 berparameter dari class Mahasiswa!
 
-6. Commit dan push kode program ke Github!
+   ![Screenshot](Images/Percobaan3Pertanyaan6A.png)
 
-   Baiklah 👍
+   ![Screenshot](Images/Percobaan3Pertanyaan6B.png)
+
+8. Commit dan push kode program ke Github!
+   - Baiklah 👍
 
 ## 2.4 Latihan Praktikum
 
@@ -172,8 +181,7 @@ Sementara saat di jalankan kode tersebut akan mengeluarkan hasil seperti ini :
 # OUTRO
 Sekian saya lampirkan kode saya untuk di nilai dan diberikan arahan, apabila ada masukkan atau kesalahan bisa kontak saya melalui
 
-Whatsapp : 081358358676
-
-Email    : aryakaviimaran2007@gmail.com
+- Whatsapp : 081358358676
+- Email    : aryakaviimaran2007@gmail.com
 
 Terimakasih
