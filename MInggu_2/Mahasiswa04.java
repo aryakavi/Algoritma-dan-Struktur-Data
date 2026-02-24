@@ -1,6 +1,12 @@
 package MInggu_2;
 public class Mahasiswa04{
 
+    public Mahasiswa04(String nm4, String nim4, double ipk4, String kls4 ){
+        nama4 = nm4;
+        this.nim4 = nim4;
+        this.ipk4 = ipk4;
+        kelas4 = kls4;
+    }
         String nama4;
         String nim4;
         String kelas4;
@@ -16,14 +22,10 @@ public class Mahasiswa04{
         void ubahKelas(String kelasBaru4){
             kelas4 = kelasBaru4;
         }
-        void updateIpk(double ipkBaru4) {
-        if (ipkBaru4 >= 0.0 && ipkBaru4 <= 4.0) {
+        void updateIpk(double ipkBaru4){
             ipk4 = ipkBaru4;
-            System.out.println("IPK berhasil diperbarui.");
-        } else {
-            System.out.println("IPK tidak valid. Harus antara 0.0 dan 4.0");
         }
-    }
+
         String nilaiKinerja(){
             if (ipk4 >= 3.5) {
                 return "Kinerja sangat baik ";
