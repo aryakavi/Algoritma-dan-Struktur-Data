@@ -22,22 +22,22 @@ Sementara saat di jalankan kode tersebut akan mengeluarkan error seperti ini :
 ![Screenshot](Images/Errorpercobaan1.png)
 
 ### 2.1.3 Pertanyaan
-- Sebutkan dua karakteristik class atau object!
-Atribut : Data atau variabel yang mendefinisikan keadaan atau ciri dari objek (contoh : nama4, nim4, ipk4).
-Method : Fungsi atau prosedur yang mendefinisikan perilaku atau apa yang dapat dilakukan oleh objek tersebut (contoh : tampilkanInformasi(), updateIpk()).
+1. Sebutkan dua karakteristik class atau object!
+- Atribut : Data atau variabel yang mendefinisikan keadaan atau ciri dari objek (contoh : nama4, nim4, ipk4).
+- Method : Fungsi atau prosedur yang mendefinisikan perilaku atau apa yang dapat dilakukan oleh objek tersebut (contoh : tampilkanInformasi(), updateIpk()).
 
-- Perhatikan class Mahasiswa pada Praktikum 1 tersebut, ada berapa atribut yang dimiliki oleh class 
+2. Perhatikan class Mahasiswa pada Praktikum 1 tersebut, ada berapa atribut yang dimiliki oleh class 
 Mahasiswa? Sebutkan apa saja atributnya!
-1. nama4 (String)
-2. nim4 (String)
-3. kelas4 (String)
-4. ipk4 (double)
+   - nama4 (String)
+   - nim4 (String)
+   - kelas4 (String)
+   - ipk4 (double)
 
-- Ada berapa method yang dimiliki oleh class tersebut? Sebutkan apa saja methodnya!
-1. tampilkanInformasi()
-2. ubahKelas(String kelasBaru4)
-3. updateIpk(double ipkBaru4)
-4. nilaiKinerja()
+3. Ada berapa method yang dimiliki oleh class tersebut? Sebutkan apa saja methodnya!
+   - tampilkanInformasi()
+   - ubahKelas(String kelasBaru4)
+   - updateIpk(double ipkBaru4)
+   - nilaiKinerja()
 
 
 
@@ -57,23 +57,23 @@ Sementara saat di jalankan kode tersebut akan mengeluarkan hasil seperti ini :
 ![Screenshot](Images/Outputpercobaan2.png)
 
 ### 2.2.3 Pertanyaan
-- Pada class MahasiswaMain, tunjukkan baris kode program yang digunakan untuk proses instansiasi! Apa nama object yang dihasilkan?
+1. Pada class MahasiswaMain, tunjukkan baris kode program yang digunakan untuk proses instansiasi! Apa nama object yang dihasilkan?
 ```java
 Mahasiswa04 mhs1 = new Mahasiswa04();
 ```
-dan nama objek yang dihasulkan adalah mhs1.
+- dan nama objek yang dihasulkan adalah mhs1.
 
-- Bagaimana cara mengakses atribut dan method dari suatu objek?
-Cara mengakses atribut dan method dari suatu objek adalah menggunakan operator titik (.) setelah nama objeknya. dengan sintaks **namaObjek.namaAtribut** atau **namaObjek.namaMethod()**
+2. Bagaimana cara mengakses atribut dan method dari suatu objek?
+- Cara mengakses atribut dan method dari suatu objek adalah menggunakan operator titik (.) setelah nama objeknya. dengan sintaks **namaObjek.namaAtribut** atau **namaObjek.namaMethod()**
 _contoh :_
 _mengakses atribut:  mhs1.nama4 = "Muhammad Ali Farhan";_
 _mengakses method: mhs1.tampilkanInformasi();_
 
-- Mengapa hasil output pemanggilan method tampilkanInformasi() pertama dan kedua berbeda?
-hasil output berbeda karena terjadi perubahan data pada objek mhs1 di antara pemanggil pertama dan kedua. 
+3. Mengapa hasil output pemanggilan method tampilkanInformasi() pertama dan kedua berbeda?
+- hasil output berbeda karena terjadi perubahan data pada objek mhs1 di antara pemanggil pertama dan kedua. 
 1. Pada pemanggilan pertama, method tampilkanInformasi() mencetak data awal (Kelas: "SI 2J", IPK: 3.55).
 2. Setelah itu, baris kode mhs1.ubahKelas("SI 2K"); dan mhs1.updateIpk(3.60); dijalankan. Kedua method ini mengubah nilai kelas4 dan ipk4 yang tersimpan di dalam mhs1.
-Oleh karena itu, saat tampilkanInformasi() dipanggil kedua kalinya, ia mencetak data yang sudah diperbarui (Kelas: "SI 2K", IPK: 3.60).
+- Oleh karena itu, saat tampilkanInformasi() dipanggil kedua kalinya, ia mencetak data yang sudah diperbarui (Kelas: "SI 2K", IPK: 3.60).
 
 ## 2.3 Percobaan 3: Membuat Konstruktor
 Pada percobaan ini, dilakukan pembuatan kode program untuk mengimplementasikan berbagai 
