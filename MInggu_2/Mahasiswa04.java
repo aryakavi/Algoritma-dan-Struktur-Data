@@ -1,5 +1,14 @@
 package MInggu_2;
 public class Mahasiswa04{
+    public Mahasiswa04(){
+    }
+
+    public Mahasiswa04(String nm4, String nim4, double ipk4, String kls4 ){
+        nama4 = nm4;
+        this.nim4 = nim4;
+        this.ipk4 = ipk4;
+        kelas4 = kls4;
+    }
         String nama4;
         String nim4;
         String kelas4;
