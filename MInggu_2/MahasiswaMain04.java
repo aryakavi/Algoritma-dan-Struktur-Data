@@ -16,7 +16,7 @@ public class MahasiswaMain04 {
         mhs2.updateIpk(3.30);
         mhs2.tampilkanInformasi();
 
-        Mahasiswa04 mhs = new Mahasiswa04("AryakaviRI", "254107020087", 3.90, "TI 1F");
+        Mahasiswa04 mhs = new Mahasiswa04("AryakaviRI ", "254107020087", 3.90, "TI 1F");
         mhs.tampilkanInformasi();
     }
 }
