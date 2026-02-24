@@ -1,5 +1,5 @@
-public class Mahasiswa04 {
-
+package MInggu_2;
+public class Mahasiswa04{
         String nama4;
         String nim4;
         String kelas4;
