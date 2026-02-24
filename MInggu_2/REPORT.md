@@ -23,8 +23,8 @@ Sementara saat di jalankan kode tersebut akan mengeluarkan error seperti ini :
 
 ### 2.1.3 Pertanyaan
 1. Sebutkan dua karakteristik class atau object!
-- Atribut : Data atau variabel yang mendefinisikan keadaan atau ciri dari objek (contoh : nama4, nim4, ipk4).
-- Method : Fungsi atau prosedur yang mendefinisikan perilaku atau apa yang dapat dilakukan oleh objek tersebut (contoh : tampilkanInformasi(), updateIpk()).
+   - Atribut : Data atau variabel yang mendefinisikan keadaan atau ciri dari objek (contoh : nama4, nim4, ipk4).
+   - Method : Fungsi atau prosedur yang mendefinisikan perilaku atau apa yang dapat dilakukan oleh objek tersebut (contoh : tampilkanInformasi(), updateIpk()).
 
 2. Perhatikan class Mahasiswa pada Praktikum 1 tersebut, ada berapa atribut yang dimiliki oleh class 
 Mahasiswa? Sebutkan apa saja atributnya!
@@ -38,6 +38,15 @@ Mahasiswa? Sebutkan apa saja atributnya!
    - ubahKelas(String kelasBaru4)
    - updateIpk(double ipkBaru4)
    - nilaiKinerja()
+  
+4. Perhatikan method updateIpk() yang terdapat di dalam class Mahasiswa. Modifikasi isi method tersebut sehingga IPK yang dimasukkan valid yaitu terlebih dahulu dilakukan pengecekan apakah IPK yang dimasukkan di dalam rentang 0.0 sampai dengan 4.0 (0.0 <= IPK <= 4.0). Jika IPK tidak pada rentang tersebut maka dikeluarkan pesan: "IPK tidak valid. Harus antara 0.0 dan 4.0".
+
+5. Jelaskan bagaimana cara kerja method nilaiKinerja() dalam mengevaluasi kinerja mahasiswa,  
+kriteria apa saja yang digunakan untuk menentukan nilai kinerja tersebut, dan apa yang 
+dikembalikan (di-return-kan) oleh method nilaiKinerja() tersebut?
+
+6. Commit dan push kode program ke Github
+   Baiklah 👍
 
 
 
@@ -61,19 +70,19 @@ Sementara saat di jalankan kode tersebut akan mengeluarkan hasil seperti ini :
 ```java
 Mahasiswa04 mhs1 = new Mahasiswa04();
 ```
-- dan nama objek yang dihasulkan adalah mhs1.
+   - dan nama objek yang dihasulkan adalah mhs1.
 
 2. Bagaimana cara mengakses atribut dan method dari suatu objek?
-- Cara mengakses atribut dan method dari suatu objek adalah menggunakan operator titik (.) setelah nama objeknya. dengan sintaks **namaObjek.namaAtribut** atau **namaObjek.namaMethod()**
-_contoh :_
-_mengakses atribut:  mhs1.nama4 = "Muhammad Ali Farhan";_
-_mengakses method: mhs1.tampilkanInformasi();_
+   - Cara mengakses atribut dan method dari suatu objek adalah menggunakan operator titik (.) setelah nama objeknya. dengan sintaks **namaObjek.namaAtribut** atau **namaObjek.namaMethod()**
+   _contoh :_
+   _mengakses atribut:  mhs1.nama4 = "Muhammad Ali Farhan";_
+   _mengakses method: mhs1.tampilkanInformasi();_
 
 3. Mengapa hasil output pemanggilan method tampilkanInformasi() pertama dan kedua berbeda?
-- hasil output berbeda karena terjadi perubahan data pada objek mhs1 di antara pemanggil pertama dan kedua. 
-1. Pada pemanggilan pertama, method tampilkanInformasi() mencetak data awal (Kelas: "SI 2J", IPK: 3.55).
-2. Setelah itu, baris kode mhs1.ubahKelas("SI 2K"); dan mhs1.updateIpk(3.60); dijalankan. Kedua method ini mengubah nilai kelas4 dan ipk4 yang tersimpan di dalam mhs1.
-- Oleh karena itu, saat tampilkanInformasi() dipanggil kedua kalinya, ia mencetak data yang sudah diperbarui (Kelas: "SI 2K", IPK: 3.60).
+   - hasil output berbeda karena terjadi perubahan data pada objek mhs1 di antara pemanggil pertama dan kedua. 
+   1. Pada pemanggilan pertama, method tampilkanInformasi() mencetak data awal (Kelas: "SI 2J", IPK: 3.55).
+   2. Setelah itu, baris kode mhs1.ubahKelas("SI 2K"); dan mhs1.updateIpk(3.60); dijalankan. Kedua method ini mengubah nilai kelas4 dan ipk4 yang tersimpan di dalam mhs1.
+   - Oleh karena itu, saat tampilkanInformasi() dipanggil kedua kalinya, ia mencetak data yang sudah diperbarui (Kelas: "SI 2K", IPK: 3.60).
 
 ## 2.3 Percobaan 3: Membuat Konstruktor
 Pada percobaan ini, dilakukan pembuatan kode program untuk mengimplementasikan berbagai 
@@ -96,8 +105,33 @@ Sementara saat di jalankan kode tersebut akan mengeluarkan hasil seperti ini :
 ![Screenshot](Images/Outputpercobaan3.png)
 
 ### 2.3.3 Pertanyaan
+1. Pada class Mahasiswa di Percobaan 3, tunjukkan baris kode program yang digunakan untuk mendeklarasikan konstruktor berparameter!
+```java
+public Mahasiswa04(String nm4, String nim4, double ipk4, String kls4 ){
+    nama4 = nm4;
+    this.nim4 = nim4;
+    this.ipk4 = ipk4;
+    kelas4 = kls4;
+}
+```
 
+2. Apa sebenarnya yang dilakukan pada baris program _Mahasiswa04 mhs2 = new Mahasiswa04("Annisa Nabila", "2141720160", 3.25, "TI 2L");_ ?
+   - Menciptakan objek baru dari class Mahasiswa04.
+   - Memanggil konstruktor berparameter untuk mengisi nilai awal atribut nama4, nim4, ipk4, dan kelas4 dengan data yang ada di dalam kurung ("Annisa Nabila", "2141720160", dst) saat objek tersebut pertama kali dibuat.
+  
+3. Hapus konstruktor default pada class Mahasiswa, kemudian compile dan run program. Bagaimana hasilnya? Jelaskan mengapa hasilnya demikian!
 
+4. Setelah melakukan instansiasi object, apakah method di dalam class Mahasiswa harus diakses secara berurutan? Jelaskan alasannya!
+   - Tidak, method tidak harus diakses secara berurutan sesuai urutan penulisan di class.
+   - Method bersifat independen, bebas memanggil method mana saja kapanpun sesuai dengan kebutuhan.
+   _Contoh : **ubahKelas()** boleh dipanggil terlebih dahulu baru **tampilkanInformasi()**, atau sebaliknya_
+   _Namun meskipun urutan pembanggilan bebas secara sintaks, urutan pemanggilan akan akan mempengaruhi data/output. (misalnya jika menampilkan info sebelum di update data yang lama akan muncul)._
+
+5. Buat object baru dengan nama mhs<NamaMahasiswa> menggunakan konstruktor 
+berparameter dari class Mahasiswa!
+
+6. Commit dan push kode program ke Github!
+   Baiklah 👍
 
 ## 2.4 Latihan Praktikum
 
