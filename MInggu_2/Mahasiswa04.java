@@ -1,5 +1,7 @@
 package MInggu_2;
 public class Mahasiswa04{
+    public Mahasiswa04(){
+    }
 
     public Mahasiswa04(String nm4, String nim4, double ipk4, String kls4 ){
         nama4 = nm4;
