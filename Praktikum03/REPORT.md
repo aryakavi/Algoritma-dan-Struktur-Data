@@ -16,7 +16,7 @@ Berikut ini adalah kode sayah
 
 class Mahasiswa04.java
 
-'''Java
+```Java
 package Praktikum03;
 
 public class Mahasiswa04{
@@ -25,11 +25,11 @@ public class Mahasiswa04{
     public String kelas;
     public float ipk;
 }
-'''
+```
 
 class MahasiswaDemo04.java
 
-'''Java
+```Java
 package Praktikum03;
 
 public class MahasiswaDemo04{
@@ -70,4 +70,4 @@ public class MahasiswaDemo04{
         System.out.println ("------------------------------------------") ;
     }
 }
-'''
+```
