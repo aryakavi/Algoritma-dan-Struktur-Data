@@ -128,3 +128,98 @@ arrayOfMahasiswa[0] = new Mahasiswa04 ();
 Pada praktikum ini kita akan mengubah hasil program dari praktikum 3.2 sehingga program dapat menerima input dan menggunakan looping untuk mengisikan atribut dari semua objek Mahasiswa 
 
 ### 3.3.1 Langkah-langkah Percobaan
+
+Perubahan yang saya lakukan di MahasiswaDemo04.java
+
+```java
+package Praktikum03;
+import java.util.Scanner;
+
+public class MahasiswaDemo04{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Mahasiswa04[] arrayOfMahasiswa = new Mahasiswa04[3];
+        String dummy;
+
+        for (int i = 0; i < 3; i++) {
+            arrayOfMahasiswa[i] = new Mahasiswa04 ();
+            
+            System.out.println ("Masukkan Data Mahasiswa ke-" + (i + 1));
+            System.out.print ("NIM       : ");
+            arrayOfMahasiswa[i].nim = sc.nextLine ();
+            System.out.print ("Nama      : ") ;
+            arrayOfMahasiswa[i].nama = sc.nextLine ();
+            System.out.print ("Kelas     : ");
+            arrayOfMahasiswa[i].kelas = sc.nextLine ();
+            System.out.print ("IPK       : ");
+            dummy = sc.nextLine () ;
+            arrayOfMahasiswa[i].ipk = Float.parseFloat (dummy);
+            System.out.println ("---------------------------");
+        }
+        
+        for (int i = 0; i < arrayOfMahasiswa.length; i++) {
+            System.out.println ("Data Mahasiswa ke-" + (i + 1));
+            System.out.println ("NIM        : "+ arrayOfMahasiswa[i].nim);
+            System.out.println ("Nama       : "+ arrayOfMahasiswa[i].nama);
+            System.out.println ("Kelas      : "+ arrayOfMahasiswa[i].kelas);
+            System.out.println ("IPK        : "+ arrayOfMahasiswa[i].ipk);
+            System.out.println ("--------------------------------------");
+        }
+    sc.close();
+    }
+}
+```
+
+### 3.3.2 Verifikasi Hasil Percobaan
+
+```
+Masukkan Data Mahasiswa ke-1
+NIM       : 244107060033
+Nama      : AGNES TITANIA KINANTI
+Kelas     : SIB-1E
+IPK       : 3.75
+---------------------------
+Masukkan Data Mahasiswa ke-2
+NIM       : 2341720172
+Nama      : ACHMAD MAULANA HAMZAH
+Kelas     : TI-2A
+IPK       : 3.36
+---------------------------
+Masukkan Data Mahasiswa ke-3
+NIM       : 244107023006
+Nama      : DIRHAMAWAN PUTRANTO
+Kelas     : TI-2E
+IPK       : 3.80
+---------------------------
+Data Mahasiswa ke-1
+NIM        : 244107060033
+Nama       : AGNES TITANIA KINANTI
+Kelas      : SIB-1E
+IPK        : 3.75
+--------------------------------------
+Data Mahasiswa ke-2
+NIM        : 2341720172
+Nama       : ACHMAD MAULANA HAMZAH
+Kelas      : TI-2A
+IPK        : 3.36
+--------------------------------------
+Data Mahasiswa ke-3
+NIM        : 244107023006
+Nama       : DIRHAMAWAN PUTRANTO
+Kelas      : TI-2E
+IPK        : 3.8
+--------------------------------------
+PS D:\Algoritma-dan-Struktur-Data> 
+```
+
+### 3.3.3 Pertanyaan
+1. Tambahkan method cetakInfo() pada class Mahasiswa kemudian modifikasi kode program pada langkah no 3. 
+2. Misalkan Anda punya array baru bertipe array of Mahasiswa dengan nama myArrayOfMahasiswa. Mengapa kode berikut menyebabkan error? 
+```java
+        Mahasiswa04[] arrayOfMahasiswa = new Mahasiswa04[3];
+        arrayOfMahasiswa[0] = new Mahasiswa04 ();
+        arrayOfMahasiswa[0].nim = "244107060033";
+        arrayOfMahasiswa[0].kelas = "SIB-1E";
+        arrayOfMahasiswa[0].ipk = (float) 3.75;
+```
+
