@@ -11,7 +11,7 @@ Memahami fungsi array yang berisikan variabel object, menerapkan instansiasi arr
 ## 3.2 Membuat Array dari Object, Mengisi dan Menampilkan 
 Didalam praktikum ini, kita akan mempraktekkan bagaimana membuat array of objects, kemudian mengisi dan menampilkan array tersebut.
 
-3.2.1 Langkah-langkah Percobaan
+### 3.2.1 Langkah-langkah Percobaan
 Berikut ini adalah kode sayah
 
 class Mahasiswa04.java
@@ -70,4 +70,24 @@ public class MahasiswaDemo04{
         System.out.println ("------------------------------------------") ;
     }
 }
+```
+
+Hasil output 
+```
+NIM        : 244107060033
+Nama       : AGNES TITANIA KINANTI
+Kelas      : SIB-1E
+IPK        : 3.75
+------------------------------------------
+NIM        : 2341720172
+Nama       : ACHMAD MAULANA HAMZAH
+Kelas      : TI-2A
+IPK        : 3.36
+------------------------------------------
+NIM        : 244107023006
+Nama       : DIRHAMAWAN PUTRANTO
+Kelas      : TI-2E
+IPK        : 3.8
+------------------------------------------
+PS D:\Algoritma-dan-Struktur-Data>
 ```
