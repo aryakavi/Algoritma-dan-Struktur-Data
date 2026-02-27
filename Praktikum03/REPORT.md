@@ -15,6 +15,7 @@ Didalam praktikum ini, kita akan mempraktekkan bagaimana membuat array of object
 Berikut ini adalah kode sayah
 
 class Mahasiswa04.java
+
 '''Java
 package Praktikum03;
 
@@ -27,6 +28,7 @@ public class Mahasiswa04{
 '''
 
 class MahasiswaDemo04.java
+
 '''Java
 package Praktikum03;
 
