@@ -6,4 +6,3 @@ public class Mahasiswa04{
     public String kelas;
     public float ipk;
 }
-

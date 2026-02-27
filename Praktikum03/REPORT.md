@@ -8,6 +8,12 @@
 # JOBSHEET 3 : ARRAY OF OBJECT
 Memahami fungsi array yang berisikan variabel object, menerapkan instansiasi array of objects dalam Java, melakukan operasi terhadap elemen dalam array of objects
 
+## 3.1 Tujuan Praktikum 
+Setelah melakukan materi praktikum ini, mahasiswa mampu: 
+1. Memahami dan menjelaskan fungsi array yang berisikan variabel object. 
+2. Mahasiswa mampu menerapkan instansiasi array of objects dalam Java 
+3. Mahasiswa mampu melakukan operasi terhadap elemen dalam array of objects.
+
 ## 3.2 Membuat Array dari Object, Mengisi dan Menampilkan 
 Didalam praktikum ini, kita akan mempraktekkan bagaimana membuat array of objects, kemudian mengisi dan menampilkan array tersebut.
 

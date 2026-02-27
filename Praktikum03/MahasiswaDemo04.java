@@ -38,4 +38,3 @@ public class MahasiswaDemo04{
         System.out.println ("------------------------------------------") ;
     }
 }
-
