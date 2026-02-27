@@ -5,7 +5,7 @@
 | Kelas | TI - 1F |
 | Repository | [https://github.com/aryakavi/Algoritma-dan-Struktur-Data] |
 
-# JOBSHEET 3 : ARRAY OF OBJECT
+# $\textcolor{red}{JOBSHEET 3 : ARRAY OF OBJECT}$
 Memahami fungsi array yang berisikan variabel object, menerapkan instansiasi array of objects dalam Java, melakukan operasi terhadap elemen dalam array of objects
 
 ## 3.1 Tujuan Praktikum 
