@@ -124,6 +124,9 @@ arrayOfMahasiswa[0] = new Mahasiswa04 ();
 
 5. Mengapa class Mahasiswa dan MahasiswaDemo dipisahkan pada uji coba 3.2? 
 
+
+
+
 ## 3.3 Menerima Input Isian Array Menggunakan Looping
 Pada praktikum ini kita akan mengubah hasil program dari praktikum 3.2 sehingga program dapat menerima input dan menggunakan looping untuk mengisikan atribut dari semua objek Mahasiswa 
 
@@ -223,3 +226,14 @@ PS D:\Algoritma-dan-Struktur-Data>
         arrayOfMahasiswa[0].ipk = (float) 3.75;
 ```
 
+
+
+## 3.4 Constructor Berparameter 
+Pada praktikum ini kita akan melakukan instansiasi variable array of object dengan menggunakan constructor berparameter.
+
+### 3.4.1 Langkah-langkah Percobaan
+
+Berikut kode percobaan
+
+```java
+```
