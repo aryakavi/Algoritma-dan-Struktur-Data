@@ -72,7 +72,10 @@ public class MahasiswaDemo04{
 }
 ```
 
+### 3.2.2 Verifikasi Hasil Percobaan 
+
 Hasil output 
+
 ```
 NIM        : 244107060033
 Nama       : AGNES TITANIA KINANTI
@@ -91,3 +94,31 @@ IPK        : 3.8
 ------------------------------------------
 PS D:\Algoritma-dan-Struktur-Data>
 ```
+
+### 3.2.3 Pertanyaan 
+1. Berdasarkan uji coba 3.2, apakah class yang akan dibuat array of object harus selalu memiliki atribut dan sekaligus method? Jelaskan! 
+
+2. Apa yang dilakukan oleh kode program berikut? 
+```java
+Mahasiswa[] arrayOfMahasiswa = new Mahasiswa [3];
+```
+
+3. Apakah class Mahasiswa memiliki konstruktor? Jika tidak, kenapa bisa dilakukan pemanggilan konstruktur pada baris program berikut? 
+```java
+arrayOfMahasiswa[0] = new Mahasiswa04 ();
+```
+
+4. Apa yang dilakukan oleh kode program berikut? 
+```java
+        arrayOfMahasiswa[0] = new Mahasiswa04 ();
+        arrayOfMahasiswa[0].nim = "244107060033";
+        arrayOfMahasiswa[0].kelas = "SIB-1E";
+        arrayOfMahasiswa[0].ipk = (float) 3.75;
+```
+
+5. Mengapa class Mahasiswa dan MahasiswaDemo dipisahkan pada uji coba 3.2? 
+
+## 3.3 Menerima Input Isian Array Menggunakan Looping
+Pada praktikum ini kita akan mengubah hasil program dari praktikum 3.2 sehingga program dapat menerima input dan menggunakan looping untuk mengisikan atribut dari semua objek Mahasiswa 
+
+### 3.3.1 Langkah-langkah Percobaan
