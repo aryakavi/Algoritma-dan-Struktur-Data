@@ -296,8 +296,7 @@ public class MatakuliahDemo04 {
 '''
 
 ### 3.4.2 Verifikasi Hasil Percobaan 
-```
-Masukkan Data Matakuliah ke-1
+``` Masukkan Data Matakuliah ke-1
 Kode       : 12345
 Nama       : Algoritma 7 Struktur Data
 Sks        : 2
@@ -365,9 +364,9 @@ public void tambahData(Scanner sc) {
         System.out.print("Nama       : ");
         this.nama = sc.nextLine();
         System.out.print("Sks        : ");
-        this.sks = Integer.parseInt(sc.nextLine());
+        this.sks = sc.nextInt(); sc.nextLine();
         System.out.print("Jumlah Jam : ");
-        this.jumlahJam = Integer.parseInt(sc.nextLine());
+        this.jumlahJam = sc.nextInt(); sc.nextLine();
         System.out.println("------------------------------------------");
     }
 ```
@@ -384,7 +383,43 @@ public void cetakInfo() {
 ``` 
 
 4. Modifikasi kode program pada class MatakuliahDemo agar panjang (jumlah elemen) dari array of object Matakuliah ditentukan oleh user melalui input dengan Scanner 
+```java
+package Praktikum03;
+import java.util.Scanner;
+public class MatakuliahDemo04 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+         int jumlah = sc.nextInt(); sc.nextLine();
+        Matakuliah04[] arrayOfMatakuliah = new Matakuliah04[jumlah];
+        String kode, nama;
+        int sks, jumlahJam;
 
+        for (int i = 0; i < arrayOfMatakuliah.length; i++) {
+            System.out.println("Masukkan Data Matakuliah ke-" + (i + 1));
+            System.out.print("Kode       : ");
+            kode = sc.nextLine();
+            System.out.print("Nama       : ");
+            nama = sc.nextLine();
+            System.out.print("Sks        : ");
+            sks = sc.nextInt(); sc.nextLine();
+            System.out.print("Jumlah Jam : ");
+            jumlahJam = sc.nextInt(); sc.nextLine();
+            System.out.println("------------------------------------------");
+
+            arrayOfMatakuliah[i] = new Matakuliah04(kode, nama, sks, jumlahJam);
+        }
+           for (int i = 0; i < arrayOfMatakuliah.length; i++) {
+            System.out.println("Data Matakuliah ke-" + (i + 1));
+            System.out.println("Kode       : " + arrayOfMatakuliah[i].kode);
+            System.out.println("Nama       : " + arrayOfMatakuliah[i].nama);
+            System.out.println("Sks        : " + arrayOfMatakuliah[i].sks);
+            System.out.println("Jumlah Jam : " + arrayOfMatakuliah[i].jumlahJam);
+            System.out.println("------------------------------------------");
+        }
+    sc.close();
+    }
+}
+```
  
 
  ## 3.5 tugas 

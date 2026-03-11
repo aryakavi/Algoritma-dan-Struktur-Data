@@ -20,9 +20,9 @@ public class Matakuliah04 {
         System.out.print("Nama       : ");
         this.nama = sc.nextLine();
         System.out.print("Sks        : ");
-        this.sks = Integer.parseInt(sc.nextLine());
+        this.sks = sc.nextInt(); sc.nextLine();
         System.out.print("Jumlah Jam : ");
-        this.jumlahJam = Integer.parseInt(sc.nextLine());
+        this.jumlahJam = sc.nextInt(); sc.nextLine();
         System.out.println("------------------------------------------");
     }
     public void cetakInfo() {
