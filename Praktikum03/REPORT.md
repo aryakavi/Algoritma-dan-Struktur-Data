@@ -380,8 +380,9 @@ public void cetakInfo() {
     System.out.println("SKS         : " + this.sks);
     System.out.println("Jumlah jam  : " + this.jumlahJam);
     System.out.println("-----------------------------------------------");
-}
+} 
 ``` 
+
 4. Modifikasi kode program pada class MatakuliahDemo agar panjang (jumlah elemen) dari array of object Matakuliah ditentukan oleh user melalui input dengan Scanner 
 
  
