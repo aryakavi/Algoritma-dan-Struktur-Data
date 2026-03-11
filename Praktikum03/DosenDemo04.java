@@ -5,7 +5,7 @@ public class DosenDemo04 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Dosen04[] arrayOfDosen = new Dosen04[3];
-        String kode, nama;
+        String kode, nama, JK;
         int usia;
         boolean jenisKelamin;
 
@@ -17,9 +17,10 @@ public class DosenDemo04 {
             System.out.print ("Nama              : ") ;
             nama = sc.nextLine();
             System.out.print ("jenis Kelamin     : ");
-            jenisKelamin = sc.nextBoolean();
+            JK = sc.nextLine();
+            jenisKelamin = JK.equalsIgnoreCase("pria"); 
             System.out.print ("usia               : ");
-            usia = sc.nextInt();
+            usia = sc.nextInt(); sc.nextLine();
             System.out.println ("---------------------------");
 
             arrayOfDosen[i] = new Dosen04 (kode, nama, jenisKelamin, usia);

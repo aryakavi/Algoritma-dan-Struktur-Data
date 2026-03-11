@@ -600,7 +600,7 @@ public class MatakuliahDemo04 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Dosen04[] arrayOfDosen = new Dosen04[3];
-        String kode, nama;
+        String kode, nama, JK;
         int usia;
         boolean jenisKelamin;
 
@@ -612,7 +612,8 @@ public class MatakuliahDemo04 {
             System.out.print ("Nama              : ") ;
             nama = sc.nextLine();
             System.out.print ("jenis Kelamin     : ");
-            jenisKelamin = sc.nextBoolean();
+            JK = sc.nextLine();
+            jenisKelamin = JK.equalsIgnoreCase("pria");
             System.out.print ("usia               : ");
             usia = sc.nextInt();
             System.out.println ("---------------------------");
@@ -636,5 +637,70 @@ public class MatakuliahDemo04 {
 
         sc.close();
     }
-}
+    }
+    ```
+
+    Hasil running kode :
+    
+    ```
+    Masukkan Data Dosen ke-1
+    kode              : 123
+    Nama              : Arif
+    jenis Kelamin     : pria
+    usia               : 80
+    ---------------------------
+    Masukkan Data Dosen ke-2
+    kode              : 456
+    Nama              : Bayu
+    jenis Kelamin     : pria
+    usia               : 60
+    ---------------------------
+    Masukkan Data Dosen ke-3
+    kode              : 789
+    Nama              : Cinta
+    jenis Kelamin     : wanita
+    usia               : 70
+    ---------------------------
+    ========== Semua Data Dosen ==========
+    Data Dosen ke-1
+    Kode          : 123
+    Nama          : Arif
+    Jenis Kelamin : Pria
+    Usia          : 80
+    ------------------------------------------
+    Data Dosen ke-2
+    Kode          : 456
+    Nama          : Bayu
+    Jenis Kelamin : Pria
+    Usia          : 60
+    ------------------------------------------
+    Data Dosen ke-3
+    Kode          : 789
+    Nama          : Cinta
+    Jenis Kelamin : Wanita
+    Usia          : 70
+    ------------------------------------------
+    ========== Jumlah Per Jenis Kelamin ==========
+    Jumlah Dosen Pria   : 2
+    Jumlah Dosen Wanita : 1
+    ------------------------------------------
+    ========== Rata-rata Usia Per Jenis Kelamin ==========
+    Rata-rata Usia Pria   : 70
+    Rata-rata Usia Wanita : 70
+    ------------------------------------------
+    ========== Dosen Paling Tua ==========
+    Dosen Paling Tua
+    Kode          : 123
+    Nama          : Arif
+    Jenis Kelamin : Pria
+    Usia          : 80
+    ------------------------------------------
+    ========== Dosen Paling Muda ==========
+    Dosen Paling Muda
+    Kode          : 456
+    Nama          : Bayu
+    Jenis Kelamin : Pria
+    Usia          : 60
+    ------------------------------------------
+    PS D:\Algoritma-dan-Struktur-Data>
     ```
