@@ -103,16 +103,22 @@ PS D:\Algoritma-dan-Struktur-Data>
 
 ### 3.2.3 Pertanyaan 
 1. Berdasarkan uji coba 3.2, apakah class yang akan dibuat array of object harus selalu memiliki atribut dan sekaligus method? Jelaskan! 
-ke amakananahbdhhwbyb
+    
+    Tidak harus, class bisa hanya memiliki atribut saja (contohnya Mahasiswa04), hanya methos saja, atau keduanya. Yang penting adalah class tersebut bisa digunakan untuk membuat objek. Di uji 3.2, Mahasiswa04 hanya memiliki atribut dan tetap bisa dibuat array of objectnya.
+
 2. Apa yang dilakukan oleh kode program berikut? 
 ```java
 Mahasiswa[] arrayOfMahasiswa = new Mahasiswa [3];
-```
+``` 
+
+    Kode diatas membuat elemen array bernama arrayOfMahasiswa yang mampu menampung 3 objek dengan tipe Mahasiswa04. Array tersebut masih belum ada objeknya dan isi array masih null.
 
 3. Apakah class Mahasiswa memiliki konstruktor? Jika tidak, kenapa bisa dilakukan pemanggilan konstruktur pada baris program berikut? 
 ```java
 arrayOfMahasiswa[0] = new Mahasiswa04 ();
 ```
+
+    Mahasiswa04 tidak memiliki konstruktor yang tertulis, tapi tetap bisa dipanggil new Mahasiswa04() karena Java secara otomatis menyediakan konstruktor defaultnya apabila tidak dituliskan konstruktornya.
 
 4. Apa yang dilakukan oleh kode program berikut? 
 ```java
@@ -122,7 +128,17 @@ arrayOfMahasiswa[0] = new Mahasiswa04 ();
         arrayOfMahasiswa[0].ipk = (float) 3.75;
 ```
 
+    Baris 1 : Membuat objek Mahasiswa 04 baru dan disimkan ke index-0
+    Baris 2 : Mengisi atribut nim (Int) dengan 44107060033
+    Baris 3 : Mengisi atribut kelas dengan SIB-1E
+    Baris 4 : Mengisi atribut ipk dengan 3.75, dan di masukkan ke float karena nilai desimal awal berupa double
+
 5. Mengapa class Mahasiswa dan MahasiswaDemo dipisahkan pada uji coba 3.2? 
+
+    Karena mengikuti prinsip pemisahan, yaitu:
+    A. Mahasiswa04 bertanggung jawab sebagai blueprint data mahasiswa (atribut)
+    B.  MahasiswaDemo04 bertanggung jawab sebagai pengendali program (input, proses, output)
+    Dengan dipisah, kode lebih terorganisir dan class Mahasiswa04 bisa digunakan di program lain tanpa mengubah apapun.
 
 
 
