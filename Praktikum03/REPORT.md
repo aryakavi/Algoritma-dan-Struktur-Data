@@ -338,8 +338,50 @@ PS D:\Algoritma-dan-Struktur-Data>
 
 ### 3.4.3 Pertanyaan 
 1. Apakah suatu class dapat memiliki lebih dari 1 constructor? Jika iya, berikan contohnya 
+Iya, bisa. Sebuah class dapat memiliki beberapa constructor asalkan jumlah atau tipe parameter (signature) yang digunakan berbeda dengan satu sama lain. Contohnya :
+```Java
+public class Matakuliah04 {
+    public String kode;
+    public String nama;
+
+    // Constructor 1: Tanpa parameter (Default)
+    public Matakuliah04() { }
+
+    // Constructor 2: Dengan parameter
+    public Matakuliah04(String kode, String nama, int sks, int jumlahJam) {
+        this.kode = kode;
+        this.nama = nama;
+        this.sks = sks;
+        this.jumlahJam = jumlahJam;
+    }
+}
+```
+
 2. Tambahkan method tambahData() pada class Matakuliah, kemudian gunakan method tersebut di class MatakuliahDemo untuk menambahkan data Matakuliah 
-3. Tambahkan method cetakInfo() pada class Matakuliah, kemudian gunakan method tersebut di class MatakuliahDemo untuk menampilkan data hasil inputan di layar 
+```java
+public void tambahData(Scanner sc) {
+        System.out.print("Kode       : ");
+        this.kode = sc.nextLine();
+        System.out.print("Nama       : ");
+        this.nama = sc.nextLine();
+        System.out.print("Sks        : ");
+        this.sks = Integer.parseInt(sc.nextLine());
+        System.out.print("Jumlah Jam : ");
+        this.jumlahJam = Integer.parseInt(sc.nextLine());
+        System.out.println("------------------------------------------");
+    }
+```
+
+3. Tambahkan method cetakInfo() pada class Matakuliah, kemudian gunakan method tersebut di class MatakuliahDemo untuk menampilkan data hasil inputan di layar
+```java
+public void cetakInfo() {
+    System.out.println("Kode        : " + this.kode);
+    System.out.println("Nama        : " + this.nama);
+    System.out.println("SKS         : " + this.sks);
+    System.out.println("Jumlah jam  : " + this.jumlahJam);
+    System.out.println("-----------------------------------------------");
+}
+``` 
 4. Modifikasi kode program pada class MatakuliahDemo agar panjang (jumlah elemen) dari array of object Matakuliah ditentukan oleh user melalui input dengan Scanner 
 
  
@@ -357,11 +399,11 @@ PS D:\Algoritma-dan-Struktur-Data>
     } 
     Kemudian buatlah class DosenDemo<NoPresensi> untuk proses input dan menampilkan data beberapa dosen. Gunakan looping dengan FOR untuk pembuatan array of object. Gunakan looping dengan FOREACH untuk menampilkan data ke layar. 
 
-    Dosen04.java
-    ```Java
-package Praktikum03;
+    Class Dosen
 
-public class Dosen04 {
+    ```java
+    package Praktikum03;
+    public class Dosen04 {
     public String kode;
     public String nama;
     public boolean jenisKelamin;
@@ -373,15 +415,15 @@ public class Dosen04 {
         this.jenisKelamin = jenisKelamin;
         this.usia = usia;
     }
-}
-```
+    }
+    ```
 
-    DosenDemo04.java
-    ```Java
+    class DosenDemo04
+
+    ```java
     package Praktikum03;
-import java.util.Scanner;
-
-public class DosenDemo04 {
+    import java.util.Scanner;
+    public class DosenDemo04 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Dosen04[] arrayOfDosen = new Dosen04[3];
@@ -415,8 +457,8 @@ public class DosenDemo04 {
         }
     sc.close();
     }
-}
-```
+    }
+    ```
 
 2. Tambahkan class baru DataDosen<NoPresensi> dengan beberapa method berikut; 
     a. dataSemuaDosen(Dosen[] arrayOfDosen)untuk menampilkan data semua dosen   
