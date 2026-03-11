@@ -5,7 +5,7 @@
 | Kelas | TI - 1F |
 | Repository | [https://github.com/aryakavi/Algoritma-dan-Struktur-Data] |
 
-# $\textcolor{red}{JOBSHEET 3 : ARRAY OF OBJECT}$
+# JOBSHEET 3 : ARRAY OF OBJECT
 Memahami fungsi array yang berisikan variabel object, menerapkan instansiasi array of objects dalam Java, melakukan operasi terhadap elemen dalam array of objects
 
 ## 3.1 Tujuan Praktikum 
@@ -103,7 +103,7 @@ PS D:\Algoritma-dan-Struktur-Data>
 
 ### 3.2.3 Pertanyaan 
 1. Berdasarkan uji coba 3.2, apakah class yang akan dibuat array of object harus selalu memiliki atribut dan sekaligus method? Jelaskan! 
-
+ke amakananahbdhhwbyb
 2. Apa yang dilakukan oleh kode program berikut? 
 ```java
 Mahasiswa[] arrayOfMahasiswa = new Mahasiswa [3];
@@ -230,7 +230,6 @@ PS D:\Algoritma-dan-Struktur-Data>
 
 ## 3.4 Constructor Berparameter 
 Pada praktikum ini kita akan melakukan instansiasi variable array of object dengan menggunakan constructor berparameter.
-
 ### 3.4.1 Langkah-langkah Percobaan
 
 Berikut kode percobaan
@@ -294,7 +293,7 @@ public class MatakuliahDemo04 {
     sc.close();
     }
 }
-```
+'''
 
 ### 3.4.2 Verifikasi Hasil Percobaan 
 ```
@@ -357,6 +356,67 @@ PS D:\Algoritma-dan-Struktur-Data>
     …………….; 
     } 
     Kemudian buatlah class DosenDemo<NoPresensi> untuk proses input dan menampilkan data beberapa dosen. Gunakan looping dengan FOR untuk pembuatan array of object. Gunakan looping dengan FOREACH untuk menampilkan data ke layar. 
+
+    Dosen04.java
+    ```Java
+package Praktikum03;
+
+public class Dosen04 {
+    public String kode;
+    public String nama;
+    public boolean jenisKelamin;
+    public int usia;
+
+    public Dosen04(String kode, String nama, Boolean jenisKelamin, int usia){
+        this.kode = kode;
+        this.nama = nama;
+        this.jenisKelamin = jenisKelamin;
+        this.usia = usia;
+    }
+}
+```
+
+    DosenDemo04.java
+    ```Java
+    package Praktikum03;
+import java.util.Scanner;
+
+public class DosenDemo04 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Dosen04[] arrayOfDosen = new Dosen04[3];
+        String kode, nama;
+        int usia;
+        boolean jenisKelamin;
+
+        for (int i = 0; i < 3; i++) {
+            
+            System.out.println ("Masukkan Data Dosen ke-" + (i + 1));
+            System.out.print ("kode              : ");
+            kode = sc.nextLine();
+            System.out.print ("Nama              : ") ;
+            nama = sc.nextLine();
+            System.out.print ("jenis Kelamin     : ");
+            jenisKelamin = sc.nextBoolean();
+            System.out.print ("usia               : ");
+            usia = sc.nextInt();
+            System.out.println ("---------------------------");
+
+            arrayOfDosen[i] = new Dosen04 (kode, nama, jenisKelamin, usia);
+        }
+        int i = 1;
+        for (Dosen04 dosen : arrayOfDosen) {
+        System.out.println("Data Dosen ke-" + (i+1));
+        System.out.println("kode               : " + dosen.kode);
+        System.out.println("Nama               : " + dosen.nama);
+        System.out.println("Jenis kelamin      : " + dosen.jenisKelamin);
+        System.out.println("usia               : " + dosen.usia);
+        System.out.println("--------------------------------------");
+        }
+    sc.close();
+    }
+}
+```
 
 2. Tambahkan class baru DataDosen<NoPresensi> dengan beberapa method berikut; 
     a. dataSemuaDosen(Dosen[] arrayOfDosen)untuk menampilkan data semua dosen   
