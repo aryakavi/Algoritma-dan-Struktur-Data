@@ -232,7 +232,50 @@ PS D:\Algoritma-dan-Struktur-Data>
 ```
 
 ### 3.3.3 Pertanyaan
-1. Tambahkan method cetakInfo() pada class Mahasiswa kemudian modifikasi kode program pada langkah no 3. 
+1. Tambahkan method cetakInfo() pada class Mahasiswa kemudian modifikasi kode program pada langkah no 3.
+
+perubahan class Mahasiswa04 :
+
+```java
+package Praktikum03;
+
+public class Mahasiswa04{
+    public String nim;
+    public String nama;
+    public String kelas;
+    public float ipk;
+
+    public void cetakInfo(){
+        System.out.println("NIM     : " + this.nim);
+        System.out.println("NAMA    : " + this.nama);
+        System.out.println("Kelas   : " + this.kelas);
+        System.out.println("IPK     : " + this.ipk);
+        System.out.println("--------------------------------------------");
+    }
+}
+```
+
+Perubahan pada class Mahasiswa04 juga mengakibatkan perubahan pada class MahasiswaDeno04
+yaitu pada line output. Berubah dari :
+```java
+for (int i = 0; i < arrayOfMahasiswa.length; i++) {
+            System.out.println ("Data Mahasiswa ke-" + (i + 1));
+            System.out.println ("NIM        : "+ arrayOfMahasiswa[i].nim);
+            System.out.println ("Nama       : "+ arrayOfMahasiswa[i].nama);
+            System.out.println ("Kelas      : "+ arrayOfMahasiswa[i].kelas);
+            System.out.println ("IPK        : "+ arrayOfMahasiswa[i].ipk);
+            System.out.println ("--------------------------------------");
+        }
+```
+
+Menjadi
+```java
+for (int i = 0; i < arrayOfMahasiswa.length; i++) {
+            System.out.println ("Data Mahasiswa ke-" + (i + 1));
+            arrayOfMahasiswa[i].cetakInfo();
+        }
+```
+
 2. Misalkan Anda punya array baru bertipe array of Mahasiswa dengan nama myArrayOfMahasiswa. Mengapa kode berikut menyebabkan error? 
 ```java
         Mahasiswa04[] arrayOfMahasiswa = new Mahasiswa04[3];
@@ -241,6 +284,9 @@ PS D:\Algoritma-dan-Struktur-Data>
         arrayOfMahasiswa[0].kelas = "SIB-1E";
         arrayOfMahasiswa[0].ipk = (float) 3.75;
 ```
+
+    A. Masalah variabel myArrayOfMahasiswa, di kode disebtukan bahwa variabel adalah arrayOFMahasiswa. Sehingga ketika dirun maka kode akan mengeluarkan error variabel not found. 
+    B. Objek belum diinisialisasi, tidak ada instansiasi objeck pada indeksnya dan akan munccul NullPointerException. 
 
 
 
