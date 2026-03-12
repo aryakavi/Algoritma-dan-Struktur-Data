@@ -183,6 +183,89 @@ Di dalam percobaan ini, kita akan mempraktekkan bagaimana proses divide, conquer
 
 ### 5.4.1. Langkah-langkah Percobaan 
 
+class sum
+
+```java
+package BruteForceDivideConquer.Minggu5;
+
+public class Sum {
+    double keuntungan[];
+    Sum(int el){
+        keuntungan = new double[el];
+    }
+    double totalBF(){
+        double total=0;
+        for (int i = 0; i < keuntungan.length; i++) {
+            total = total+keuntungan[i];
+        }
+        return total;
+    }
+
+    double totalDC(double arr[], int l, int r){
+        if(l==r){
+            return arr[l];
+        }
+
+        int mid = (l+r)/2;
+        double lsum = totalDC(arr, l, mid);
+        double rsum = totalDC(arr, mid+1, r);
+        return lsum+rsum;
+    }
+}
+```
+
+class mainsum 
+
+```java
+package BruteForceDivideConquer.Minggu5;
+import java.util.Scanner;
+public class MainSum {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Masukkan jumlah elemen: ");
+        int elemen = input.nextInt();
+        Sum sm = new Sum(elemen);
+        for (int i = 0; i < elemen; i++) {
+            System.out.print("Masukkan keuntungan ke-"+(i+1)+": ");
+            sm.keuntungan[i] = input.nextDouble();
+        }
+
+        System.out.println("Total keuntungan menggunakan Bruteforce: "+sm.totalBF());
+        System.out.println("Total keuntungan menggunakan Divide and Conquer: "+sm.totalDC(sm.keuntungan, 0 , elemen-1)); 
+    }
+}
+```
+
+
 ### 5.4.2. Verifikasi Hasil Percobaan 
 
+Hasil running kode
+
+```
+Masukkan jumlah elemen: 5
+Masukkan keuntungan ke-1: 10
+Masukkan keuntungan ke-2: 20
+Masukkan keuntungan ke-3: 30
+Masukkan keuntungan ke-4: 40
+Masukkan keuntungan ke-5: 50
+Total keuntungan menggunakan Bruteforce: 150.0
+Total keuntungan menggunakan Divide and Conquer: 150.0
+PS D:\Algoritma-dan-Struktur-Data> 
+```
+
+
 ### 5.4.3. Pertanyaan 
+1. Kenapa dibutuhkan variable mid pada method TotalDC()? 
+2. Untuk apakah statement di bawah ini dilakukan dalam TotalDC()? 
+```java
+double lsum = totalDC(arr, l, mid);
+double rsum = totalDC(arr, mid+1, r);
+```
+3. Kenapa diperlukan penjumlahan hasil lsum dan rsum seperti di bawah ini? 
+```java
+return lsum+rsum;
+```
+4. Apakah base case dari totalDC()? 
+5. Tarik Kesimpulan tentang cara kerja totalDC() 
+
+## 4.4 Latihan Praktikum
