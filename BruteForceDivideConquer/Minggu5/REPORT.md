@@ -196,9 +196,95 @@ PS D:\Algoritma-dan-Struktur-Data>
 
 ### 5.3.3. Pertanyaan
 1. Jelaskan mengenai perbedaan 2 method yang dibuat yaitu pangkatBF() dan pangkatDC()! 
+
+    | pangkatBF() | pangkatDC() |
+    |---|---|
+    | Perkalian iteratif (Brute Force) |  Perkatlian rekursif (Divide & Conquer) |
+    | Kalikan a sebanyak n kali secara berulang | Pecah pangkat menjadi setengahnya, selesaikan, lalu gabungkan |
+    | Perulangan for | Percabangan if-else + rekursi |
+
 2. Apakah tahap combine sudah termasuk dalam kode tersebut?Tunjukkan! 
+
+    Tahap combine sudah termasuk di tahapan Devide & Conquer di pangkat DC, sebagimana tahapan Devide & Conquer berupa :
+        
+        a. Divide   -> Membagi masalah menjadi masalah lebih kecil.
+        b. Conquer  -> Menyelesaikan setiap sub masalah (rekursi).
+        c. Combine  -> Menggabungkan hasil sub-masalah menjadi solusi akhir.
+
+    ```java
+    int pangkatDC(int a, int n){
+    if(n == 1){
+        return a;                           
+    } else {
+        if(n % 2 == 1){
+            return (pangkatDC(a, n/2) * pangkatDC(a, n/2) * a);
+        // Conquer dilakukan di pangkatDC(a, n/2) dan pangkatDC(a, n/2) * a)
+        // Combine dilakukan dengan mengkalikan kedua rekursif tersebut dengan a
+
+        } else {
+            return (pangkatDC(a, n/2) * pangkatDC(a, n/2));
+        // Conquer dilakukan di pangkatDC(a, n/2) dan pangkatDC(a, n/2) * a)
+        // Combine dilakukan dengan mengkalikan kedua rekursif tersebut     
+        }
+    }
+}
+    ```
+
 3. Pada method pangkatBF()terdapat parameter untuk melewatkan nilai yang akan dipangkatkan dan pangkat berapa, padahal di sisi lain di class Pangkat telah ada atribut nilai dan pangkat, apakah menurut Anda method tersebut tetap relevan untuk memiliki parameter? Apakah bisa jika method tersebut dibuat dengan tanpa parameter? Jika bisa, seperti apa method pangkatBF() yang tanpa parameter? 
+
+a. Relevansi parameter    
+Menurut saya parameter kurang releva, karena nilai yang dikirim (p.nilai, p.pangkat) adalah atribut yang sudah dimiliki objek itu sendiri. Menyebabkan data yang sama disimpan dua kali 
+```java
+// Method memiliki parameter (a,n)
+int pangkatBF(int a, int n) { ... }
+// Dipanggil di :
+p.pangkatBF(p.nilai, p.pangkat)
+// atribut kelas (p.nilai, p.pangkat) dioper dengan atribut yang sudah ada di kelas
+```
+
+b. Bukti pangkatBF() bisa Dibuat Tanpa Parameter
+
+```java
+// Method tanpa parameter langsung akses atribut kelas
+int pangkatBF() {
+    int hasil = 1;
+    for (int i = 0; i < pangkat; i++) {  // langsung pakai atribut 'pangkat'
+        hasil = hasil * nilai;            // langsung pakai atribut 'nilai'
+    }
+    return hasil;
+}
+```
+
+c. Penyesuaian di MainPangkat.java
+```java
+// Sebelum
+System.out.println("HASIL PANGKAT BRUTEFORE: ");
+        for(Pangkat p : png){
+            System.out.println(p.nilai+"^"+p.pangkat+": "+p.pangkatBF(p.nilai, p.pangkat));
+        }
+
+// Sesudah 
+System.out.println("HASIL PANGKAT BRUTEFORE: ");
+        for(Pangkat p : png){
+            System.out.println(p.nilai+"^"+p.pangkat+": "+p.pangkatBF());
+        }
+```
+
+
 4. Tarik tentang cara kerja method pangkatBF() dan pangkatDC()!
+
+| pangkatBF() | pangkatDC() |
+|---|---|
+| Brute Force |  Divide & Conquer |
+| Iterasi  | Rekursi |
+| Perulangan for | Percabangan if-else + rekursi |
+| Maju (1 → n) | Turun (n → 1) |
+| 0(n) | 0(log n) |
+
+a. pangkatBF() bekerja dengan cara sederhana dan langsung: kalikan basis (a) sebanyak n kali menggunakan perulangan.
+
+b. pangkatDC() bekerja dengan strategi pecah dan gabungkan pangkat dibagi dua di setiap level rekursi sehingga jumlah perkalian berkurang secara drastis.
+
 
 ## 5.4 Menghitung Sum Array dengan Algoritma Brute Force dan Divide and Conquer
 Di dalam percobaan ini, kita akan mempraktekkan bagaimana proses divide, conquer, dan combine diterapkan pada studi kasus penjumlahan keuntungan suatu perusahaan dalam beberapa bulan.
