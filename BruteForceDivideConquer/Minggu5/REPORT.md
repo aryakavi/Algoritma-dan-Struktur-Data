@@ -74,10 +74,32 @@ PS D:\Algoritma-dan-Struktur-Data>
 
 ### 5.2.3. Pertanyaan 
 1. Pada base line Algoritma Divide Conquer untuk melakukan pencarian nilai faktorial, jelaskan perbedaan bagian kode pada penggunaan if dan else! 
-2. Apakah memungkinkan perulangan pada method faktorialBF() diubah selain menggunakan for? Buktikan! 
-3. Jelaskan perbedaan antara fakto *= i; dan int fakto = n * faktorialDC(n-1); ! 
-4. Buat Kesimpulan tentang perbedaan cara kerja method faktorialBF()  dan faktorialDC()! 
 
+    Penggunaan If pada facktorialDC() adalah sebagai base case, yaitu kembalian saat semua fungsi berjalan dan mengembalikan nilai tersebut. Dimana jika di kode tersebut n= 1, maka akan mengembalikan n bernilai 1 dan menghentikan rekursi. Sementara else digunakan untuk rekursif, yaitu saat nilai n>1 akan memecahkan masalah di n*faktorialDC(n-1) hingga n menjadi 1 dan menjalankan base case.
+
+2. Apakah memungkinkan perulangan pada method faktorialBF() diubah selain menggunakan for? Buktikan!
+    
+    perulangan pada faktorialBF() bisa diganti dengan menggunakan while, yaitu dengan megubah kode FOR menjadi
+    ```java
+    while(i <= n){       // kondisi sama seperti for
+        fakto = fakto * i;
+        i++;             // increment manual
+    }
+    ```
+
+3. Jelaskan perbedaan antara fakto *= i; dan int fakto = n * faktorialDC(n-1); ! 
+    
+    | fakto *=i |   fakto = n*faktorialDC(n-1) |
+    |---|---|
+    | Perkalian iteratif (perulangan) |  Perkatlian rekursih (memanggil diri sendiri) |
+    | Mengalikan fakto dengan i yang terus bertambah didalam loop | Mengalikan n dengan hasil pemanggil fungsi yang sama untuk n-1 |
+    | Brute force | Divide & Conquer |
+    | 1 -> 1x1 -> 2x3 -> 2x3 -> 6x4 = 24 | 4x (3x (2x (1))) = 24 |
+
+4. Buat Kesimpulan tentang perbedaan cara kerja method faktorialBF()  dan faktorialDC()!
+
+    A. faktorialBF() merupakan method yang berjalan secara iteratif dengan perulangan for, dan arah hitunganya 1 -> n.
+    B. faktorialDC() merupakan method yang berjalan secara rekursif dengan pemanggilan dirinya sendiri, dan arah hitungnya n -> 1.
 
 ## 5.3 Menghitung Hasil Pangkat dengan Algoritma Brute Force dan Divide and Conquer 
 Pada praktikum ini kita akan membuat program class dalam Java, untuk menghitung nilai pangkat suatu angka menggunakan 2 jenis algoritma, Brute Force dan Divide and Conquer. 
@@ -269,3 +291,8 @@ return lsum+rsum;
 5. Tarik Kesimpulan tentang cara kerja totalDC() 
 
 ## 4.4 Latihan Praktikum
+1. Sebuah kampus memiliki daftar nilai mahasiswa dengan data sesuai tabel di bawah ini
+    Tentukan: 
+    a) Nilau UTS tertinggi tertinggi menggunakan Divide and Conquer! 
+    b) Nilai UTS terendah menggunakan Divide and Conquer! 
+    c) Rata-rata nilai UAS dari semua mahasiswa menggunakan Brute Force!
