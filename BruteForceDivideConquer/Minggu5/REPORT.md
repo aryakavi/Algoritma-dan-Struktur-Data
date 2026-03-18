@@ -435,6 +435,92 @@ Base case terjadi ketika 'l == r', yaitu saay bagian array yang sedang diproses 
     c) Rata-rata nilai UAS dari semua mahasiswa menggunakan Brute Force!
 
 
+Class Mahasiswa
+```java
+package BruteForceDivideConquer.Minggu5;
+
+public class Mahasiswa {
+    String nama;
+    int nim, tahunMasuk, nilaiUTS, nilaiUAS;
+
+    Mahasiswa(String nama, int nim, int tahunMasuk, int nilaiUTS, int nilaiUAS) {
+        this.nama       = nama;
+        this.nim        = nim;
+        this.tahunMasuk = tahunMasuk;
+        this.nilaiUTS   = nilaiUTS;
+        this.nilaiUAS   = nilaiUAS;
+    }
+
+    int maxUTSDC(Mahasiswa[] arr, int l, int r) {
+        if (l == r) {                          
+            return arr[l].nilaiUTS;
+        }
+        int mid   = (l + r) / 2;
+        int lMax  = maxUTSDC(arr, l, mid);    
+        int rMax  = maxUTSDC(arr, mid + 1, r);
+        return Math.max(lMax, rMax);           
+    }
+
+    int minUTSDC(Mahasiswa[] arr, int l, int r) {
+        if (l == r) {                          
+            return arr[l].nilaiUTS;
+        }
+        int mid   = (l + r) / 2;
+        int lMin  = minUTSDC(arr, l, mid);    
+        int rMin  = minUTSDC(arr, mid + 1, r);
+        return Math.min(lMin, rMin);           
+    }
+
+    double rataUASBF(Mahasiswa[] arr) {
+        double total = 0;
+        for (int i = 0; i < arr.length; i++) {
+            total = total + arr[i].nilaiUAS;   
+        }
+        return total / arr.length;           
+    }
+}
+```
 
 
+class MainMahasiswa
+```java
+package BruteForceDivideConquer.Minggu5;
+
+public class MainMahasiswa {
+    public static void main(String[] args) {
+
+        Mahasiswa[] mhs = {
+            new Mahasiswa("Ahmad", 220101001, 2022, 78, 82),
+            new Mahasiswa("Budi",  220101002, 2022, 85, 88),
+            new Mahasiswa("Cindy", 220101003, 2021, 90, 87),
+            new Mahasiswa("Dian",  220101004, 2021, 76, 79),
+            new Mahasiswa("Eko",   220101005, 2023, 92, 95),
+            new Mahasiswa("Fajar", 220101006, 2020, 88, 85),
+            new Mahasiswa("Gina",  220101007, 2023, 80, 83),
+            new Mahasiswa("Hadi",  220101008, 2020, 82, 84)
+        };
+
+        Mahasiswa m = new Mahasiswa("", 0, 0, 0, 0);
+        int n = mhs.length;
+
+        int maxUTS = m.maxUTSDC(mhs, 0, n - 1);
+        System.out.println("a) Nilai UTS Tertinggi (DC) : " + maxUTS);
+
+        int minUTS = m.minUTSDC(mhs, 0, n - 1);
+        System.out.println("b) Nilai UTS Terendah  (DC) : " + minUTS);
+
+        double rataUAS = m.rataUASBF(mhs);
+        System.out.println("c) Rata-rata UAS (BF)       : " + rataUAS);
+    }
+}
+```
+
+
+Hasil Running
+```
+a) Nilai UTS Tertinggi (DC) : 92
+b) Nilai UTS Terendah  (DC) : 76
+c) Rata-rata UAS (BF)       : 85.375
+PS D:\Algoritma-dan-Struktur-Data> 
+```
     
