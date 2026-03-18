@@ -364,21 +364,77 @@ PS D:\Algoritma-dan-Struktur-Data>
 
 ### 5.4.3. Pertanyaan 
 1. Kenapa dibutuhkan variable mid pada method TotalDC()? 
+
+    mid berfungsi sebagai titik tengah array yang memisahkan array menjadi dua bagian kiri dan kanan agar bisa diproses secara terpisah.
+
+    ```java
+    int mid = (l + r) / 2;
+    ```
+    ```
+    Contoh array dengan 6 elemen `[10, 20, 30, 40, 50, 60]`:
+    
+    Index :  0    1    2    3    4    5
+    Array : [10,  20,  30,  40,  50,  60]
+    
+    mid = (0+5)/2 = 2
+    Kiri  : [10, 20, 30]   -> index 0 sampai 2  (l=0, r=mid=2)
+    Kanan : [40, 50, 60]   -> index 3 sampai 5  (l=mid+1=3, r=5)
+
+    Tanpa mid, tidak ada cara untuk menentukan batas pembagian array, sehingga proses Divide & Conquer tidak bisa dilakukan.
+    ```
+
 2. Untuk apakah statement di bawah ini dilakukan dalam TotalDC()? 
 ```java
 double lsum = totalDC(arr, l, mid);
 double rsum = totalDC(arr, mid+1, r);
 ```
+
+| Variabel | Tahap | Fungsi |
+|----------|-------|--------|
+| `lsum` | Divide + Conquer | Memecah dan menghitung total separuh kiri array secara rekursif |
+| `rsum` | Divide + Conquer | Memecah dan menghitung total separuh kanan array secara rekursif |
+
+Setiap pemanggilan rekursif terus memecah array hingga tersisa 1 elemen (base case), lalu hasilnya dikembalikan ke atas.
+
 3. Kenapa diperlukan penjumlahan hasil lsum dan rsum seperti di bawah ini? 
 ```java
 return lsum+rsum;
 ```
-4. Apakah base case dari totalDC()? 
+
+Karena agar Divide and Conquer bisa berkerja maka di hasil akhir memerlukan tahapan combine, dengan menggabungkan hasil dari dua sub-masalah menjadi  satu jawaban akhir.
+
+Tanpa lsum + rsum, hasil dari sub-masalah tidak pernah digabungkan, sehingga jawaban akhir tidak akan pernah terbentuk.
+
+4. Apakah base case dari totalDC()?
+
+```java
+if(l==r){
+    return arr[1];
+}
+```
+
+Base case terjadi ketika 'l == r', yaitu saay bagian array yang sedang diproses hnya tinggal 1 elemen. Pada kondisi ini, tidak diperlukan lagi membagi array langsung kembalikan nilai elemen tersebut.
+
+
 5. Tarik Kesimpulan tentang cara kerja totalDC() 
+
+| JENIS | PENGERTIAN |
+|---|---|
+| DIVIDE | Hitung mid, bagi array menjadi kiri dan kanan |
+| CONQUER | Panggil totalDC() rekursif pada tiap bagian |
+| COMBINE | Jumlahkan lsum + rsum untuk hasil akhir |
 
 ## 4.4 Latihan Praktikum
 1. Sebuah kampus memiliki daftar nilai mahasiswa dengan data sesuai tabel di bawah ini
     Tentukan: 
+    
     a) Nilau UTS tertinggi tertinggi menggunakan Divide and Conquer! 
+    
     b) Nilai UTS terendah menggunakan Divide and Conquer! 
+    
     c) Rata-rata nilai UAS dari semua mahasiswa menggunakan Brute Force!
+
+
+
+
+    
