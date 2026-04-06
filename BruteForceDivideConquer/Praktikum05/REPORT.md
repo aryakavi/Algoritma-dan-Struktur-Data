@@ -20,11 +20,11 @@ Berikut kode saya :
 
 a. SORTING - BUBBLE SORT
 
-class Sorting05
+class Sorting04
 ```JAVA
 package BruteForceDivideConquer.Praktikum05;
 
-public class Sorting05 {
+public class Sorting04 {
 
     int[] data;
     int jumData;
@@ -59,15 +59,15 @@ public class Sorting05 {
 }
 ```
 
-class SortingMain05
+class SortingMain04
 ```JAVA
 package BruteForceDivideConquer.Praktikum05;
 
-public class SortingMain05 {
+public class SortingMain04 {
     public static void main(String[] args) {
         int a[] = {20,10,2,7,12};
         
-        Sorting05 dataurut1 = new Sorting05(a, a.length);
+        Sorting04 dataurut1 = new Sorting04(a, a.length);
         System.out.println("Data awal 1");
         dataurut1.tampil();
         dataurut1.bubbleSort();
@@ -89,16 +89,16 @@ Data sudah diurut dengan BUBBLE SORT (ASC)
 
 b. SORTING - SELESCTION SORT
 
-class Sorting05
+class Sorting04
 ```JAVA
 package BruteForceDivideConquer.Praktikum05;
 
-public class Sorting05 {
+public class Sorting04 {
 
     int[] data;
     int jumData;
 
-    Sorting05 (int Data[], int jmlDat) {
+    Sorting04 (int Data[], int jmlDat) {
         jumData = jmlDat;
         data = new int[jmlDat];
         for (int i = 0; i < jumData; i++) {
@@ -139,15 +139,15 @@ public class Sorting05 {
 }
 ```
 
-class SortingMain05
+class SortingMain04
 ```JAVA
 package BruteForceDivideConquer.Praktikum05;
 
-public class SortingMain05 {
+public class SortingMain04 {
     public static void main(String[] args) {
         int a[] = {20,10,2,7,12};
         
-        Sorting05 dataurut1 = new Sorting05(a, a.length);
+        Sorting04 dataurut1 = new Sorting04(a, a.length);
         System.out.println("Data awal 1");
         dataurut1.tampil();
         dataurut1.bubbleSort();
@@ -155,7 +155,7 @@ public class SortingMain05 {
         dataurut1.tampil();
 
         int b[] = {30, 20, 2, 8, 14};
-        Sorting05 dataurut2 = new Sorting05(b, b.length);
+        Sorting04 dataurut2 = new Sorting04(b, b.length);
         System.out.println("Data awal 2");
         dataurut2.tampil();
         dataurut2.SelectionSort();
@@ -174,16 +174,16 @@ Data sudah diurutkan dengan SELECTION SORT (ASC)
 
 c. SORTING INSERTION SORT
 
-class Sorting05.java
+class Sorting04
 ```JAVA
 package BruteForceDivideConquer.Praktikum05;
 
-public class Sorting05 {
+public class Sorting04 {
 
     int[] data;
     int jumData;
 
-    Sorting05 (int Data[], int jmlDat) {
+    Sorting04 (int Data[], int jmlDat) {
         jumData = jmlDat;
         data = new int[jmlDat];
         for (int i = 0; i < jumData; i++) {
@@ -236,15 +236,15 @@ public class Sorting05 {
 }
 ```
 
-class SortingmMin05
+class SortingmMain04
 ```JAVA
 package BruteForceDivideConquer.Praktikum05;
 
-public class SortingMain05 {
+public class SortingMain04 {
     public static void main(String[] args) {
         int a[] = {20,10,2,7,12};
         
-        Sorting05 dataurut1 = new Sorting05(a, a.length);
+        Sorting04 dataurut1 = new Sorting04(a, a.length);
         System.out.println("Data awal 1");
         dataurut1.tampil();
         dataurut1.bubbleSort();
@@ -253,7 +253,7 @@ public class SortingMain05 {
 
         int b[] = {30, 20, 2, 8, 14};
         
-        Sorting05 dataurut2 = new Sorting05(b, b.length);
+        Sorting04 dataurut2 = new Sorting04(b, b.length);
         System.out.println("Data awal 2");
         dataurut2.tampil();
         dataurut2.SelectionSort();
@@ -262,7 +262,7 @@ public class SortingMain05 {
 
         int c[] = {40, 10, 4, 9, 3};
 
-        Sorting05 dataurut3 = new Sorting05(c, c.length);
+        Sorting04 dataurut3 = new Sorting04(c, c.length);
         System.out.println("Data awal 2");
         dataurut3.tampil();
         dataurut3.SelectionSort();
