@@ -568,7 +568,7 @@ public class MahasiswaDemo04 {
         list.bubbleSort();
         list.tampil();
 
-        System.out.println("data yang sudah terurut menggunakan SELECTION SORT (ASC)");
+        System.out.println("Data yang sudah terurut menggunakan SELECTION SORT (ASC)");
         list.selectionSort();
         list.tampil();
     
@@ -605,7 +605,7 @@ NIM: 127
 Kelas: 2A
 IPK: 3.7
 -----------------------------
-data yang sudah terurut menggunakan SELECTION SORT (ASC)
+Data yang sudah terurut menggunakan SELECTION SORT (ASC)
 Nama: Sofi
 NIM: 125
 Kelas: 2A
@@ -653,3 +653,197 @@ Untuk apakah proses tersebut? Jelaskan!
 ## 5.4 Mengurutkan Data Mahasiswa Berdasarkan IPK Menggunakan Instertion Sort
 
 ### 5.4.1 Langkah-langkah percobaan
+
+Hasil modifikasai class MahassiswaBerprestasi04
+```JAVA
+package BruteForceDivideConquer.Praktikum05;
+
+public class MahasiswaBerprestasi04 {
+    Mahasiswa04[] listMhs = new Mahasiswa04[5];
+    int idx;
+
+    void tambah(Mahasiswa04 m) {
+        if (idx < listMhs.length) {
+            listMhs[idx] = m;
+            idx++;
+        } else {
+            System.out.println("Data sudah penuh");
+        }
+    }
+
+    void tampil() {
+        for (Mahasiswa04 m : listMhs) {
+            if (m != null) { 
+                m.tampilInformasi();
+                System.out.println("-----------------------------");
+            }
+        }
+    }
+
+    void insertionSort() {
+        for (int i = 1; i < listMhs.length; i++) {
+            Mahasiswa04 temp = listMhs[i];
+            int j = i;
+            while (j > 0 && listMhs[j - 1] != null && listMhs[j - 1].ipk > temp.ipk) {
+                listMhs[j] = listMhs[j - 1];
+                j--;
+            }
+            listMhs[j] = temp;
+        }
+    }
+
+    void selectionSort() {
+        for (int i = 0; i < listMhs.length - 1; i++) {
+            int idxMin = i;
+            for (int j = i + 1; j < listMhs.length; j++) {
+                if (listMhs[j] != null && listMhs[idxMin] != null) {
+                    if (listMhs[j].ipk < listMhs[idxMin].ipk) {
+                        idxMin = j;
+                    }
+                }
+            }
+            Mahasiswa04 tmp = listMhs[idxMin];
+            listMhs[idxMin] = listMhs[i];
+            listMhs[i] = tmp;
+        }
+    }
+
+    void bubbleSort() {
+        for (int i = 0; i < listMhs.length - 1; i++) {
+            for (int j = 1; j < listMhs.length - i; j++) {
+                if (listMhs[j] != null && listMhs[j-1] != null) {
+                    if (listMhs[j].ipk > listMhs[j - 1].ipk) {
+                        Mahasiswa04 tmp = listMhs[j];
+                        listMhs[j] = listMhs[j - 1];
+                        listMhs[j - 1] = tmp;
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+Hasil modifikasi class MahasiswaDemo04
+```JAVA
+package BruteForceDivideConquer.Praktikum05;
+
+public class MahasiswaDemo04 {
+    public static void main(String[] args) {
+        MahasiswaBerprestasi04 list = new MahasiswaBerprestasi04();
+
+        Mahasiswa04 m1 = new Mahasiswa04("123", "Zidan", "2A", 3.2);
+        Mahasiswa04 m2 = new Mahasiswa04("124", "Ayu", "2A", 3.5);
+        Mahasiswa04 m3 = new Mahasiswa04("125", "Sofi", "2A", 3.1);
+        Mahasiswa04 m4 = new Mahasiswa04("126", "Sita", "2A", 3.9);
+        Mahasiswa04 m5 = new Mahasiswa04("127", "Miki", "2A", 3.7);
+
+
+        list.tambah(m1);
+        list.tambah(m2);
+        list.tambah(m3);
+        list.tambah(m4);
+        list.tambah(m5);
+
+        System.out.println("Data mahasiswa sebelum sorting: ");
+        list.tampil();
+
+        System.out.println("Data Mahasiswa setelah sorting berdasarkan IPK (DESC) : ");
+        list.bubbleSort();
+        list.tampil();
+
+        System.out.println("Data yang sudah terurut menggunakan SELECTION SORT (ASC)");
+        list.selectionSort();
+        list.tampil();
+
+        System.out.println("Data yang sudah terurut menggunakan INSERTION SORT (ASC)");
+        list.insertionSort();
+        list.tampil();
+}
+}
+```
+
+
+### 5.4.2 Verifikasi Hasil percobaan
+```
+Data mahasiswa sebelum sorting: 
+Nama: Zidan
+NIM: 123
+Kelas: 2A
+IPK: 3.2
+-----------------------------
+Nama: Ayu
+NIM: 124
+Kelas: 2A
+IPK: 3.5
+-----------------------------
+Nama: Sofi
+NIM: 125
+Kelas: 2A
+IPK: 3.1
+-----------------------------
+Nama: Sita
+NIM: 126
+Kelas: 2A
+IPK: 3.9
+-----------------------------
+Nama: Miki
+NIM: 127
+Kelas: 2A
+IPK: 3.7
+-----------------------------
+Data yang sudah terurut menggunakan INSERTION SORT (ASC)
+Nama: Sofi
+NIM: 125
+Kelas: 2A
+IPK: 3.1
+-----------------------------
+Nama: Zidan
+NIM: 123
+Kelas: 2A
+IPK: 3.2
+-----------------------------
+Nama: Ayu
+NIM: 124
+Kelas: 2A
+IPK: 3.5
+-----------------------------
+Nama: Miki
+NIM: 127
+Kelas: 2A
+IPK: 3.7
+-----------------------------
+Nama: Sita
+NIM: 126
+Kelas: 2A
+IPK: 3.9
+-----------------------------
+```
+
+### 5.4.3 Pertanyaan
+Ubahlah fungsi pada InsertionSort sehingga fungsi ini dapat melaksanakan proses sorting 
+dengan cara descending. 
+
+
+## 5.5 Latihan praktikum
+Perhatikan class diagram dibawah ini: 
+A. Dosen 
+- kode: String 
+- nama: String 
+- jenisKelamin: Boolean 
+- usia: int 
+- Dosen(kd: String, name: String, jk: Boolean, age:  int) 
+- tampil(): void 
+B. DataDosen 
+- dataDosen: Dosen[10] 
+- idx: int 
+- tambah(dsn: Dosen): void 
+- tampil(): void 
+- SortingASC(): void 
+- sortingDSC():void 
+- insertionSort():void 
+Berdasarkan class diagram diatas buatlah menu dikelas main dengan pilihan menu:
+1. Tambah data digunakan untuk menambahkan data dosen 
+2. Tampil data digunakan untuk menampilkan data seluruh dosen 
+3. Sorting ASC digunakan untuk mengurutkan data dosen berdasarkan usia dimulai dari  dosen termuda ke dosen tertua menggunakan bublle Sort. 
+4. Sorting DSC digunakan untuk mengurutkan data dosen berdasarkan usia dimulai dari  tertua ke dosen termuda dapat menggunakan algoritma selection sort  atau insertion  sort. 
