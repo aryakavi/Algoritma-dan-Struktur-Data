@@ -478,3 +478,178 @@ c. Jika banyak data di dalam listMhs adalah 50, maka berapakali perulangan i  ak
 berlangsung? Dan ada berapa Tahap bubble sort yang ditempuh? 
 2. Modifikasi program diatas dimana data mahasiswa bersifat dinamis (input dari keyborad)  yang terdiri dari nim, nama, kelas, dan ipk! 
 
+### 5.3.5 Mengurutkan Data mAhasiswa Berdasarkan IPK (Selection Sort)
+
+Hasil modifikasi class MahasiswaBerprestasi04
+```JAVA
+package BruteForceDivideConquer.Praktikum05;
+
+public class MahasiswaBerprestasi04 {
+    Mahasiswa04[] listMhs = new Mahasiswa04[5];
+    int idx;
+
+    void tambah(Mahasiswa04 m) {
+        if (idx < listMhs.length) {
+            listMhs[idx] = m;
+            idx++;
+        } else {
+            System.out.println("Data sudah penuh");
+        }
+    }
+
+    void tampil() {
+        for (Mahasiswa04 m : listMhs) {
+            if (m != null) { 
+                m.tampilInformasi();
+                System.out.println("-----------------------------");
+            }
+        }
+    }
+
+    void selectionSort() {
+        for (int i = 0; i < listMhs.length - 1; i++) {
+            int idxMin = i;
+            for (int j = i + 1; j < listMhs.length; j++) {
+                if (listMhs[j] != null && listMhs[idxMin] != null) {
+                    if (listMhs[j].ipk < listMhs[idxMin].ipk) {
+                        idxMin = j;
+                    }
+                }
+            }
+            // Proses pertukaran (swap) objek Mahasiswa
+            Mahasiswa04 tmp = listMhs[idxMin];
+            listMhs[idxMin] = listMhs[i];
+            listMhs[i] = tmp;
+        }
+    }
+
+    void bubbleSort() {
+        for (int i = 0; i < listMhs.length - 1; i++) {
+            for (int j = 1; j < listMhs.length - i; j++) {
+                if (listMhs[j] != null && listMhs[j-1] != null) {
+                    if (listMhs[j].ipk > listMhs[j - 1].ipk) {
+                        Mahasiswa04 tmp = listMhs[j];
+                        listMhs[j] = listMhs[j - 1];
+                        listMhs[j - 1] = tmp;
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+Hasil modifikasi Class MahasiswaDemo04
+```JAVA
+package BruteForceDivideConquer.Praktikum05;
+
+
+public class MahasiswaDemo04 {
+    public static void main(String[] args) {
+        MahasiswaBerprestasi04 list = new MahasiswaBerprestasi04();
+
+        Mahasiswa04 m1 = new Mahasiswa04("123", "Zidan", "2A", 3.2);
+        Mahasiswa04 m2 = new Mahasiswa04("124", "Ayu", "2A", 3.5);
+        Mahasiswa04 m3 = new Mahasiswa04("125", "Sofi", "2A", 3.1);
+        Mahasiswa04 m4 = new Mahasiswa04("126", "Sita", "2A", 3.9);
+        Mahasiswa04 m5 = new Mahasiswa04("127", "Miki", "2A", 3.7);
+
+
+        list.tambah(m1);
+        list.tambah(m2);
+        list.tambah(m3);
+        list.tambah(m4);
+        list.tambah(m5);
+
+        System.out.println("Data mahasiswa sebelum sorting: ");
+        list.tampil();
+
+        System.out.println("Data Mahasiswa setelah sorting berdasarkan IPK (DESC) : ");
+        list.bubbleSort();
+        list.tampil();
+
+        System.out.println("data yang sudah terurut menggunakan SELECTION SORT (ASC)");
+        list.selectionSort();
+        list.tampil();
+    
+}
+}
+```
+
+### 5.3.6 Verifikasi Hasil percobaan
+
+```
+Data mahasiswa sebelum sorting: 
+Nama: Zidan
+NIM: 123
+Kelas: 2A
+IPK: 3.2
+-----------------------------
+Nama: Ayu
+NIM: 124
+Kelas: 2A
+IPK: 3.5
+-----------------------------
+Nama: Sofi
+NIM: 125
+Kelas: 2A
+IPK: 3.1
+-----------------------------
+Nama: Sita
+NIM: 126
+Kelas: 2A
+IPK: 3.9
+-----------------------------
+Nama: Miki
+NIM: 127
+Kelas: 2A
+IPK: 3.7
+-----------------------------
+data yang sudah terurut menggunakan SELECTION SORT (ASC)
+Nama: Sofi
+NIM: 125
+Kelas: 2A
+IPK: 3.1
+-----------------------------
+Nama: Zidan
+NIM: 123
+Kelas: 2A
+IPK: 3.2
+-----------------------------
+Nama: Ayu
+Nama: Ayu
+NIM: 124
+Kelas: 2A
+IPK: 3.5
+-----------------------------
+Nama: Miki
+NIM: 127
+Kelas: 2A
+IPK: 3.7
+-----------------------------
+Nama: Sita
+NIM: 126
+Kelas: 2A
+IPK: 3.9
+-----------------------------
+
+```
+
+
+### 5.3.7 Pertanyaan
+Didalam methos selection sor, terdapat baris program seperti di bawah ini:
+```JAVA
+ int idxMin = i;
+    for (int j = i + 1; j < listMhs.length; j++) {
+        if (listMhs[j] != null && listMhs[idxMin] != null) {
+            if (listMhs[j].ipk < listMhs[idxMin].ipk) {
+                idxMin = j;
+            }
+        }
+```
+Untuk apakah proses tersebut? Jelaskan!
+
+
+## 5.4 Mengurutkan Data Mahasiswa Berdasarkan IPK Menggunakan Instertion Sort
+
+### 5.4.1 Langkah-langkah percobaan
