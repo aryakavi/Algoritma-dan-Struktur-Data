@@ -1,10 +1,10 @@
 package BruteForceDivideConquer.Minggu5;
 
-public class Mahasiswa {
+public class Mahasiswa04 {
     String nama;
     int nim, tahunMasuk, nilaiUTS, nilaiUAS;
 
-    Mahasiswa(String nama, int nim, int tahunMasuk, int nilaiUTS, int nilaiUAS) {
+    Mahasiswa04(String nama, int nim, int tahunMasuk, int nilaiUTS, int nilaiUAS) {
         this.nama       = nama;
         this.nim        = nim;
         this.tahunMasuk = tahunMasuk;
@@ -12,7 +12,7 @@ public class Mahasiswa {
         this.nilaiUAS   = nilaiUAS;
     }
 
-    int maxUTSDC(Mahasiswa[] arr, int l, int r) {
+    int maxUTSDC(Mahasiswa04[] arr, int l, int r) {
         if (l == r) {                          
             return arr[l].nilaiUTS;
         }
@@ -22,7 +22,7 @@ public class Mahasiswa {
         return Math.max(lMax, rMax);           
     }
 
-    int minUTSDC(Mahasiswa[] arr, int l, int r) {
+    int minUTSDC(Mahasiswa04[] arr, int l, int r) {
         if (l == r) {                          
             return arr[l].nilaiUTS;
         }
@@ -32,7 +32,7 @@ public class Mahasiswa {
         return Math.min(lMin, rMin);           
     }
 
-    double rataUASBF(Mahasiswa[] arr) {
+    double rataUASBF(Mahasiswa04[] arr) {
         double total = 0;
         for (int i = 0; i < arr.length; i++) {
             total = total + arr[i].nilaiUAS;   

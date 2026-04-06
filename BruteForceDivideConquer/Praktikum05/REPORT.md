@@ -14,7 +14,7 @@ a. Mahasiswa mampu  membuat algoritma searching bubble sort, selection sort dan 
 b. Mahasiswa mampu  menerapkan algoritma searching bubble sort, selection sort dan insertion sort pada program 
 
 ## 5.2 Praktikum 1 - Mengimplementasikan Sorting menggunakan object
-Berikut kode saya :
+Percobaan sorting Bubble sort, Selection sort, dan Insertion sort
 
 ### 5.2.1 Langkah Praktikum 1 
 
@@ -298,4 +298,183 @@ while (j>=0 && data[j]>temp)
 ```java
 data[j+1]=data[j];
 ```
+
+## 5.3 Praktikum 2 - Sorting Menggunakan Array of Object
+Percobaan kode sorting menggunakan Array of Object
+
+### 5.3.1 Langkah Praktikum 2 - Mengurutkan Data Mahasiswa Berdasarkan IPK (Bubble Sort) 
+Berikut kode saya
+
+class Mahasiswa04
+```JAVA
+package BruteForceDivideConquer.Praktikum05;
+
+public class Mahasiswa04 {
+    String nim;
+    String nama;
+    String kelas;
+    double ipk;
+
+    Mahasiswa04() {
+    }
+
+    Mahasiswa04(String nm, String name, String kls, double ip) {
+        nim = nm;
+        nama = name;
+        ipk = ip;
+        kelas = kls;
+    }
+
+    void tampilInformasi() {
+        System.out.println("Nama: " + nama);
+        System.out.println("NIM: " + nim);
+        System.out.println("Kelas: " + kelas);
+        System.out.println("IPK: " + ipk);
+    }
+}
+```
+
+class MahasiswaBerprestasi04
+```JAVA
+package BruteForceDivideConquer.Praktikum05;
+
+public class MahasiswaBerprestasi04 {
+    Mahasiswa04[] listMhs = new Mahasiswa04[5];
+    int idx;
+
+    void tambah(Mahasiswa04 m) {
+        if (idx < listMhs.length) {
+            listMhs[idx] = m;
+            idx++;
+        } else {
+            System.out.println("Data sudah penuh");
+        }
+    }
+
+    void tampil() {
+        for (Mahasiswa04 m : listMhs) {
+            if (m != null) { 
+                m.tampilInformasi();
+                System.out.println("-----------------------------");
+            }
+        }
+    }
+
+    void bubbleSort() {
+        for (int i = 0; i < listMhs.length - 1; i++) {
+            for (int j = 1; j < listMhs.length - i; j++) {
+                if (listMhs[j] != null && listMhs[j-1] != null) {
+                    if (listMhs[j].ipk > listMhs[j - 1].ipk) {
+                        Mahasiswa04 tmp = listMhs[j];
+                        listMhs[j] = listMhs[j - 1];
+                        listMhs[j - 1] = tmp;
+                    }
+                }
+            }
+        }
+    }
+}
+
+```
+
+class MahasiswaDemo04
+```JAVA
+package BruteForceDivideConquer.Praktikum05;
+
+
+public class MahasiswaDemo04 {
+    public static void main(String[] args) {
+        MahasiswaBerprestasi04 list = new MahasiswaBerprestasi04();
+
+        Mahasiswa04 m1 = new Mahasiswa04("123", "Zidan", "2A", 3.2);
+        Mahasiswa04 m2 = new Mahasiswa04("124", "Ayu", "2A", 3.5);
+        Mahasiswa04 m3 = new Mahasiswa04("125", "Sofi", "2A", 3.1);
+        Mahasiswa04 m4 = new Mahasiswa04("126", "Sita", "2A", 3.9);
+        Mahasiswa04 m5 = new Mahasiswa04("127", "Miki", "2A", 3.7);
+
+
+        list.tambah(m1);
+        list.tambah(m2);
+        list.tambah(m3);
+        list.tambah(m4);
+        list.tambah(m5);
+
+        System.out.println("Data mahasiswa sebelum sorting: ");
+        list.tampil();
+
+        System.out.println("Data Mahasiswa setelah sorting berdasarkan IPK (DESC) : ");
+        list.bubbleSort();
+        list.tampil();
+    
+}
+}
+```
+
+### 5.3.2 Verifikasi Hasil Percobaan
+```
+Data mahasiswa sebelum sorting: 
+Nama: Zidan
+NIM: 123
+Kelas: 2A
+IPK: 3.2
+-----------------------------
+Nama: Ayu
+NIM: 124
+Kelas: 2A
+IPK: 3.5
+-----------------------------
+Nama: Sofi
+NIM: 125
+Kelas: 2A
+IPK: 3.1
+-----------------------------
+Nama: Sita
+NIM: 126
+Kelas: 2A
+IPK: 3.9
+-----------------------------
+Nama: Miki
+NIM: 127
+Kelas: 2A
+IPK: 3.7
+-----------------------------
+Data Mahasiswa setelah sorting berdasarkan IPK (DESC) :
+Nama: Sita
+NIM: 126
+Kelas: 2A
+IPK: 3.9
+-----------------------------
+Nama: Miki
+NIM: 127
+Kelas: 2A
+IPK: 3.7
+-----------------------------
+Nama: Ayu
+NIM: 124
+Kelas: 2A
+IPK: 3.5
+-----------------------------
+Nama: Zidan
+NIM: 123
+Kelas: 2A
+IPK: 3.2
+-----------------------------
+Nama: Sofi
+NIM: 125
+Kelas: 2A
+IPK: 3.1
+-----------------------------
+```
+
+### 5.3.4 Pertanyaan
+1. Perhatikan perulangan di dalam bubbleSort() di bawah ini: 
+```JAVA
+for (int i = 0; i < listMhs.length - 1; i++) {
+    for (int j = 1; j < listMhs.length - i; j++) {
+```
+a. Mengapa syarat dari perulangan i adalah i<listMhs.length-1 ? 
+b. Mengapa syarat dari perulangan j adalah j<listMhs.length-i ? 
+c. Jika banyak data di dalam listMhs adalah 50, maka berapakali perulangan i  akan 
+berlangsung? Dan ada berapa Tahap bubble sort yang ditempuh? 
+2. Modifikasi program diatas dimana data mahasiswa bersifat dinamis (input dari keyborad)  yang terdiri dari nim, nama, kelas, dan ipk! 
 
