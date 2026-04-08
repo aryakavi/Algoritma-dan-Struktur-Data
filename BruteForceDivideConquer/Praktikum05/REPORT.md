@@ -289,6 +289,8 @@ if (data[j - 1] > data[j]) {
     data[j - 1] = temp;
 }
 ```
+
+
 2. Tunjukkan kode program yang merupakan algoritma pencarian nilai minimum pada selection sort! 
 3. Pada Insertion sort , jelaskan maksud dari kondisi pada perulangan 
 ```java 
@@ -476,6 +478,7 @@ a. Mengapa syarat dari perulangan i adalah i<listMhs.length-1 ?
 b. Mengapa syarat dari perulangan j adalah j<listMhs.length-i ? 
 c. Jika banyak data di dalam listMhs adalah 50, maka berapakali perulangan i  akan 
 berlangsung? Dan ada berapa Tahap bubble sort yang ditempuh? 
+
 2. Modifikasi program diatas dimana data mahasiswa bersifat dinamis (input dari keyborad)  yang terdiri dari nim, nama, kelas, dan ipk! 
 
 ### 5.3.5 Mengurutkan Data mAhasiswa Berdasarkan IPK (Selection Sort)
@@ -826,7 +829,10 @@ dengan cara descending.
 
 
 ## 5.5 Latihan praktikum
+
+### 5.5.1 Pertanyaan
 Perhatikan class diagram dibawah ini: 
+
 A. Dosen 
 - kode: String 
 - nama: String 
@@ -834,6 +840,7 @@ A. Dosen
 - usia: int 
 - Dosen(kd: String, name: String, jk: Boolean, age:  int) 
 - tampil(): void 
+
 B. DataDosen 
 - dataDosen: Dosen[10] 
 - idx: int 
@@ -842,8 +849,314 @@ B. DataDosen
 - SortingASC(): void 
 - sortingDSC():void 
 - insertionSort():void 
+
 Berdasarkan class diagram diatas buatlah menu dikelas main dengan pilihan menu:
+
 1. Tambah data digunakan untuk menambahkan data dosen 
 2. Tampil data digunakan untuk menampilkan data seluruh dosen 
 3. Sorting ASC digunakan untuk mengurutkan data dosen berdasarkan usia dimulai dari  dosen termuda ke dosen tertua menggunakan bublle Sort. 
 4. Sorting DSC digunakan untuk mengurutkan data dosen berdasarkan usia dimulai dari  tertua ke dosen termuda dapat menggunakan algoritma selection sort  atau insertion  sort. 
+
+### 5.5.2 Hasil Kode
+
+Class Dosen
+```JAVA
+package BruteForceDivideConquer.Praktikum05;
+
+public class Dosen04{
+    String kode;
+    String nama;
+    Boolean jenisKelamin;
+    int usia;
+
+    Dosen04(String kd, String name, Boolean jk, int age) {
+        kode = kd;
+        nama = name;
+        jenisKelamin = jk;
+        usia = age;
+    }
+
+    void tampil() {
+        System.out.println("Kode Dosen    : " + kode);
+        System.out.println("Nama Dosen    : " + nama);
+        System.out.println("Jenis Kelamin : " + (jenisKelamin ? "Laki-laki" : "Perempuan"));
+        System.out.println("Usia          : " + usia);
+        System.out.println("---------------------------------");
+    }
+}
+```
+
+class DataDosen
+```JAVA
+package BruteForceDivideConquer.Praktikum05;
+
+    public class DataDosen04 {
+    Dosen04[] dataDosen = new Dosen04[10];
+    int idx = 0;
+
+    void tambah(Dosen04 dsn) {
+        if (idx < dataDosen.length) {
+            dataDosen[idx] = dsn;
+            idx++;
+        } else {
+            System.out.println("Peringatan: Data Dosen sudah penuh!");
+        }
+    }
+
+    void tampil() {
+        if (idx == 0) {
+            System.out.println("Data Dosen masih kosong.");
+        } else {
+            for (int i = 0; i < idx; i++) {
+                dataDosen[i].tampil();
+            }
+        }
+    }
+
+    void SortingASC() {
+        for (int i = 0; i < idx - 1; i++) {
+            for (int j = 1; j < idx - i; j++) {
+                if (dataDosen[j - 1].usia > dataDosen[j].usia) {
+                    Dosen04 temp = dataDosen[j];
+                    dataDosen[j] = dataDosen[j - 1];
+                    dataDosen[j - 1] = temp;
+                }
+            }
+        }
+    }
+
+    void sortingDSC() {
+        for (int i = 0; i < idx - 1; i++) {
+            int idxMax = i;
+            for (int j = i + 1; j < idx; j++) {
+                if (dataDosen[j].usia > dataDosen[idxMax].usia) {
+                    idxMax = j;
+                }
+            }
+            Dosen04 temp = dataDosen[idxMax];
+            dataDosen[idxMax] = dataDosen[i];
+            dataDosen[i] = temp;
+        }
+    }
+
+    void insertionSort() {
+        for (int i = 1; i < idx; i++) {
+            Dosen04 temp = dataDosen[i];
+            int j = i;
+            while (j > 0 && dataDosen[j - 1].usia < temp.usia) {
+                dataDosen[j] = dataDosen[j - 1];
+                j--;
+            }
+            dataDosen[j] = temp;
+        }
+    }
+}
+```
+
+class DosenMain
+```JAVA
+package BruteForceDivideConquer.Praktikum05;
+
+import java.util.Scanner;
+
+public class DosenMain04 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        DataDosen04 listDosen = new DataDosen04();
+        
+        int pilihan = 0; 
+
+        while (pilihan != 5) {
+            System.out.println("\n=== MENU MANAJEMEN DATA DOSEN ===");
+            System.out.println("1. Tambah Data Dosen");
+            System.out.println("2. Tampil Seluruh Data Dosen");
+            System.out.println("3. Sorting ASC (Termuda ke Tertua - Bubble Sort)");
+            System.out.println("4. Sorting DSC (Tertua ke Termuda - Selection/Insertion Sort)");
+            System.out.println("5. Keluar");
+            System.out.print("Pilih menu (1-5): ");
+            pilihan = sc.nextInt();
+            sc.nextLine(); 
+
+            if (pilihan == 1) {
+                System.out.println("\n--- Masukkan Data Dosen ---");
+                System.out.print("Kode Dosen    : ");
+                String kode = sc.nextLine();
+                System.out.print("Nama Dosen    : ");
+                String nama = sc.nextLine();
+                System.out.print("Jenis Kelamin (L/P) : ");
+                String jkInput = sc.nextLine();
+                Boolean jenisKelamin = jkInput.equalsIgnoreCase("L"); 
+                System.out.print("Usia          : ");
+                int usia = sc.nextInt();
+                Dosen04 dsnBaru = new Dosen04(kode, nama, jenisKelamin, usia);
+                listDosen.tambah(dsnBaru);
+                System.out.println("-> Data berhasil ditambahkan!");
+
+            } else if (pilihan == 2) {
+                System.out.println("\n=== DATA KESELURUHAN DOSEN ===");
+                listDosen.tampil();
+
+            } else if (pilihan == 3) {
+                System.out.println("\n=== DATA DOSEN (URUTAN ASCENDING / TERMUDA) ===");
+                listDosen.SortingASC();
+                listDosen.tampil();
+
+            } else if (pilihan == 4) {
+                System.out.println("\n=== DATA DOSEN (URUTAN DESCENDING / TERTUA) ===");
+                listDosen.sortingDSC(); 
+                listDosen.tampil();
+
+            } else if (pilihan == 5) {
+                System.out.println("Keluar dari program. Terima kasih!");
+
+            } else {
+                System.out.println("Pilihan tidak valid! Silakan pilih 1-5.");
+            }
+        }
+        
+        sc.close();
+    }
+}
+```
+
+### 5.5.3 Hasil Running Kode
+
+1. Tambah data dosen
+```
+=== MENU MANAJEMEN DATA DOSEN ===
+1. Tambah Data Dosen
+2. Tampil Seluruh Data Dosen
+3. Sorting ASC (Termuda ke Tertua - Bubble Sort)
+4. Sorting DSC (Tertua ke Termuda - Selection/Insertion Sort)
+5. Keluar
+Pilih menu (1-5): 1
+
+--- Masukkan Data Dosen ---
+Kode Dosen    : 123 
+Nama Dosen    : Andi
+Jenis Kelamin (L/P) : L
+Usia          : 33
+-> Data berhasil ditambahkan!
+
+=== MENU MANAJEMEN DATA DOSEN ===
+1. Tambah Data Dosen
+2. Tampil Seluruh Data Dosen
+3. Sorting ASC (Termuda ke Tertua - Bubble Sort)
+4. Sorting DSC (Tertua ke Termuda - Selection/Insertion Sort)
+5. Keluar
+Pilih menu (1-5): 1
+
+--- Masukkan Data Dosen ---
+Kode Dosen    : 456
+Nama Dosen    : Budi
+Jenis Kelamin (L/P) : L
+Usia          : 22
+-> Data berhasil ditambahkan!
+
+=== MENU MANAJEMEN DATA DOSEN ===
+1. Tambah Data Dosen
+2. Tampil Seluruh Data Dosen
+3. Sorting ASC (Termuda ke Tertua - Bubble Sort)
+4. Sorting DSC (Tertua ke Termuda - Selection/Insertion Sort)
+5. Keluar
+Pilih menu (1-5): 1
+
+--- Masukkan Data Dosen ---
+Kode Dosen    : 789
+Nama Dosen    : Cinta
+Jenis Kelamin (L/P) : P
+Usia          : 44
+-> Data berhasil ditambahkan!
+```
+
+2. Tampil Data Dosen
+```
+=== MENU MANAJEMEN DATA DOSEN ===
+1. Tambah Data Dosen
+2. Tampil Seluruh Data Dosen
+3. Sorting ASC (Termuda ke Tertua - Bubble Sort)
+4. Sorting DSC (Tertua ke Termuda - Selection/Insertion Sort)
+5. Keluar
+Pilih menu (1-5): 2
+
+=== DATA KESELURUHAN DOSEN ===
+Kode Dosen    : 123
+Nama Dosen    : Andi
+Jenis Kelamin : Laki-laki
+Usia          : 33
+---------------------------------
+Kode Dosen    : 456
+Nama Dosen    : Budi
+Jenis Kelamin : Laki-laki
+Usia          : 22
+---------------------------------
+Kode Dosen    : 789
+Nama Dosen    : Cinta
+Jenis Kelamin : Perempuan
+Usia          : 44
+---------------------------------
+``` 
+
+3. Sorting Ascending
+```
+Sorting ASC
+=== MENU MANAJEMEN DATA DOSEN ===
+1. Tambah Data Dosen
+2. Tampil Seluruh Data Dosen
+3. Sorting ASC (Termuda ke Tertua - Bubble Sort)
+4. Sorting DSC (Tertua ke Termuda - Selection/Insertion Sort)
+5. Keluar
+Pilih menu (1-5): 3
+
+=== DATA DOSEN (URUTAN ASCENDING / TERMUDA) ===
+Kode Dosen    : 456
+Nama Dosen    : Budi
+Jenis Kelamin : Laki-laki
+Usia          : 22
+---------------------------------
+Kode Dosen    : 123
+Nama Dosen    : Andi
+Jenis Kelamin : Laki-laki
+Usia          : 33
+---------------------------------
+Kode Dosen    : 789
+Nama Dosen    : Cinta
+Jenis Kelamin : Perempuan
+Usia          : 44
+---------------------------------
+```
+
+4. Sorting Descending
+```
+=== MENU MANAJEMEN DATA DOSEN ===
+1. Tambah Data Dosen
+2. Tampil Seluruh Data Dosen
+3. Sorting ASC (Termuda ke Tertua - Bubble Sort)
+4. Sorting DSC (Tertua ke Termuda - Selection/Insertion Sort)
+5. Keluar
+Pilih menu (1-5): 4
+
+=== DATA DOSEN (URUTAN DESCENDING / TERTUA) ===
+Kode Dosen    : 789
+Nama Dosen    : Cinta
+Jenis Kelamin : Perempuan
+Usia          : 44
+---------------------------------
+Kode Dosen    : 123
+Nama Dosen    : Andi
+Jenis Kelamin : Laki-laki
+Usia          : 33
+---------------------------------
+Kode Dosen    : 456
+Nama Dosen    : Budi
+Jenis Kelamin : Laki-laki
+Usia          : 22
+---------------------------------
+
+=== MENU MANAJEMEN DATA DOSEN ===
+1. Tambah Data Dosen
+2. Tampil Seluruh Data Dosen
+3. Sorting ASC (Termuda ke Tertua - Bubble Sort)
+4. Sorting DSC (Tertua ke Termuda - Selection/Insertion Sort)
+5. Keluar
+```
