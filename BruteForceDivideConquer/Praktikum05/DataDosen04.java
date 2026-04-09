@@ -53,7 +53,7 @@ package BruteForceDivideConquer.Praktikum05;
         for (int i = 1; i < idx; i++) {
             Dosen04 temp = dataDosen[i];
             int j = i;
-            while (j > 0 && dataDosen[j - 1].usia < temp.usia) {
+            while (j > 0 && dataDosen[j - 1].usia > temp.usia) {
                 dataDosen[j] = dataDosen[j - 1];
                 j--;
             }

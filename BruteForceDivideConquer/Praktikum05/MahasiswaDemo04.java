@@ -4,16 +4,9 @@ import java.util.Scanner;
 public class MahasiswaDemo04 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        
-        // Meminta input jumlah mahasiswa
-        System.out.print("Masukkan jumlah mahasiswa: ");
-        int jumlahMhs = sc.nextInt();
-        sc.nextLine(); // Membersihkan sisa enter
-        
-        // Inisialisasi list dengan ukuran sesuai input user
+        int jumlahMhs=5;
         MahasiswaBerprestasi04 list = new MahasiswaBerprestasi04(jumlahMhs);
 
-        // Perulangan untuk input data secara dinamis
         for (int i = 0; i < jumlahMhs; i++) {
             System.out.println("\n--- Masukkan Data Mahasiswa ke-" + (i + 1) + " ---");
             
@@ -30,24 +23,24 @@ public class MahasiswaDemo04 {
             double ipk = sc.nextDouble();
             sc.nextLine(); 
             
-            // Membuat objek mahasiswa baru dan menambahkannya ke dalam list
             Mahasiswa04 m = new Mahasiswa04(nim, nama, kelas, ipk);
             list.tambah(m);
         }
 
-        System.out.println("Data mahasiswa sebelum sorting: ");
         list.tampil();
+        System.out.println("--------------------------------------------------");
+        System.out.println("Pencarian data");
+        System.out.println("--------------------------------------------------");
+        System.out.println("masukkan ipk mahasiswa yang dicari: ");
+        System.out.print("IPK: ");
+        double cari = sc.nextDouble();
 
-        System.out.println("Data Mahasiswa setelah sorting berdasarkan IPK (DESC) : ");
-        list.bubbleSort();
-        list.tampil();
-
-        System.out.println("Data yang sudah terurut menggunakan SELECTION SORT (ASC)");
-        list.selectionSort();
-        list.tampil();
-
-        System.out.println("Data yang sudah terurut menggunakan INSERTION SORT (ASC)");
-        list.insertionSort();
-        list.tampil();
+        System.out.println("menggunakan sequential searching");
+        double posisi = list.sequentialSearching(cari);
+        int pss = (int)posisi;
+        list.tampilPosisi(cari, pss);
+        list.tampilDataSearch(cari, pss);
+        
+        sc.close();
 }
 }
