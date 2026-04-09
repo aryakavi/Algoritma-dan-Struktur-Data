@@ -289,17 +289,38 @@ if (data[j - 1] > data[j]) {
     data[j - 1] = temp;
 }
 ```
+Kode diatas berfungsi untuk melakukan pertukaran data.Jika elemen sebelah kiri (data[j-1]_) bernilai lebih besar dari elemen di sebelah kanannya (data[j]) maka posisinya ditukar agar menjadi urut dari kecil ke besaar (Ascending). Variabel temp digunakan sebagai tempat penitipan nilai saat proses pertukaran terjadi agar datanya tidak hilang tertimpa.
 
 
-2. Tunjukkan kode program yang merupakan algoritma pencarian nilai minimum pada selection sort! 
+2. Tunjukkan kode program yang merupakan algoritma pencarian nilai minimum pada selection sort!
+
+Algoritma pencarian nilai minimum berdada di perulangan dalam (inner loop) pada method SelectionSort(). Terutama pada bagian :
+```JAVA
+    int min = i; 
+            for (int j = 0; j < jumData; j++) { 
+                if(data[j] < data[min]){ 
+                    min = j; 
+                }
+            }
+```
+
 3. Pada Insertion sort , jelaskan maksud dari kondisi pada perulangan 
 ```java 
 while (j>=0 && data[j]>temp)
 ```
+
+Kondisi diatas menunjukkan aturan untuk menentukan kapan pergeseran data harus berhenti.
+- j>=0 = Memeastikan pencarian tidak terlewat batas bawah array indeks (tidak boleh minus / negatif)
+- data[j]>temp = Mengecek apakah elemen saat ini 9data[j]) masih lebih besar dari angka yang sedang disisipkan (temp)
+selama kedua syarat bernilai benar (true), maka program akan terus jalan ke while untuk menggeser angka ke kanan.
+
 4. Pada Insertion sort, apakah tujuan dari perintah 
 ```java
 data[j+1]=data[j];
 ```
+
+Tujuan perintah tersebut adalah untuk menggeser elemen ke kanan. 
+Ketika program menemukan angka yang lebih besasr dari temp (berdasar kondisi while), angka tersebut tidak langsung ditukar posisinya, melainkan digeser satu langkah ke kanan (j+1) untuk memberikan "ruang kosong". Lalu ruang kosong tersebut akan diisi oleh nilai temp pada perintah data[j+1]=temp di akhir perulangan.
 
 ## 5.3 Praktikum 2 - Sorting Menggunakan Array of Object
 Percobaan kode sorting menggunakan Array of Object
