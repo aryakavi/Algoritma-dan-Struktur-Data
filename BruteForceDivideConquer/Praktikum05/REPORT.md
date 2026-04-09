@@ -861,7 +861,39 @@ IPK: 3.9
 Ubahlah fungsi pada InsertionSort sehingga fungsi ini dapat melaksanakan proses sorting 
 dengan cara descending. 
 
+Sebelum :
+```JAVA
+    void insertionSort() {
+        for (int i = 1; i < listMhs.length; i++) {
+            Mahasiswa04 temp = listMhs[i];
+            int j = i;
+            // Perubahan ada di tanda > di sebelah................. sini | 
+            while (j > 0 && listMhs[j - 1] != null && listMhs[j - 1].ipk > temp.ipk) {
+                listMhs[j] = listMhs[j - 1];
+                j--;
+            }
+            listMhs[j] = temp;
+        }
+    }
+```
 
+Sesudah :
+```JAVA
+```JAVA
+    void insertionSort() {
+        for (int i = 1; i < listMhs.length; i++) {
+            Mahasiswa04 temp = listMhs[i];
+            int j = i;
+            // Berubah menjadi tanda < di sebelah.................. sini | 
+            while (j > 0 && listMhs[j - 1] != null && listMhs[j - 1].ipk < temp.ipk) {
+                listMhs[j] = listMhs[j - 1];
+                j--;
+            }
+            listMhs[j] = temp;
+        }
+    }
+```
+```
 ## 5.5 Latihan praktikum
 
 ### 5.5.1 Pertanyaan
