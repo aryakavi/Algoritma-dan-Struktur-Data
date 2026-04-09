@@ -1,8 +1,15 @@
 package BruteForceDivideConquer.Praktikum05;
 
 public class MahasiswaBerprestasi04 {
-    Mahasiswa04[] listMhs = new Mahasiswa04[5];
+    // Array belum diberi ukuran fix
+    Mahasiswa04[] listMhs; 
     int idx;
+
+    // Konstruktor untuk menentukan ukuran array secara dinamis
+    MahasiswaBerprestasi04(int jumMhs) {
+        listMhs = new Mahasiswa04[jumMhs];
+        idx = 0;
+    }
 
     void tambah(Mahasiswa04 m) {
         if (idx < listMhs.length) {

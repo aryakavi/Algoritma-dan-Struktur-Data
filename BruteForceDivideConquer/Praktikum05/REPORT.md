@@ -507,6 +507,113 @@ Perulangan akan berlangsung sebanyak 49 kali (dari i=0 hingga i=48), dan jumlah 
 
 2. Modifikasi program diatas dimana data mahasiswa bersifat dinamis (input dari keyborad)  yang terdiri dari nim, nama, kelas, dan ipk! 
 
+Perubahan class MahasiswaBerprestasi04 pada line :
+```JAVA
+package BruteForceDivideConquer.Praktikum05;
+
+public class MahasiswaBerprestasi04 {
+    Mahasiswa04[] listMhs = new Mahasiswa04[5];
+    int idx;
+
+    void tambah(Mahasiswa04 m) {
+        if (idx < listMhs.length) {
+            listMhs[idx] = m;
+            idx++;
+        } else {
+            System.out.println("Data sudah penuh");
+        }
+    }
+```
+
+Menjadi 
+```JAVA 
+package BruteForceDivideConquer.Praktikum05;
+
+public class MahasiswaBerprestasi04 {
+    // Array belum diberi ukuran fix
+    Mahasiswa04[] listMhs; 
+    int idx;
+
+    // Konstruktor untuk menentukan ukuran array secara dinamis
+    MahasiswaBerprestasi04(int jumMhs) {
+        listMhs = new Mahasiswa04[jumMhs];
+        idx = 0;
+    }
+
+    void tambah(Mahasiswa04 m) {
+        if (idx < listMhs.length) {
+            listMhs[idx] = m;
+            idx++;
+        } else {
+            System.out.println("Data sudah penuh");
+        }
+    }
+```
+
+Perubahan class MahsiswaDemo04 pada line:
+```JAVA
+package BruteForceDivideConquer.Praktikum05;
+
+
+public class MahasiswaDemo04 {
+    public static void main(String[] args) {
+        MahasiswaBerprestasi04 list = new MahasiswaBerprestasi04();
+
+        Mahasiswa04 m1 = new Mahasiswa04("123", "Zidan", "2A", 3.2);
+        Mahasiswa04 m2 = new Mahasiswa04("124", "Ayu", "2A", 3.5);
+        Mahasiswa04 m3 = new Mahasiswa04("125", "Sofi", "2A", 3.1);
+        Mahasiswa04 m4 = new Mahasiswa04("126", "Sita", "2A", 3.9);
+        Mahasiswa04 m5 = new Mahasiswa04("127", "Miki", "2A", 3.7);
+
+
+        list.tambah(m1);
+        list.tambah(m2);
+        list.tambah(m3);
+        list.tambah(m4);
+        list.tambah(m5);
+```
+
+Menjadi
+```JAVA
+package BruteForceDivideConquer.Praktikum05;
+
+import java.util.Scanner;
+
+public class MahasiswaDemo04 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        // Meminta input jumlah mahasiswa
+        System.out.print("Masukkan jumlah mahasiswa: ");
+        int jumlahMhs = sc.nextInt();
+        sc.nextLine(); // Membersihkan sisa enter
+        
+        // Inisialisasi list dengan ukuran sesuai input user
+        MahasiswaBerprestasi04 list = new MahasiswaBerprestasi04(jumlahMhs);
+
+        // Perulangan untuk input data secara dinamis
+        for (int i = 0; i < jumlahMhs; i++) {
+            System.out.println("\n--- Masukkan Data Mahasiswa ke-" + (i + 1) + " ---");
+            
+            System.out.print("NIM   : ");
+            String nim = sc.nextLine();
+            
+            System.out.print("Nama  : ");
+            String nama = sc.nextLine();
+            
+            System.out.print("Kelas : ");
+            String kelas = sc.nextLine();
+            
+            System.out.print("IPK   : ");
+            double ipk = sc.nextDouble();
+            sc.nextLine();
+            
+            // Membuat objek mahasiswa baru dan menambahkannya ke dalam list
+            Mahasiswa04 m = new Mahasiswa04(nim, nama, kelas, ipk);
+            list.tambah(m);
+        }
+```
+
 ### 5.3.5 Mengurutkan Data mAhasiswa Berdasarkan IPK (Selection Sort)
 
 Hasil modifikasi class MahasiswaBerprestasi04
