@@ -191,3 +191,134 @@ if (listMhs[j].ipk == cari) {
 ## 6.3 Searching/ Pencarian Menggunakan Algoritma Binary Search
 
 ### 6.3.1. Langkah-langkah Percobaan Binary Search 
+
+Penambahan method findBinarySearch di class MahasiswaBerprestasi04
+```JAVA
+(...)
+int findBinarySearch(double cari, int left, int right) {
+        int mid;
+        if (right >= left) {
+            mid = (left + right) / 2;
+            if (cari == listMhs[mid].ipk) {
+                return (mid);
+            } else if (listMhs[mid].ipk > cari) {
+                return findBinarySearch(cari, left, mid - 1);
+            } else {
+                return findBinarySearch(cari, mid + 1, right);
+            }
+        }
+        return -1;
+    }
+}
+```
+
+Perubahan untuk outputan di bagian MahasiswaDemo04
+Sebelum :
+```JAVA
+(...)
+        System.out.println("menggunakan sequential searching");
+        double posisi = list.sequentialSearching(cari);
+        int pss = (int)posisi;
+        list.tampilPosisi(cari, pss);
+        list.tampilDataSearch(cari, pss);
+        
+        sc.close();
+    }
+}
+```
+
+Sesudah :
+```JAVA
+(...)
+        System.out.println("--------------------------------------------------");
+        System.out.println("menggunakan binary search");
+        System.out.println("--------------------------------------------------");
+        double posisi2 = list.findBinarySearch(cariBinary, 0, jumMhs - 1);
+        int pss2 = (int)posisi2;
+        list.tampilPosisi(cariBinary, pss2);
+        list.tampilDataSearch(cariBinary, pss2);
+        
+        sc.close();
+    }
+}
+```
+### 6.3.2. Verifikasi Hasil Percobaan
+```
+--- Masukkan Data Mahasiswa ke-1 ---
+NIM   : 111
+Nama  : adi
+Kelas : 2
+IPK   : 3.1
+
+--- Masukkan Data Mahasiswa ke-2 ---
+NIM   : 222
+Nama  : ila
+Kelas : 2
+IPK   : 3.2
+
+--- Masukkan Data Mahasiswa ke-3 ---
+NIM   : 333
+Nama  : lia
+Kelas : 2
+IPK   : 3.3
+
+--- Masukkan Data Mahasiswa ke-4 ---
+NIM   : 444
+Nama  : susi
+Kelas : 2
+IPK   : 3.5
+
+--- Masukkan Data Mahasiswa ke-5 ---
+NIM   : 555
+Nama  : anita
+Kelas : 2
+IPK   : 3.7
+Nama: adi
+NIM: 111
+Kelas: 2
+IPK: 3.1
+-----------------------------
+Nama: ila
+NIM: 222
+Kelas: 2
+IPK: 3.2
+-----------------------------
+Nama: lia
+NIM: 333
+Kelas: 2
+IPK: 3.3
+-----------------------------
+Nama: susi
+NIM: 444
+Kelas: 2
+IPK: 3.5
+-----------------------------
+Nama: anita
+NIM: 555
+Kelas: 2
+IPK: 3.7
+-----------------------------
+--------------------------------------------------
+Pencarian data
+--------------------------------------------------
+masukkan ipk mahasiswa yang dicari: 
+IPK: 3.7
+--------------------------------------------------
+menggunakan binary search
+--------------------------------------------------
+data mahasiswa dengan IPK : 3.7 ditemukan pada indeks 4
+nim      : 555
+nama     : anita
+kelas    : 2
+ipk      : 3.7
+PS D:\Algoritma-dan-Struktur-Data> 
+```
+
+### 6.3.3. Pertanyaan 
+1. Tunjukkan pada kode program yang mana proses divide dijalankan! 
+2. Tunjukkan pada kode program yang mana proses conquer dijalankan! 
+3. Apa fungsi left, right, dan mid? 
+4. Jika data IPK yang dimasukkan tidak urut. Apakah program masih dapat berjalan? Mengapa demikian? 
+5. Jika IPK yang dimasukkan dari IPK terbesar ke terkecil (misal: 3.8, 3.7, 3.5, 3.4, 3.2) dan elemen yang dicari adalah 3.2. Bagaimana hasil dari binary search? Apakah sesuai? Jika tidak sesuai maka ubahlah kode program binary seach agar hasilnya sesuai 
+6. Jelaskan bagaimana binary search menentukan bahwa data yang dicari tidak ditemukan di dalam array. 
+7. Modifikasi program di atas yang mana jumlah mahasiswa yang diinputkan sesuai dengan masukan dari keyboard.
