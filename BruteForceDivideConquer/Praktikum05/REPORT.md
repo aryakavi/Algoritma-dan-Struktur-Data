@@ -496,9 +496,14 @@ for (int i = 0; i < listMhs.length - 1; i++) {
     for (int j = 1; j < listMhs.length - i; j++) {
 ```
 a. Mengapa syarat dari perulangan i adalah i<listMhs.length-1 ? 
-b. Mengapa syarat dari perulangan j adalah j<listMhs.length-i ? 
+Perulangan i (outer loop) menentukan berapa banyak tahap yang dibutuhkan untuk mengurutkan seluruh data. Jika memiliki N buah data, maka hanya membutuhkan N-1 tahap pembandingan. Hal ini karena setelah N-1 tahap selesai dilakukan, sisa 1 elemen terakhir secara otomatis sudah berada di posisi yang benar sehingga tidak perlu dicek lagi.
+
+b. Mengapa syarat dari perulangan j adalah j<listMhs.length-i ?
+Perulangan j (inner loop) melakukan perbandingan dan penukaran data yang bersebelahan. Di Bubble Sort, setiap kali satu tahap i selesai, elemen dengan nilai terbesar/terkecil akan berpindah ke ujung paling kanan array dan posisinya di fix kan. 
+
 c. Jika banyak data di dalam listMhs adalah 50, maka berapakali perulangan i  akan 
 berlangsung? Dan ada berapa Tahap bubble sort yang ditempuh? 
+Perulangan akan berlangsung sebanyak 49 kali (dari i=0 hingga i=48), dan jumlah tahap yang ditempuh adalah 49 tahap.
 
 2. Modifikasi program diatas dimana data mahasiswa bersifat dinamis (input dari keyborad)  yang terdiri dari nim, nama, kelas, dan ipk! 
 
@@ -661,7 +666,7 @@ IPK: 3.9
 
 
 ### 5.3.7 Pertanyaan
-Didalam methos selection sor, terdapat baris program seperti di bawah ini:
+Didalam methos selection sort, terdapat baris program seperti di bawah ini:
 ```JAVA
  int idxMin = i;
     for (int j = i + 1; j < listMhs.length; j++) {
@@ -672,6 +677,14 @@ Didalam methos selection sor, terdapat baris program seperti di bawah ini:
         }
 ```
 Untuk apakah proses tersebut? Jelaskan!
+
+- int idxMin = i; Menetapkan asumsi awal bahwa elemen pada indeks ke-i memiliki nilai terkecil sementara. Indeks tersebut disimpan dalam variabel idxMin.
+- for (int j = i + 1; j < listMhs.length; j++) Memulai perulangan untuk memerika sisa elemen yang berada di sebelah kanan indeks i untuk mencari nilai yang berpotensi lebih kecil
+- if (listMhs[j] != null && listMhs[idxMin] != null) bagian ini memvalidasi untuk memastikan data pada indeks yang sedang diperiksa tidak kosong (null). Mencegah terjadinya error (NullPointerException) saat mengakses properti objek.
+- if (listMhs[j].ipk < listMhs[idxMin].ipk) Proses pembandingan utama yang bertujuan untuk memeriksa apakah IPK pada elemen saat ini (j) lebih kecil dibandingkan IPK pada pemegang rekor terkecil sementara (idxMin)
+- idxMin = j; Pengecekan untuk kondisi pembandingan yang terpenuhi (ditemukan IPK yang lebih kecil), maka nilai idxMin diperbarui dengan indeks j.
+
+Kode diatas bertugas untuk memindai (scan) sisa array untuk menemukan indeks dari elemen dengan nilai IPK paling rendah. Setelah perulangan selesai dan indeks terkecil (idxMin) ditemukan secara definitif, indeks tersebut akan digunakan pada tahap selanjutnya untuk menukar (swap) elemen ke posisi yang terurut.
 
 
 ## 5.4 Mengurutkan Data Mahasiswa Berdasarkan IPK Menggunakan Instertion Sort
