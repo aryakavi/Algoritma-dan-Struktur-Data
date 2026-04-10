@@ -4,14 +4,10 @@ import java.util.Scanner;
 public class MahasiswaDemo04 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        
-        System.out.print("Masukkan jumlah mahasiswa: ");
-        int jumMhs = sc.nextInt(); 
-        sc.nextLine();
+        int jumlahMhs=5;
+        MahasiswaBerprestasi04 list = new MahasiswaBerprestasi04(jumlahMhs);
 
-          MahasiswaBerprestasi04 list = new MahasiswaBerprestasi04(jumMhs);
-
-        for (int i = 0; i < jumMhs; i++) {
+        for (int i = 0; i < jumlahMhs; i++) {
             System.out.println("\n--- Masukkan Data Mahasiswa ke-" + (i + 1) + " ---");
             
             System.out.print("NIM   : ");
@@ -37,16 +33,14 @@ public class MahasiswaDemo04 {
         System.out.println("--------------------------------------------------");
         System.out.println("masukkan ipk mahasiswa yang dicari: ");
         System.out.print("IPK: ");
-        double cariBinary = sc.nextDouble();
+        double cari = sc.nextDouble();
 
-        System.out.println("--------------------------------------------------");
-        System.out.println("menggunakan binary search");
-        System.out.println("--------------------------------------------------");
-        double posisi2 = list.findBinarySearch(cariBinary, 0, jumMhs - 1);
-        int pss2 = (int)posisi2;
-        list.tampilPosisi(cariBinary, pss2);
-        list.tampilDataSearch(cariBinary, pss2);
+        System.out.println("menggunakan sequential searching");
+        double posisi = list.sequentialSearching(cari);
+        int pss = (int)posisi;
+        list.tampilPosisi(cari, pss);
+        list.tampilDataSearch(cari, pss);
         
         sc.close();
-    }
+}
 }

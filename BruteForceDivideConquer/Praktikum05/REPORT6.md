@@ -176,7 +176,11 @@ ipk      : 3.5
 ```
 
 ### 6.2.3. Pertanyaan
-1. Jelaskan perbedaan metod tampilDataSearch dan tampilPosisi pada class  MahasiswaBerprestasi! 
+1. Jelaskan perbedaan metod tampilDataSearch dan tampilPosisi pada class MahasiswaBerprestasi!
+
+- tampilPosisi = Berfungsi hanya untuk memberi informasi letak indeks (posisi) dari data IPK yang dicari di dalam array. Output berupa teks biasa (contohnya : " Ditemukan pada indeks X")
+- tampilDataSearch = Berfungsi untuk menampilkan rincian data Mahasiswa dengan lengkap (NIM, Nama, Kelas, dan IPK) yang ada pada indeks hasil pencarian tersebut, dengan mengakses listMhs[pos].
+
 2. Jelaskan fungsi break pada kode program di bawah ini!  
 ```JAVA
 if (listMhs[j].ipk == cari) {
@@ -184,9 +188,20 @@ if (listMhs[j].ipk == cari) {
                 break;
             }
 ```
-3. Apa fungsi variabel pos atau indeks hasil pencarian dalam program sequential search? 
-4. Jika terdapat lebih dari satu data dengan nilai yang sama, hasil pencarian sequential search yang  dibuat di atas akan menampilkan data ke berapa? Jelaskan. 
+
+Fungsi break adalah untuk menghentikan perulangan (for loop) dengan paksa ketika data yang dicari sudah ditemukan. Break membantu program menjadi lebih efisien dalam waktu karena tidak perlu memerika sisa elemen array di sebelah kanannya.
+
+3. Apa fungsi variabel pos atau indeks hasil pencarian dalam program sequential search?
+
+Variabel pos berfungsi sebagai penunjuk lokasi suatu data di dalam array. Variabel pos digunakan sebagai akses untuk listMhs[pos] mengambil atau mengoutput nilai detail dari objek mahasiswa tersebut. 
+
+4. Jika terdapat lebih dari satu data dengan nilai yang sama, hasil pencarian sequential search yang  dibuat di atas akan menampilkan data ke berapa? Jelaskan.
+
+Jika ada dua atau lebih mahasiswa dengan IPK yang sama, program akan menampilkan data yang paling awal ditemukan (data dengan nomor indeks terkecil). Ini karena perulangan jalam dari indeks 0 ke indeks akhir, dan perintah break akan langsung menghentikan kode dan menyimpan penemuan pertama dan mengabaikan data kembar di indeks berikutnya
+
 5. Berkaitan dengan pertanyaan nomor 2 di atas, apa yang terjadi jika perintah break dihapus dari kode di atas?
+
+Jika break dihilangkan, maka program akan terus scanning atau memindai array hingga batas akhir (listMhs.length) meski data sudah ditemukan. Jika ada data double atau ganda, nilai variabel posisi akan tertimpa dengan searching terbaru. Sehingga program akan menampilkan data yang paling akhir ditemukan.
 
 ## 6.3 Searching/ Pencarian Menggunakan Algoritma Binary Search
 
