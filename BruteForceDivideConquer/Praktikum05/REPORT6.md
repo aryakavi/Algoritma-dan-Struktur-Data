@@ -316,9 +316,119 @@ PS D:\Algoritma-dan-Struktur-Data>
 
 ### 6.3.3. Pertanyaan 
 1. Tunjukkan pada kode program yang mana proses divide dijalankan! 
+
+Proses devide (pembagian searching) terjadi pada baris titik tengah (mid) dan pemanggilan fungsi rekursif yang membelah array menjadi 2 bagian. Kode  ini ada pada class MahasiswaBerprestasi04 : 
+```JAVA
+// Menentukan titk tengah untuk dipotong
+mid = (left + right) / 2; 
+// ...
+// Membagi ke bagian kiri
+return findBinarySearch(cari, left, mid - 1); 
+// ...
+// Membagi ke bagian kanan
+return findBinarySearch(cari, mid + 1, right); 
+```
+
 2. Tunjukkan pada kode program yang mana proses conquer dijalankan! 
-3. Apa fungsi left, right, dan mid? 
-4. Jika data IPK yang dimasukkan tidak urut. Apakah program masih dapat berjalan? Mengapa demikian? 
+
+Conquer atau penyelesaian masalah dijalankan saat nilai tenga (mid) diverifikasi atau divalidasi dengan dnilai yang dicari, sehingga pencarian dihentikan dan indeks dikembalikan
+```JAVA
+if (cari == listMhs[mid].ipk) {
+    return (mid);
+}
+```
+
+3. Apa fungsi left, right, dan mid?
+
+A. Left = Indeks batas kiri dari array yang dicari.
+
+B. Right = Indeks batas kanan dari array yang dicari.
+
+C. Mid = Indeks titik tengah antara left dan right yang digunakan untuk acuan pembanding dan area pencarian
+
+4. Jika data IPK yang dimasukkan tidak urut. Apakah program masih dapat berjalan? Mengapa demikian?
+
+Program akan tetap berjalan namun hasil outputnya akan tetap salah. Algorithm Binary Search bekerja jika data sudah terurut. Jika data acak, logika untuk mengeliminasi setengah array menjadi tidak relevan, sehingga nilai yang sebenarnya ada di dalam array tidak ditemukan.
+
 5. Jika IPK yang dimasukkan dari IPK terbesar ke terkecil (misal: 3.8, 3.7, 3.5, 3.4, 3.2) dan elemen yang dicari adalah 3.2. Bagaimana hasil dari binary search? Apakah sesuai? Jika tidak sesuai maka ubahlah kode program binary seach agar hasilnya sesuai 
-6. Jelaskan bagaimana binary search menentukan bahwa data yang dicari tidak ditemukan di dalam array. 
+
+Hasil dari kode yang ada saat ini tidak akan sesuai jika memakai descendig. Kode yang ditulis memiliki aasumsi bahwa data ascending. Contohnya mid 3.5 dan mencari 3.2, di kode yanga da saat ini pasti mengevaluasi 3.5 > 3.2 dan bergeser mencari ke kiri (mid - 1). Padahal, di susunan data descending nilai 3.2 ada di sebelah kanan.
+
+Kode yang diubah yaitu pada class MahasiswaBerprestasi04 yang sebelumnya
+```JAVA
+   int findBinarySearch(double cari, int left, int right) {
+        int mid;
+        if (right >= left) {
+            mid = (left + right) / 2;
+            if (cari == listMhs[mid].ipk) {
+                return (mid);
+            } else if (listMhs[mid].ipk > cari) {
+                // Jika mid lebih besar dari target, cari ke kiri (karena kiri angka lebih besar)
+                return findBinarySearch(cari, left, mid - 1);
+            } else {
+                // Jika mid lebih kecil dari target, cari ke kanan (karena kanan angka lebih kecil)
+                return findBinarySearch(cari, mid + 1, right);
+            }
+        }
+        return -1;
+    }
+```
+
+diubah menjadi 
+```JAVA
+int findBinarySearch(double cari, int left, int right) {
+        int mid;
+        if (right >= left) {
+            mid = (left + right) / 2;
+            if (cari == listMhs[mid].ipk) {
+                return (mid);
+            } else if (listMhs[mid].ipk < cari) { 
+                // Jika mid lebih kecil dari target, cari ke kiri (karena kiri berisi angka lebih besar)
+                return findBinarySearch(cari, left, mid - 1);
+            } else {
+                // Jika mid lebih besar dari target, cari ke kanan (karena kanan berisi angka lebih kecil)
+                return findBinarySearch(cari, mid + 1, right);
+            }
+        }
+        return -1;
+    }
+```
+
+6. Jelaskan bagaimana binary search menentukan bahwa data yang dicari tidak ditemukan di dalam array.
+
+Data tidak ditemukan apabila batas kiri (left) sudah melewati batas kanan (right). Hal ini dapat diketahui pada kondisi awal di persyaratan if(right >= left). Jika kondisi ini salah (left > right), maka tempat pencarian sudah habis dan tidak ada elemen tersisa untuk dicari atau di cek. Program akan keluar dari blok if dan menjalankan return -1;
+
 7. Modifikasi program di atas yang mana jumlah mahasiswa yang diinputkan sesuai dengan masukan dari keyboard.
+Mengubah bagian awal pada fungsi main di dalam class MahasiswaDemo04 untuk menerima input angka dengan scanner. Kode yang diubah adalah bagian :
+```JAVA
+(...)
+package BruteForceDivideConquer.Praktikum05;
+import java.util.Scanner;
+
+public class MahasiswaDemo04 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int jumMhs=5;
+        MahasiswaBerprestasi04 list = new MahasiswaBerprestasi04(jumMhs);
+(...)
+```
+
+Diubah menjadi
+```JAVA
+(...)
+package BruteForceDivideConquer.Praktikum05;
+import java.util.Scanner;
+
+public class MahasiswaDemo04 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        // Menambahkan sout untuk menginput
+        System.out.print("Masukkan jumlah mahasiswa: ");
+        int jumMhs = sc.nextInt(); //Tempat memasukkan inputan mahsiswa
+        sc.nextLine();
+
+        MahasiswaBerprestasi04 list = new MahasiswaBerprestasi04(jumMhs);
+
+        for (int i = 0; i < jumMhs; i++) {
+(...)
+```
