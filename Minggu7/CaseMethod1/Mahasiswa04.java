@@ -1,4 +1,4 @@
-package CaseMethod1;
+package Minggu7.CaseMethod1;
 
 public class Mahasiswa04 {
     // Deklarasi atribut untuk menyimpan data identitas mahasiswa

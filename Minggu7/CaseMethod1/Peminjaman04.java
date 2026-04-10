@@ -1,4 +1,4 @@
-package CaseMethod1;
+package Minggu7.CaseMethod1;
 
 public class Peminjaman04 {
     // Menghubungkan class dengan objek Mahasiswa dan Buku

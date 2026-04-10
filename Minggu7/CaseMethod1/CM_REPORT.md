@@ -1,4 +1,109 @@
-package CaseMethod1;
+|  | Algoritma dan Struktur Data |
+|--|--|
+| NIM |  254107020087 |
+| Nama |  Aryakavi Raditya Imaran |
+| Kelas | TI - 1F |
+| Repository | [https://github.com/aryakavi/Algoritma-dan-Struktur-Data] |
+
+# Case Method 
+
+## Class Buku04
+```JAVA
+package Minggu7.CaseMethod1;
+
+public class Buku04{
+    // Deklarasi atribut untuk menyimpan informasi detail buku
+    String kodeBuku;
+    String judul;
+    String tahunTerbit;
+    
+    // Konstruktor untuk memberikan nilai awal pada atribut buku
+    public Buku04(String kode, String judul, String tahun){
+        this.kodeBuku = kode;
+        this.judul = judul;
+        this.tahunTerbit = tahun;
+    }
+
+    // Method untuk mencetak informasi buku
+    public void tampilBuku(){
+        System.out.println("Kode : " + this.kodeBuku + " | Judul : " + this. judul + " | Tahun : " + this.tahunTerbit);
+    }
+}
+```
+
+## Class Mahassiwa04
+```JAVA
+package Minggu7.CaseMethod1;
+
+public class Mahasiswa04 {
+    // Deklarasi atribut untuk menyimpan data identitas mahasiswa
+    String nim;
+    String nama;
+    String prodi;
+
+    // Konstriktor kosong
+    public Mahasiswa04() {
+    }
+
+    // Konstruktor berparameter
+    public Mahasiswa04(String nim, String nama, String prodi) {
+        this.nim = nim;
+        this.nama = nama;
+        this.prodi = prodi;
+    }
+
+    // Method untuk menampilkan informasi
+    public void tampilMahasiswa() {
+        System.out.println("NIM: " + this.nim + " | Nama: " + this.nama + " | Prodi: " + this.prodi);
+    }
+}
+```
+
+## Class Peminjaman04
+```JAVA
+package Minggu7.CaseMethod1;
+
+public class Peminjaman04 {
+    // Menghubungkan class dengan objek Mahasiswa dan Buku
+    Mahasiswa04 mhs;
+    Buku04 buku;
+    int lamaPinjam;
+    int batasPinjam = 5; // Ketentuan maksimal pinjam 5 hari
+    int terlambat = 0;
+    int denda = 0;
+
+    //Konstruktor pencatat transaksi peminjaman buku
+    public Peminjaman04(Mahasiswa04 mhs, Buku04 buku, int lamaPinjam){
+        this.mhs = mhs;
+        this.buku = buku;
+        this.lamaPinjam = lamaPinjam;
+
+        // Pengecekan apakah mahasiswa terlambat mengembalikan buku
+        if(this.lamaPinjam > this.batasPinjam){
+            // Menghitung selisih keterlambatan
+            this.terlambat=this.lamaPinjam-this.batasPinjam;
+        }
+        // Memanggil methos hitungDenda
+        hitungDenda();
+    }
+
+    // Method hitungDenda
+    public void hitungDenda(){
+        if(this.terlambat>0){
+            this.denda=this.terlambat*2000;
+        }
+    }
+    
+    // Rincian transaksi peminjaman
+    public void tampilPeminjaman(){
+        System.out.printf("%s %s | Lama : %d | Terlambat : 5d | Denda : %d\n", this. mhs.nama, this.buku.judul, this.lamaPinjam, this.terlambat, this.denda);
+    }
+}
+```
+
+## Class PeminjamanMain04
+```JAVA
+package Minggu7.CaseMethod1;
 
 import java.util.Scanner;
 
@@ -152,3 +257,87 @@ public class PeminjamanMain04 {
         }
     }
 }
+```
+
+
+## Hasil Running
+```
+=== SISTEM PEMINJAMAN RUANG BACA JTI ===
+1. Tampilkan Mahasiswa
+2. Tampilkan Buku
+3. Tampilkan Peminjaman}
+4. Urutkan Berdasarkan Denda
+5. Cari Berdasarkan NIM
+0. Keluar
+Pilih : 
+1
+Daftar Mahassiswa :
+NIM: 22001 | Nama: Andi | Prodi: Teknik Informatika
+NIM: 22002 | Nama: Budi | Prodi: Teknik Informatika
+NIM: 22003 | Nama: Citra | Prodi: Sistem Informasi Bisnis
+
+=== SISTEM PEMINJAMAN RUANG BACA JTI ===
+1. Tampilkan Mahasiswa
+2. Tampilkan Buku
+3. Tampilkan Peminjaman}
+4. Urutkan Berdasarkan Denda
+5. Cari Berdasarkan NIM
+0. Keluar
+Pilih : 
+2
+Daftar Buku : 
+Kode : B001 | Judul : Algoritma | Tahun : 2020
+Kode : B002 | Judul : Basis Data | Tahun : 2019
+Kode : B003 | Judul : Pemrograman | Tahun : 2021
+Kode : B004 | Judul : Fisika | Tahun : 2024
+
+=== SISTEM PEMINJAMAN RUANG BACA JTI ===
+1. Tampilkan Mahasiswa
+2. Tampilkan Buku
+3. Tampilkan Peminjaman}
+4. Urutkan Berdasarkan Denda
+5. Cari Berdasarkan NIM
+0. Keluar
+Pilih : 
+3
+Data Peminjaman :
+Andi Algoritma | Lama : 7 | Terlambat : 5d | Denda : 2
+Budi Basis Data | Lama : 3 | Terlambat : 5d | Denda : 0
+Citra Pemrograman | Lama : 10 | Terlambat : 5d | Denda : 5
+Citra Fisika | Lama : 6 | Terlambat : 5d | Denda : 1
+Andi Basis Data | Lama : 4 | Terlambat : 5d | Denda : 0
+
+=== SISTEM PEMINJAMAN RUANG BACA JTI ===
+1. Tampilkan Mahasiswa
+2. Tampilkan Buku
+3. Tampilkan Peminjaman}
+4. Urutkan Berdasarkan Denda
+5. Cari Berdasarkan NIM
+0. Keluar
+Pilih : 
+4
+
+=== SISTEM PEMINJAMAN RUANG BACA JTI ===
+1. Tampilkan Mahasiswa
+2. Tampilkan Buku
+3. Tampilkan Peminjaman}
+4. Urutkan Berdasarkan Denda
+5. Cari Berdasarkan NIM
+0. Keluar
+Pilih : 
+5
+Masukkan NIM: 22002
+Budi Basis Data | Lama : 3 | Terlambat : 5d | Denda : 0
+
+=== SISTEM PEMINJAMAN RUANG BACA JTI ===
+1. Tampilkan Mahasiswa
+2. Tampilkan Buku
+3. Tampilkan Peminjaman}
+4. Urutkan Berdasarkan Denda
+5. Cari Berdasarkan NIM
+0. Keluar
+Pilih : 
+0
+Keluar dari program.
+PS D:\Algoritma-dan-Struktur-Data> 
+```
