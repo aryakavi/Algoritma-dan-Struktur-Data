@@ -56,7 +56,7 @@ Penambahan pada class MahasiswaBerprestasi04 dengan menambahkan kode dibawah met
 
 Perubahan untuk class MahasiswaDemo04
 ```JAVA
-package BruteForceDivideConquer.Praktikum05;
+package Minggu7.Praktikum06;
 import java.util.Scanner;
 
 public class MahasiswaDemo04 {
