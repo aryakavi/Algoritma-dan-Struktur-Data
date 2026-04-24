@@ -284,10 +284,41 @@ B. Jika if-else dihapus dan dipaksakan memasukkan data ke-6, variabel top akan b
 
 4. Modifikasi kode program pada class MahasiswaDemo dan StackTugasMahasiswa sehingga pengguna juga dapat melihat mahasiswa yang pertama kali mengumpulkan tugas melalui operasi lihat tugas terbawah!
 
-
+Karena tugas yang pertama kali dikumpulkan selalu mengisi dasar tumpuklan, maka tugas akan selalu di indeks 0. Solusinya ialah, menambahkan method peek bottom agar 
+```JAVA
+public Mahasiswa04 peekBottom() {
+    if (!isEmpty()) {
+        return stack[0]; // Tugas pertama selalu di indeks 0
+    } else {
+        System.out.println("Stack kosong! Tidak ada tugas yang dikumpulkan");
+        return null;
+    }
+}
+```
+Tambahan perubahan untuk menu di MahasiswDemo04.java
+```JAVA
+case 5:
+    Mahasiswa04 lihatBawah = stack.peekBottom();
+        if (lihatBawah != null) {
+            System.out.println("Tugas pertama kali dikumpulkan oleh " + lihatBawah.nama);
+        }
+    break;
+```
 
 5. Tambahkan method untuk dapat menghitung berapa banyak tugas yang sudah dikumpulkan saat ini, serta tambahkan operasi menunya! 
 
+Agar dapat menambahkan fungsi di dalam StackTugasMahasiswa04.java yang menghitung jumlah tugas saay ini ialah dengan menambahkan fungsi yang menambahkan +1 dari indeks top yang ada
+```JAVA
+public int getJumlahTugas() {
+    return top + 1;
+}
+```
+Tambahan perubahan untuk menu di MahasiswDemo04.java
+```JAVA
+case 6: 
+    System.out.println("Jumlah tugas saat ini di dalam tumpukan: " + stack.getJumlahTugas());
+    break;
+```
 
 
 6. Commit dan push kode program ke Github

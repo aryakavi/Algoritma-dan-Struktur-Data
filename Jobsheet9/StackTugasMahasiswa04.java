@@ -55,10 +55,30 @@ public class StackTugasMahasiswa04 {
         }
     }
 
+    // Perubahan untuk pertanyaan 4 Sub-bab 2.1.3
+    public Mahasiswa04 peekBottom() {
+    if (!isEmpty()) {
+        return stack[0]; // Tugas pertama selalu di indeks 0
+    } else {
+        System.out.println("Stack kosong! Tidak ada tugas yang dikumpulkan");
+        return null;
+    }
+    }
+
+    // Perubahan untuk pertanyaan 5 Sub-bab 2.1.3
+    public int getJumlahTugas() {
+        return top + 1;
+    }
+
+    // Perubahan untuk pertanyaan 1 Sub-bab 2.1.3
     public void print() {
-        for (int i = 0; i <= top; i++) {
+    if (!isEmpty()) {
+        for (int i = top; i >= 0; i--) {
             System.out.println(stack[i].nama + "\t" + stack[i].nim + "\t" + stack[i].kelas);
         }
         System.out.println("");
+    } else {
+        System.out.println("Stack kosong");
+    }
     }
 }
