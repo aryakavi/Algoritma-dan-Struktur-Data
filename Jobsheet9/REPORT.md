@@ -426,7 +426,260 @@ PS D:\Algoritma-dan-Struktur-Data>
 ```
 
 ### 2.2.3 Pertanyaan
+1. Jelaskan alur kerja dari method konversiDesimalKeBiner! 
+
+A. Menginisialisasi stack = Program membuat object stack dari class StackKonversi04 untuk menampung digit-digit biner sementara.
+
+B. Pembagian dan penyimpanan = Bialngan desimal (nilai) lebih besar dari 0, program akan melakukan perulangan dengan langkah-langkah:
+    
+    - Menghitung sisa bagi dari nilai dibagi 2 (nilai % 2) dengan hasil berupa angka 0 atau 1
+    - Sisa bagi dimasukkan (push) ke dalam stack, dengan prinsip Last In Last Out (LIFO) pada stack dan sisa bagi pertama akan berada di dasar stack
+    - nilai kemudian diupdate dengan membagi 2 (nilai = nilai / 2) untuk iterasi selanjutnya.
+
+C. Mempersiapkan output dengan variabel string biner kosong
+
+D. Penyusunan string iner, selama stack belum kosong (!stack.isEmpty()), maka program akan mengeluarkan (pop) digit dari posisi teratas (top) stack. Setelah itu menggabungkan digit ke dalam string biner.
+
+E. Method akan mengembalikan String biner jika sudah jadi
+
+
+2. Pada method konversiDesimalKeBiner, ubah kondisi perulangan menjadi while (kode != 0), bagaimana hasilnya? Jelaskan alasannya!
+
+Jika kondisi perulangan diubah menjadi while (nilai !=0) maka hasail untuk bilangan positif akan tetap sama, namun jika input negatif maka akan bernilai false sehingga nilai string kosong (null)
+
+A. Jika bilangan positif jika dibagi terus menerus maka pada akhirnya nilai akan menjadi 0, jadi kondisi >0 dan !=0 akan menghentikan perulangan.
+
+B. Jika bilangan negatif pada kondisi >0 atau !=0 maka bilangan negatif akan diabaikan dan keluar string kosong
 
 
 ## 2.4 Latihan Praktikum
 Mahasiswa mengajukan surat izin (karena sakit atau keperluan lain) setiap kali tidak mengikuti perkuliahan. Surat terakhir yang masuk akan diproses atau divalidasi lebih dulu oleh admin Prodi. Perhatikan class diagram berikut.
+
+Class Surat04.java
+```JAVA
+package Jobsheet9;
+public class Surat04 {
+    String idSurat;
+    String namaMahasiswa;
+    String kelas;
+    char jenisIzin;
+    int durasi;
+
+    public Surat04() {
+    }
+
+    public Surat04(String idSurat, String namaMahasiswa, String kelas, char jenisIzin, int durasi) {
+        this.idSurat = idSurat;
+        this.namaMahasiswa = namaMahasiswa;
+        this.kelas = kelas;
+        this.jenisIzin = jenisIzin;
+        this.durasi = durasi;
+    }
+}
+```
+
+class StackSurat04.java
+```JAVA
+package Jobsheet9;
+public class StackSurat04 {
+    Surat04[] tumpukan;
+    int top;
+    int size;
+
+    public StackSurat04(int size) {
+        this.size = size;
+        tumpukan = new Surat04[size];
+        top = -1;
+    }
+
+    public boolean isEmpty() {
+        return top == -1;
+    }
+
+    public boolean isFull() {
+        return top == size - 1;
+    }
+
+    public void push(Surat04 srt) {
+        if (!isFull()) {
+            top++;
+            tumpukan[top] = srt;
+        } else {
+            System.out.println("Stack penuh! Tidak bisa menerima surat lagi.");
+        }
+    }
+
+    public Surat04 pop() {
+        if (!isEmpty()) {
+            Surat04 srt = tumpukan[top];
+            top--;
+            return srt;
+        } else {
+            System.out.println("Stack kosong! Tidak ada surat untuk diproses.");
+            return null;
+        }
+    }
+
+    public Surat04 peek() {
+        if (!isEmpty()) {
+            return tumpukan[top];
+        } else {
+            System.out.println("Stack kosong! Tidak ada surat yang masuk.");
+            return null;
+        }
+    }
+
+    public void cariSurat(String namaMhs) {
+        boolean ditemukan = false;
+        if (!isEmpty()) {
+            for (int i = top; i >= 0; i--) {
+                if (tumpukan[i].namaMahasiswa.equalsIgnoreCase(namaMhs)) {
+                    System.out.println("Surat ditemukan pada posisi dari atas ke-" + (top - i + 1));
+                    System.out.println("ID Surat: " + tumpukan[i].idSurat);
+                    System.out.println("Nama    : " + tumpukan[i].namaMahasiswa);
+                    System.out.println("Kelas   : " + tumpukan[i].kelas);
+                    System.out.println("Izin    : " + tumpukan[i].jenisIzin);
+                    System.out.println("Durasi  : " + tumpukan[i].durasi + " hari");
+                    System.out.println("---------------------------------");
+                    ditemukan = true;
+                }
+            }
+        }
+        if (!ditemukan) {
+            System.out.println("Surat dari mahasiswa bernama " + namaMhs + " tidak ditemukan.");
+        }
+    }
+}
+```
+
+class SuratDemo04.java
+```JAVA
+package Jobsheet9;
+import java.util.Scanner;
+
+public class SuratDemo04 {
+    public static void main(String[] args) {
+        StackSurat04 stack = new StackSurat04(10);
+        
+        try (Scanner scan = new Scanner(System.in)) {
+            int pilih;
+
+            do {
+                System.out.println("\nMenu Layanan Surat Izin Mahasiswa:");
+                System.out.println("1. Terima Surat Izin");
+                System.out.println("2. Proses Surat Izin");
+                System.out.println("3. Lihat Surat Izin Terakhir");
+                System.out.println("4. Cari Surat (berdasarkan Nama)");
+                System.out.println("5. Keluar");
+                System.out.print("Pilih menu: ");
+                pilih = scan.nextInt();
+                scan.nextLine();
+
+                switch (pilih) {
+                    case 1:
+                        System.out.print("ID Surat: ");
+                        String idSurat = scan.nextLine();
+                        System.out.print("Nama Mahasiswa: ");
+                        String nama = scan.nextLine();
+                        System.out.print("Kelas: ");
+                        String kelas = scan.nextLine();
+                        System.out.print("Jenis Izin (S/I): ");
+                        char jenis = scan.nextLine().charAt(0);
+                        System.out.print("Durasi (hari): ");
+                        int durasi = scan.nextInt();
+                        scan.nextLine();
+                        
+                        Surat04 srt = new Surat04(idSurat, nama, kelas, jenis, durasi);
+                        stack.push(srt);
+                        System.out.println("Surat berhasil diterima.");
+                        break;
+                    case 2:
+                        Surat04 diproses = stack.pop();
+                        if (diproses != null) {
+                            System.out.println("Memproses surat dari: " + diproses.namaMahasiswa + " (ID: " + diproses.idSurat + ")");
+                        }
+                        break;
+                    case 3:
+                        Surat04 terakhir = stack.peek();
+                        if (terakhir != null) {
+                            System.out.println("Surat terakhir yang masuk:");
+                            System.out.println("ID Surat: " + terakhir.idSurat);
+                            System.out.println("Nama    : " + terakhir.namaMahasiswa);
+                            System.out.println("Kelas   : " + terakhir.kelas);
+                            System.out.println("Izin    : " + terakhir.jenisIzin);
+                            System.out.println("Durasi  : " + terakhir.durasi + " hari");
+                        }
+                        break;
+                    case 4:
+                        System.out.print("Masukkan nama mahasiswa yang dicari: ");
+                        String cariNama = scan.nextLine();
+                        stack.cariSurat(cariNama);
+                        break;
+                    case 5:
+                        System.out.println("Keluar dari program.");
+                        break;
+                    default:
+                        System.out.println("Pilihan tidak valid.");
+                }
+            } while (pilih != 5);
+        } catch (Exception e) {
+            System.out.println("Terjadi kesalahan: " + e.getMessage());
+        }
+    }
+}
+```
+
+Verifikasi hasil percobaan
+```
+Menu Layanan Surat Izin Mahasiswa:
+1. Terima Surat Izin
+2. Proses Surat Izin
+3. Lihat Surat Izin Terakhir
+4. Cari Surat (berdasarkan Nama)
+5. Keluar
+Pilih menu: 1
+ID Surat: 1234
+Nama Mahasiswa: Arya
+Kelas: 1F
+Jenis Izin (S/I): S
+Durasi (hari): 2
+Surat berhasil diterima.
+
+Menu Layanan Surat Izin Mahasiswa:
+1. Terima Surat Izin
+2. Proses Surat Izin
+3. Lihat Surat Izin Terakhir
+4. Cari Surat (berdasarkan Nama)
+5. Keluar
+Pilih menu: 2
+Memproses surat dari: Arya (ID: 1234)
+
+Menu Layanan Surat Izin Mahasiswa:
+1. Terima Surat Izin
+2. Proses Surat Izin
+3. Lihat Surat Izin Terakhir
+4. Cari Surat (berdasarkan Nama)
+5. Keluar
+Pilih menu: 3
+Stack kosong! Tidak ada surat yang masuk.
+
+Menu Layanan Surat Izin Mahasiswa:
+1. Terima Surat Izin
+2. Proses Surat Izin
+3. Lihat Surat Izin Terakhir
+4. Cari Surat (berdasarkan Nama)
+5. Keluar
+Pilih menu: 4
+Masukkan nama mahasiswa yang dicari: Arya
+Surat dari mahasiswa bernama Arya tidak ditemukan.
+
+Menu Layanan Surat Izin Mahasiswa:
+1. Terima Surat Izin
+2. Proses Surat Izin
+3. Lihat Surat Izin Terakhir
+4. Cari Surat (berdasarkan Nama)
+5. Keluar
+Pilih menu: 5
+Keluar dari program.
+PS D:\Algoritma-dan-Struktur-Data> 
+```
