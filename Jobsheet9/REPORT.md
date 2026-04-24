@@ -329,12 +329,101 @@ case 6:
 Sampai tahap ini, proses pengelolaan data tugas mahasiswa menggunakan konsep Stack telah berhasil dibuat pada Percobaan 1. Selanjutnya, pada Percobaan 2 ini ditambahkan method baru yang berfungsi untuk mengonversi nilai tugas bertipe int ke dalam bentuk biner setelah tugas tersebut diberi nilai dan dikeluarkan dari Stack.
 
 ### 2.2.1 Langkah-langkah Percobaan
+Penambahan method konversiDesimalKeBinerdi StackTugasMahasiswa04.java
 ```JAVA
+    public String konversiDesimalKeBiner(int nilai) {
+        StackKonversi04 stack = new StackKonversi04();
+        while (nilai > 0) {
+            int sisa = nilai % 2;
+            stack.push(sisa);
+            nilai = nilai / 2;
+        }
+        String biner = new String();
+        while (!stack.isEmpty()) {
+            biner += stack.pop();
+        }
+        return biner;
+    }
+```
 
+Penambahan class StackKonversi04.java
+```JAVA
+package Jobsheet9;
+public class StackKonversi04 {
+    int[] tumpukanBiner;
+    int size;
+    int top;
+
+    public StackKonversi04() {
+        this.size = 32; //asumsi 32 bit
+        tumpukanBiner = new int[size];
+        top = -1;
+    }
+
+    public boolean isEmpty() {
+        return top == -1;
+    }
+
+    public boolean isFull() {
+        return top == size - 1;
+    }
+
+    public void push(int data) {
+        if (isFull()) {
+            System.out.println("Stack penuh");
+        } else {
+            top++;
+            tumpukanBiner[top] = data;
+        }
+    }
+
+    public int pop() {
+        if (isEmpty()) {
+            System.out.println("Stack kosong.");
+            return -1;
+        } else {
+            int data = tumpukanBiner[top];
+            top--;
+            return data;
+        }
+    }
+}
+```
+
+Penambahan line baru di method pop di class MahasiswaDemo04.java
+```JAVA
+//... System.out.printf("Nilai Tugas %s adalah %d\n", dinilai.nama, nilai);
+    String biner = stack.konversiDesimalKeBiner(nilai);
+    System.out.println("Nilai Biner Tugas: " + biner);
+//... } break;
 ```
 
 ### 2.2.2 Verifikasi Hasil Percobaan
+```
+Menu:
+1. Mengumpulkan Tugas
+2. Menilai Tugas
+3. Melihat Tugas Teratas
+4. Melihat Daftar Tugas
+5. Melihat Tugas Terbawah (Pertama Dikumpulkan)
+6. Melihat Jumlah Tugas Saat Ini
+Pilih: 2
+Menilai tugas dari Tika
+Masukkan nilai (0-100): 87
+Nilai Tugas Tika adalah 87
+Nilai Biner Tugas: 1010111
 
+Menu:
+1. Mengumpulkan Tugas
+2. Menilai Tugas
+3. Melihat Tugas Teratas
+4. Melihat Daftar Tugas
+5. Melihat Tugas Terbawah (Pertama Dikumpulkan)
+6. Melihat Jumlah Tugas Saat Ini
+Pilih: 7
+Pilihan tidak valid.
+PS D:\Algoritma-dan-Struktur-Data> 
+```
 
 ### 2.2.3 Pertanyaan
 
