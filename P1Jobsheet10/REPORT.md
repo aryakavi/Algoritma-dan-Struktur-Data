@@ -498,4 +498,291 @@ Buatlah program antrian untuk mengilustasikan antrian persetujuan Kartu Rencana 
 • Menampilkan semua antrian, Menampilkan 2 antrian terdepan, Menampilkan antrian paling akhir. 
 • Cetak jumlah antrian, Cetak jumlah yang sudah melakukan proses KRS 
 • Jumlah antrian maximal 10, jumlah yang ditangani masing-masing DPA 30 mahasiswa, cetak jumlah mahasiswa yang belum melakukan proses KRS.  
-Gambarkan Diagram Class untuk antriannya. Implementasikan semua method menggunakan menu pilihan pada fungsi main.  
+Gambarkan Diagram Class untuk antriannya. Implementasikan semua method menggunakan menu pilihan pada fungsi main. 
+
+1. Diagram Class
+--------------------------------------------------
+    - Mahasiswa 
+
+        nim: String
+
+        nama: String
+
+        prodi: String
+
+        kelas: String
+
+        Mahasiswa(nim: String, nama: String, prodi: String, kelas: String)
+
+        tampilkanData(): void
+
+--------------------------------------------------
+    - AntrianKRS
+    
+        data: Mahasiswa[]
+        
+        front: int
+        
+        rear: int
+        
+        size: int
+
+        max: int
+
+        kuotaDPA: int
+
+        jumlahDiproses: int
+
+        AntrianKRS(n: int)
+
+        isEmpty(): boolean
+
+        isFull(): boolean
+
+        clear(): void
+
+        enqueue(mhs: Mahasiswa): void
+
+        prosesKRS(): void
+
+        tampilkanSemua(): void
+
+        lihatDuaTerdepan(): void
+
+        lihatPalingAkhir(): void
+
+        cetakJumlahAntrian(): void
+
+        cetakJumlahDiproses(): void
+
+        cetakBelumProses(): void
+-------------------------------------------------
+
+2. Kode Program
+
+CLass Mahasiswa
+```JAVA
+public class Mahasiswa {
+    String nim;
+    String nama;
+    String prodi;
+    String kelas;
+
+    public Mahasiswa(String nim, String nama, String prodi, String kelas) {
+        this.nim = nim;
+        this.nama = nama;
+        this.prodi = prodi;
+        this.kelas = kelas;
+    }
+
+    public void tampilkanData() {
+        System.out.println(nim + " - " + nama + " - " + prodi + " - " + kelas);
+    }
+}
+```
+
+Class AntrianKRS
+```JAVA
+public class AntrianKRS {
+    Mahasiswa[] data;
+    int front;
+    int rear;
+    int size;
+    int max;
+    int kuotaDPA;
+    int jumlahDiproses;
+
+    public AntrianKRS(int max) {
+        this.max = max;
+        this.data = new Mahasiswa[max];
+        this.front = 0;
+        this.rear = -1;
+        this.size = 0;
+        this.kuotaDPA = 30; 
+        this.jumlahDiproses = 0;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public boolean isFull() {
+        return size == max;
+    }
+
+    public void clear() {
+        if (!isEmpty()) {
+            front = 0;
+            rear = -1;
+            size = 0;
+            System.out.println("Antrian berhasil dikosongkan.");
+        } else {
+            System.out.println("Antrian masih kosong.");
+        }
+    }
+
+    public void enqueue(Mahasiswa mhs) {
+        if (isFull()) {
+            System.out.println("Antrian sudah penuh (Maksimal " + max + " mahasiswa)!");
+        } else if (jumlahDiproses + size >= kuotaDPA) {
+            System.out.println("Maaf, kuota DPA sudah penuh. Mahasiswa tidak bisa mendaftar antrian lagi.");
+        } else {
+            rear = (rear + 1) % max;
+            data[rear] = mhs;
+            size++;
+            System.out.println(mhs.nama + " berhasil masuk ke antrian KRS.");
+        }
+    }
+
+    public void prosesKRS() {
+        if (isEmpty()) {
+            System.out.println("Antrian KRS kosong. Tidak ada yang bisa dipanggil.");
+            return;
+        }
+
+        int jumlahPanggilan = Math.min(2, size);
+        
+        System.out.println("--- PANGGILAN PROSES KRS ---");
+        for (int i = 0; i < jumlahPanggilan; i++) {
+            Mahasiswa mhs = data[front];
+            System.out.print("Memanggil antrian ke-" + (i + 1) + ": ");
+            mhs.tampilkanData();
+            
+            front = (front + 1) % max;
+            size--;
+            jumlahDiproses++;
+        }
+    }
+
+    public void tampilkanSemua() {
+        if (isEmpty()) {
+            System.out.println("Antrian kosong.");
+        } else {
+            System.out.println("--- Daftar Antrian KRS Saat Ini ---");
+            for (int i = 0; i < size; i++) {
+                int index = (front + i) % max;
+                System.out.print((i + 1) + ". ");
+                data[index].tampilkanData();
+            }
+        }
+    }
+
+    public void lihatDuaTerdepan() {
+        if (isEmpty()) {
+            System.out.println("Antrian kosong.");
+        } else {
+            System.out.println("--- 2 Antrian Terdepan ---");
+            int jumlahTampil = Math.min(2, size);
+            for (int i = 0; i < jumlahTampil; i++) {
+                int index = (front + i) % max;
+                System.out.print((i + 1) + ". ");
+                data[index].tampilkanData();
+            }
+        }
+    }
+
+    public void lihatPalingAkhir() {
+        if (isEmpty()) {
+            System.out.println("Antrian kosong.");
+        } else {
+            System.out.println("--- Antrian Paling Akhir ---");
+            data[rear].tampilkanData();
+        }
+    }
+
+    public void cetakJumlahAntrian() {
+        System.out.println("Jumlah mahasiswa yang sedang mengantri saat ini: " + size);
+    }
+
+    public void cetakJumlahDiproses() {
+        System.out.println("Jumlah mahasiswa yang SUDAH selesai proses KRS: " + jumlahDiproses);
+    }
+
+    public void cetakBelumProses() {
+        int sisaKuota = kuotaDPA - jumlahDiproses;
+        System.out.println("Sisa kuota mahasiswa DPA yang BELUM proses KRS: " + sisaKuota + " dari total " + kuotaDPA);
+    }
+}
+```
+
+
+Class MainKRS
+```JAVA
+import java.util.Scanner;
+
+public class MainKRS {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        AntrianKRS antrian = new AntrianKRS(10);
+        int menu;
+
+        do {
+            System.out.println("\n=========================================");
+            System.out.println("     SISTEM ANTRIAN KRS DPA");
+            System.out.println("=========================================");
+            System.out.println("1. Tambah Mahasiswa ke Antrian");
+            System.out.println("2. Panggil Antrian untuk Proses KRS (2 orang)");
+            System.out.println("3. Tampilkan Semua Antrian");
+            System.out.println("4. Tampilkan 2 Antrian Terdepan");
+            System.out.println("5. Tampilkan Antrian Paling Akhir");
+            System.out.println("6. Cek Statistik Antrian");
+            System.out.println("7. Kosongkan Seluruh Antrian");
+            System.out.println("0. Keluar");
+            System.out.print("Pilih Menu: ");
+            menu = sc.nextInt();
+            sc.nextLine(); 
+
+            switch (menu) {
+                case 1:
+                    System.out.println("\n-- Pendaftaran Antrian --");
+                    System.out.print("NIM   : ");
+                    String nim = sc.nextLine();
+                    System.out.print("Nama  : ");
+                    String nama = sc.nextLine();
+                    System.out.print("Prodi : ");
+                    String prodi = sc.nextLine();
+                    System.out.print("Kelas : ");
+                    String kelas = sc.nextLine();
+                    
+                    Mahasiswa mhsBaru = new Mahasiswa(nim, nama, prodi, kelas);
+                    antrian.enqueue(mhsBaru);
+                    break;
+                case 2:
+                    System.out.println();
+                    antrian.prosesKRS();
+                    break;
+                case 3:
+                    System.out.println();
+                    antrian.tampilkanSemua();
+                    break;
+                case 4:
+                    System.out.println();
+                    antrian.lihatDuaTerdepan();
+                    break;
+                case 5:
+                    System.out.println();
+                    antrian.lihatPalingAkhir();
+                    break;
+                case 6:
+                    System.out.println("\n-- Statistik Antrian KRS --");
+                    antrian.cetakJumlahAntrian();
+                    antrian.cetakJumlahDiproses();
+                    antrian.cetakBelumProses();
+                    break;
+                case 7:
+                    System.out.println();
+                    antrian.clear();
+                    break;
+                case 0:
+                    System.out.println("\nTerima kasih. Program selesai.");
+                    break;
+                default:
+                    System.out.println("\nPilihan menu tidak valid!");
+            }
+        } while (menu != 0);
+
+        sc.close();
+    }
+}
+```
