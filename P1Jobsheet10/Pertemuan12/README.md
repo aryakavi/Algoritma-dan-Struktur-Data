@@ -427,3 +427,194 @@ Buatlah implementasi program antrian layanan unit kemahasiswaan sesuai dengan be
     g. Menampilkan antrian terdepan dan antrian paling akhir 
     
     h. Menampilkan jumlah mahasiswa yang masih mengantre.
+
+
+Hasil Kode :
+1. Class Mahasiswa
+    ```JAVA
+    package Pertemuan12;
+
+    public class Mahasiswa {
+        String nim;
+        String nama;
+        String keperluan;
+
+        public Mahasiswa(String nim, String nama, String keperluan) {
+            this.nim = nim;
+            this.nama = nama;
+            this.keperluan = keperluan;
+        }
+
+        public void tampilkanData() {
+            System.out.println("NIM       : " + nim);
+            System.out.println("Nama      : " + nama);
+            System.out.println("Keperluan : " + keperluan);
+            System.out.println("-----------------------------");
+        }
+    }
+    ```
+
+2. Class Node
+    ```JAVA
+    package Pertemuan12;
+
+    public class Node {
+        Mahasiswa data;
+        Node next;
+
+        public Node(Mahasiswa data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+    }
+    ```
+
+3. Class QueueLinkedList
+    ```JAVA
+    package Pertemuan12;
+
+    public class QueueLinkedList {
+        Node front;
+        Node rear;
+        int size;
+        int max;
+
+        public QueueLinkedList(int max) {
+            this.front = null;
+            this.rear = null;
+            this.size = 0;
+            this.max = max;
+        }
+
+        public boolean isEmpty() {
+            return size == 0;
+        }
+
+        public boolean isFull() {
+            return size == max;
+        }
+
+        public void clear() {
+            front = rear = null;
+            size = 0;
+            System.out.println("Semua antrian berhasil dikosongkan.");
+        }
+
+        public void tambahAntrian(Mahasiswa mhs) {
+            if (isFull()) {
+                System.out.println("Mohon maaf, antrian sedang penuh. Silakan kembali lagi nanti.");
+            } else {
+                Node newNode = new Node(mhs, null);
+                if (isEmpty()) {
+                    front = newNode;
+                    rear = newNode;
+                } else {
+                    rear.next = newNode;
+                    rear = newNode;
+                }
+                size++;
+                System.out.println("Mahasiswa a.n " + mhs.nama + " berhasil masuk ke antrian.");
+            }
+        }
+
+        public void panggilAntrian() {
+            if (isEmpty()) {
+                System.out.println("Antrian masih kosong. Tidak ada mahasiswa yang dipanggil.");
+            } else {
+                Mahasiswa dipanggil = front.data;
+                System.out.println("\n--- PANGGILAN LAYANAN ---");
+                System.out.println("Memanggil mahasiswa berikut untuk menuju loket:");
+                dipanggil.tampilkanData();
+                
+                front = front.next;
+                size--;
+                
+                if (isEmpty()) {
+                    rear = null;
+                }
+            }
+        }
+
+        public void tampilkanUjungAntrian() {
+            if (isEmpty()) {
+                System.out.println("Antrian kosong.");
+            } else {
+                System.out.println("\n--- ANTRIAN TERDEPAN ---");
+                front.data.tampilkanData();
+
+                System.out.println("--- ANTRIAN PALING AKHIR ---");
+                rear.data.tampilkanData();
+            }
+        }
+
+        public void cekJumlahAntrian() {
+            System.out.println("Jumlah mahasiswa yang sedang mengantre saat ini: " + size + " orang.");
+            System.out.println("Sisa kapasitas antrian: " + (max - size) + " orang.");
+        }
+    }
+    ```
+
+4. Class MainLayanan
+    ```JAVA
+    package Pertemuan12;
+
+    import java.util.Scanner;
+
+    public class MainLayanan {
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            
+            QueueLinkedList antrianLayanan = new QueueLinkedList(10);
+            int menu;
+
+            do {
+                System.out.println(" SISTEM ANTRIAN LAYANAN KEMAHASISWAAN : ");
+                System.out.println("1. Daftar Antrian Baru (Tambah)");
+                System.out.println("2. Panggil Antrian (Layanan)");
+                System.out.println("3. Cek Antrian Terdepan dan Terakhir");
+                System.out.println("4. Cek Jumlah Antrian");
+                System.out.println("5. Kosongkan Seluruh Antrian");
+                System.out.println("0. Keluar");
+                System.out.print("Pilih Menu: ");
+                menu = sc.nextInt();
+                sc.nextLine(); 
+
+                switch (menu) {
+                    case 1:
+                        System.out.println("\n-- Formulir Pendaftaran Antrian --");
+                        System.out.print("Masukkan NIM       : ");
+                        String nim = sc.nextLine();
+                        System.out.print("Masukkan Nama      : ");
+                        String nama = sc.nextLine();
+                        System.out.print("Masukkan Keperluan : ");
+                        String keperluan = sc.nextLine();
+                        
+                        Mahasiswa mhsBaru = new Mahasiswa(nim, nama, keperluan);
+                        antrianLayanan.tambahAntrian(mhsBaru);
+                        break;
+                    case 2:
+                        antrianLayanan.panggilAntrian();
+                        break;
+                    case 3:
+                        antrianLayanan.tampilkanUjungAntrian();
+                        break;
+                    case 4:
+                        System.out.println();
+                        antrianLayanan.cekJumlahAntrian();
+                        break;
+                    case 5:
+                        System.out.println();
+                        antrianLayanan.clear();
+                        break;
+                    case 0:
+                        System.out.println("\nTerima kasih telah menggunakan sistem layanan.");
+                        break;
+                    default:
+                        System.out.println("\nPilihan tidak valid! Silakan pilih menu yang tersedia.");
+                }
+            } while (menu != 0);
+
+            sc.close();
+        }
+    }
+    ```
