@@ -144,18 +144,18 @@ public class SLLMain04 {
     public static void main(String[] args) {
         SingleLinkedList04 sll = new SingleLinkedList04();
 
-        Mahasiswa04 mhs1 = new Mahasiswa04("2541001", "Dirga", "1A", 3.8); 
-        Mahasiswa04 mhs2 = new Mahasiswa04("2541002", "Anton", "1A", 3.6);
-        Mahasiswa04 mhs3 = new Mahasiswa04("2541003", "Budi", "1A", 3.7);
-        Mahasiswa04 mhs4 = new Mahasiswa04("2541004", "Tari", "1A", 3.9);
+        Mahasiswa04 mhs1 = new Mahasiswa04("21212203", "Dirga", "4D", 3.6); 
+        Mahasiswa04 mhs2 = new Mahasiswa04("24212200", "Alvaro", "1A", 4.0);
+        Mahasiswa04 mhs3 = new Mahasiswa04("22212202", "Cintia", "3C", 3.5);
+        Mahasiswa04 mhs4 = new Mahasiswa04("23212201", "Bimon", "2B", 3.8);
 
         sll.print();
-        sll.addFirst(mhs4);
+        sll.addFirst(mhs1);
         sll.print();
-        sll.addLast(mhs1);
+        sll.addLast(mhs2);
         sll.print();
         sll.insertAfter("Dirga", mhs3);
-        sll.insertAt(2, mhs2);
+        sll.insertAt(2, mhs4);
         sll.print();
     }
 }
@@ -165,17 +165,17 @@ public class SLLMain04 {
 ```
 Linked list kosong
 Isi Linked List:
-NIM: 2541004, Nama: Tari, Kelas: 1A, IPK: 3.9
+NIM: 21212203, Nama: Dirga, Kelas: 4D, IPK: 3.6
 
 Isi Linked List:
-NIM: 2541004, Nama: Tari, Kelas: 1A, IPK: 3.9
-NIM: 2541001, Nama: Dirga, Kelas: 1A, IPK: 3.8
+NIM: 21212203, Nama: Dirga, Kelas: 4D, IPK: 3.6
+NIM: 24212200, Nama: Alvaro, Kelas: 1A, IPK: 4.0
 
 Isi Linked List:
-NIM: 2541004, Nama: Tari, Kelas: 1A, IPK: 3.9
-NIM: 2541001, Nama: Dirga, Kelas: 1A, IPK: 3.8
-NIM: 2541002, Nama: Anton, Kelas: 1A, IPK: 3.6
-NIM: 2541003, Nama: Budi, Kelas: 1A, IPK: 3.7
+NIM: 21212203, Nama: Dirga, Kelas: 4D, IPK: 3.6
+NIM: 22212202, Nama: Cintia, Kelas: 3C, IPK: 3.5
+NIM: 23212201, Nama: Bimon, Kelas: 2B, IPK: 3.8
+NIM: 24212200, Nama: Alvaro, Kelas: 1A, IPK: 4.0
 
 PS D:\Algoritma-dan-Struktur-Data> 
 ```
@@ -275,13 +275,138 @@ indeks dan melakukan penghapusan data pada Single Linked List.
 
 ### 2.2.1 Langkah-langkah Percobaan
 
+Penambahan di Class SingleLinkedList04
+```JAVA
+// (Kode SingleLinkedList04 Praktikum 1)
+// ...
+public void getData(int index) {
+        if (isEmpty()) {
+            System.out.println("Linked List masih kosong!");
+            return;
+        }
+        Node04 tmp = head;
+        for (int i = 0; i < index; i++) {
+            if (tmp == null) { 
+                System.out.println("Index melebihi panjang Linked List");
+                return;
+            }
+            tmp = tmp.next;
+        }
+        if (tmp != null) {
+            tmp.data.tampilInformasi();
+        }
+    }
 
+    public int indexOf(String key) {
+        Node04 tmp = head;
+        int index = 0;
+        while (tmp != null && !tmp.data.nama.equalsIgnoreCase(key)) {
+            tmp = tmp.next;
+            index++;
+        }
+        if (tmp == null) {
+            return -1;
+        } else {
+            return index;
+        }
+    }
+
+    public void removeFirst() {
+        if (isEmpty()) {
+            System.out.println("Linked List masih Kosong, tidak dapat dihapus!");
+        } else if (head == tail) {
+            head = tail = null;
+        } else {
+            head = head.next;
+        }
+    }
+
+    public void removeLast() {
+        if (isEmpty()) {
+            System.out.println("Linked List masih Kosong, tidak dapat dihapus!");
+        } else if (head == tail) {
+            head = tail = null;
+        } else {
+            Node04 temp = head;
+            while (temp.next != tail) {
+                temp = temp.next;
+            }
+            temp.next = null;
+            tail = temp;
+        }
+    }
+
+    public void removeAt(int index) {
+        if (index == 0) {
+            removeFirst();
+        } else {
+            Node04 temp = head;
+            for (int i = 0; i < index - 1; i++) {
+                temp = temp.next;
+            }
+            temp.next = temp.next.next;
+            if (temp.next == null) {
+                tail = temp;
+            }
+        }
+    }
+// ...
+```
+
+Perubahan di Class SLLMain04
+```JAVA
+// (kode SLLMain04 Praktikum 1)
+// ...
+System.out.println("data index 1 : ");
+        sll.getData(1);
+
+        System.out.println("data mahasiswa an Bimon berada pada index : " + sll.indexOf("bimon"));
+        System.out.println();
+
+        sll.removeFirst();
+        sll.removeLast();
+        sll.print();
+        sll.removeAt(0);
+        sll.print();
+    }
+}
+```
 ### 2.2.2 Verifikasi Hasil Percobaan
 
+```
+data index 1 : 
+NIM: 22212202, Nama: Cintia, Kelas: 3C, IPK: 3.5
+data mahasiswa an Bimon berada pada index : 2
+
+Isi Linked List:
+NIM: 22212202, Nama: Cintia, Kelas: 3C, IPK: 3.5
+NIM: 23212201, Nama: Bimon, Kelas: 2B, IPK: 3.8
+
+Isi Linked List:
+NIM: 23212201, Nama: Bimon, Kelas: 2B, IPK: 3.8
+
+PS D:\Algoritma-dan-Struktur-Data> 
+```
 
 ### 2.2.3 Petanyaan
 1. Mengapa digunakan keyword break pada fungsi remove? Jelaskan! 
+
+    Break digunakan untuk menghentikan paksa perulangan (looping) setelah node yang dicaru untuk dihapus berhasil ditemukan dan pointernya diubah. Jika tidak menggunakan break, maka perulangan akan berjalan dan mengecek sisa node sampai ke akhir LinkedList, dimana akan membuang waktu dan komputasi yang sia-sia. 
+
+
 2. Jelaskan kegunaan kode dibawah pada method remove
+    ```JAVA
+    temp.next = temp.next.next;
+            if (temp.next == null) {
+                tail = temp;
+            }
+    ```
+
+    - temp.next = temp.next.next;
+        Diugunakan untuk melewati node yang ingin dihapus. Variabel temp menunjuk node sebelumnya sebagai target yang dihapus. Line ini menyuruh pointer next dari temp untuk melompati target dan menunjuk ke node setelah target (temp.next.next)
+    -  if (temp.next == null) { tail = temp;}
+        Kode ini digunakan untuk memperbarui posisi tail atau ekor jika data yang dihapus adalah data yang paling akhir. Jika setelah temp.next dihapus bernilai null, maka temp sekarang adalah node paling ujung.Pointer tail wajib dipindahkan agar menunjuk ke temp, jika tidak maka tail akan tetap menunjuk ke data yang sudah dihapus, dan menyebabkan error. 
+
 
 ## 2.3 Tugas
 Waktu pengerjaan : 50 menit 

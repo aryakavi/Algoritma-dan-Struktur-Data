@@ -1,71 +1,33 @@
 package Pertemuan12;
-import java.util.Scanner;
+
 public class SLLMain04 {
     public static void main(String[] args) {
         SingleLinkedList04 sll = new SingleLinkedList04();
-        Scanner sc = new Scanner(System.in);
-        int pilihan;
 
-        Mahasiswa04 mhs1 = new Mahasiswa04("2541001", "Dirga", "1A", 3.8); 
-        Mahasiswa04 mhs2 = new Mahasiswa04("2541002", "Anton", "1A", 3.6);
-        Mahasiswa04 mhs3 = new Mahasiswa04("2541003", "Budi", "1A", 3.7);
-        Mahasiswa04 mhs4 = new Mahasiswa04("2541004", "Tari", "1A", 3.9);
+        Mahasiswa04 mhs1 = new Mahasiswa04("21212203", "Dirga", "4D", 3.6); 
+        Mahasiswa04 mhs2 = new Mahasiswa04("24212200", "Alvaro", "1A", 4.0);
+        Mahasiswa04 mhs3 = new Mahasiswa04("22212202", "Cintia", "3C", 3.5);
+        Mahasiswa04 mhs4 = new Mahasiswa04("23212201", "Bimon", "2B", 3.8);
 
         sll.print();
-        sll.addFirst(mhs4);
+        sll.addFirst(mhs1);
         sll.print();
-        sll.addLast(mhs1);
+        sll.addLast(mhs2);
         sll.print();
         sll.insertAfter("Dirga", mhs3);
-        sll.insertAt(2, mhs2);
+        sll.insertAt(2, mhs4);
         sll.print();
 
-        do {
-            System.out.println("\n=== Menu Single Linked List ===");
-            System.out.println("1. Tambah Data di Awal (addFirst)");
-            System.out.println("2. Tambah Data di Akhir (addLast)");
-            System.out.println("3. Cetak Seluruh Data (print)");
-            System.out.println("0. Keluar");
-            System.out.print("Pilih menu: ");
-            pilihan = sc.nextInt();
-            sc.nextLine(); // Membersihkan buffer scanner
+        System.out.println("data index 1 : ");
+        sll.getData(1);
 
-            switch (pilihan) {
-                case 1:
-                case 2:
-                    System.out.println("\n--- Masukkan Data Mahasiswa ---");
-                    System.out.print("NIM   : ");
-                    String nim = sc.nextLine();
-                    System.out.print("Nama  : ");
-                    String nama = sc.nextLine();
-                    System.out.print("Kelas : ");
-                    String kelas = sc.nextLine();
-                    System.out.print("IPK   : ");
-                    double ipk = sc.nextDouble();
-                    sc.nextLine(); 
+        System.out.println("data mahasiswa an Bimon berada pada index : " + sll.indexOf("bimon"));
+        System.out.println();
 
-                    Mahasiswa04 mhsBaru = new Mahasiswa04(nim, nama, kelas, ipk);
-
-                    if (pilihan == 1) {
-                        sll.addFirst(mhsBaru);
-                        System.out.println("-> Data berhasil ditambahkan di posisi awal!");
-                    } else {
-                        sll.addLast(mhsBaru);
-                        System.out.println("-> Data berhasil ditambahkan di posisi akhir!");
-                    }
-                    break;
-                case 3:
-                    System.out.println();
-                    sll.print();
-                    break;
-                case 0:
-                    System.out.println("Terima kasih. Program selesai.");
-                    break;
-                default:
-                    System.out.println("Pilihan tidak valid! Silakan coba lagi.");
-            }
-        } while (pilihan != 0);
-
-        sc.close();
+        sll.removeFirst();
+        sll.removeLast();
+        sll.print();
+        sll.removeAt(0);
+        sll.print();
     }
 }
