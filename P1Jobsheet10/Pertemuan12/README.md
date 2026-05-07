@@ -618,3 +618,125 @@ Hasil Kode :
         }
     }
     ```
+
+Hasil Running 
+```
+SISTEM ANTRIAN LAYANAN KEMAHASISWAAN : 
+1. Daftar Antrian Baru (Tambah)
+2. Panggil Antrian (Layanan)
+3. Cek Antrian Terdepan dan Terakhir
+4. Cek Jumlah Antrian
+5. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 1
+
+-- Formulir Pendaftaran Antrian --
+Masukkan NIM       : 123
+Masukkan Nama      : Aryakavi
+Masukkan Keperluan : Membayar UKT
+Mahasiswa a.n Aryakavi berhasil masuk ke antrian.
+ SISTEM ANTRIAN LAYANAN KEMAHASISWAAN : 
+1. Daftar Antrian Baru (Tambah)
+2. Panggil Antrian (Layanan)
+3. Cek Antrian Terdepan dan Terakhir
+4. Cek Jumlah Antrian
+5. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 1
+
+-- Formulir Pendaftaran Antrian --
+Masukkan NIM       : 456
+Masukkan Nama      : Raditya
+Masukkan Keperluan : Mengajukan KIPK
+Mahasiswa a.n Raditya berhasil masuk ke antrian.
+ SISTEM ANTRIAN LAYANAN KEMAHASISWAAN : 
+1. Daftar Antrian Baru (Tambah)
+2. Panggil Antrian (Layanan)
+3. Cek Antrian Terdepan dan Terakhir
+4. Cek Jumlah Antrian
+5. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 1
+
+-- Formulir Pendaftaran Antrian --
+Masukkan NIM       : 789
+Masukkan Nama      : Imaran
+Masukkan Keperluan : Banding UKT
+Mahasiswa a.n Imaran berhasil masuk ke antrian.
+ SISTEM ANTRIAN LAYANAN KEMAHASISWAAN : 
+1. Daftar Antrian Baru (Tambah)
+2. Panggil Antrian (Layanan)
+3. Cek Antrian Terdepan dan Terakhir
+4. Cek Jumlah Antrian
+5. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 2
+
+--- PANGGILAN LAYANAN ---
+Memanggil mahasiswa berikut untuk menuju loket:
+NIM       : 123
+Nama      : Aryakavi
+Keperluan : Membayar UKT
+-----------------------------
+ SISTEM ANTRIAN LAYANAN KEMAHASISWAAN : 
+1. Daftar Antrian Baru (Tambah)
+2. Panggil Antrian (Layanan)
+3. Cek Antrian Terdepan dan Terakhir
+4. Cek Jumlah Antrian
+5. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 3
+
+--- ANTRIAN TERDEPAN ---
+NIM       : 456
+Nama      : Raditya
+Keperluan : Mengajukan KIPK
+-----------------------------
+--- ANTRIAN PALING AKHIR ---
+NIM       : 789
+Nama      : Imaran
+Keperluan : Banding UKT
+-----------------------------
+ SISTEM ANTRIAN LAYANAN KEMAHASISWAAN : 
+1. Daftar Antrian Baru (Tambah)
+2. Panggil Antrian (Layanan)
+3. Cek Antrian Terdepan dan Terakhir
+4. Cek Jumlah Antrian
+5. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 4
+
+Jumlah mahasiswa yang sedang mengantre saat ini: 2 orang.
+Sisa kapasitas antrian: 8 orang.
+ SISTEM ANTRIAN LAYANAN KEMAHASISWAAN : 
+1. Daftar Antrian Baru (Tambah)
+2. Panggil Antrian (Layanan)
+3. Cek Antrian Terdepan dan Terakhir
+4. Cek Jumlah Antrian
+5. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 5
+
+Semua antrian berhasil dikosongkan.
+ SISTEM ANTRIAN LAYANAN KEMAHASISWAAN : 
+1. Daftar Antrian Baru (Tambah)
+2. Panggil Antrian (Layanan)
+3. Cek Antrian Terdepan dan Terakhir
+4. Cek Jumlah Antrian
+5. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 6
+
+Pilihan tidak valid! Silakan pilih menu yang tersedia.
+ SISTEM ANTRIAN LAYANAN KEMAHASISWAAN : 
+1. Daftar Antrian Baru (Tambah)
+2. Panggil Antrian (Layanan)
+3. Cek Antrian Terdepan dan Terakhir
+4. Cek Jumlah Antrian
+5. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 0
+
+Terima kasih telah menggunakan sistem layanan.
+PS D:\Algoritma-dan-Struktur-Data> 
+```
