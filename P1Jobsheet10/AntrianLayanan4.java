@@ -1,32 +1,20 @@
+import java.util.ArrayList;
+
 public class AntrianLayanan4 {
-    Mahasiswa4[] data;
-    int front;
-    int rear;
-    int size;
+    ArrayList<Mahasiswa4> data;
     int max;
 
     public AntrianLayanan4(int max) {
         this.max = max;
-        this.data = new Mahasiswa4[max];
-        this.front = 0;
-        this.rear = -1;
-        this.size = 0;
+        this.data = new ArrayList<>();
     }
 
     public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return data.isEmpty();
     }
 
     public boolean isFull() {
-        if (size == max) {
-            return true;
-        } else {
-            return false;
-        }
+        return data.size() == max;
     }
 
     public void tambahAntrian(Mahasiswa4 mhs) {
@@ -34,9 +22,7 @@ public class AntrianLayanan4 {
             System.out.println("Antrian penuh, tidak dapat menambah mahasiswa.");
             return;
         }
-        rear = (rear + 1) % max;
-        data[rear] = mhs;
-        size++;
+        data.add(mhs);
         System.out.println(mhs.nama + " berhasil masuk ke antrian.");
     }
 
@@ -45,10 +31,8 @@ public class AntrianLayanan4 {
             System.out.println("Antrian kosong.");
             return null;
         }
-        Mahasiswa4 mhs = data[front];
-        front = (front + 1) % max;
-        size--;
-        return mhs;
+        // Menghapus dan mengambil data pada indeks pertama (terdepan)
+        return data.remove(0); 
     }
 
     public void lihatTerdepan() {
@@ -57,7 +41,19 @@ public class AntrianLayanan4 {
         } else {
             System.out.print("Mahasiswa terdepan: ");
             System.out.println("NIM - NAMA - PRODI - KELAS");
-            data[front].tampilkanData();
+            data.get(0).tampilkanData();
+        }
+    }
+
+    // Method Baru: Mengecek mahasiswa di antrian paling belakang
+    public void lihatAkhir() {
+        if (isEmpty()) {
+            System.out.println("Antrian kosong.");
+        } else {
+            System.out.print("Mahasiswa paling belakang: ");
+            System.out.println("NIM - NAMA - PRODI - KELAS");
+            // Mengambil data pada indeks terakhir
+            data.get(data.size() - 1).tampilkanData(); 
         }
     }
 
@@ -68,14 +64,13 @@ public class AntrianLayanan4 {
         }
         System.out.println("Daftar Mahasiswa dalam Antrian:");
         System.out.println("NIM - NAMA - PRODI - KELAS");
-        for (int i = 0; i < size; i++) {
-            int index = (front + i) % max;
+        for (int i = 0; i < data.size(); i++) {
             System.out.print((i + 1) + ". ");
-            data[index].tampilkanData();
+            data.get(i).tampilkanData();
         }
     }
 
     public int getJumlahAntrian() {
-        return size;
+        return data.size();
     }
 }

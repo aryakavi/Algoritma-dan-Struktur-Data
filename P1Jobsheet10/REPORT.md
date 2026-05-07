@@ -563,6 +563,153 @@ PS D:\Algoritma-dan-Struktur-Data>
 ### 2.2.3 Pertanyaan
 Lakukan modifikasi program dengan menambahkan method baru bernama LihatAkhir pada class AntrianLayanan yang digunakan untuk mengecek antrian yang berada di posisi belakang. Tambahkan pula daftar menu 6. Cek Antrian paling belakang pada class LayananAkademikSIAKAD sehingga method LihatAkhir dapat dipanggil!
 
+    Perubahan modifikasi dilakukan di class AntrianLayanan4
+```JAVA
+import java.util.ArrayList;
+
+public class AntrianLayanan4 {
+    ArrayList<Mahasiswa4> data;
+    int max;
+
+    public AntrianLayanan4(int max) {
+        this.max = max;
+        this.data = new ArrayList<>();
+    }
+
+    public boolean isEmpty() {
+        return data.isEmpty();
+    }
+
+    public boolean isFull() {
+        return data.size() == max;
+    }
+
+    public void tambahAntrian(Mahasiswa4 mhs) {
+        if (isFull()) {
+            System.out.println("Antrian penuh, tidak dapat menambah mahasiswa.");
+            return;
+        }
+        data.add(mhs);
+        System.out.println(mhs.nama + " berhasil masuk ke antrian.");
+    }
+
+    public Mahasiswa4 layaniMahasiswa() {
+        if (isEmpty()) {
+            System.out.println("Antrian kosong.");
+            return null;
+        }
+        // Menghapus dan mengambil data pada indeks pertama (terdepan)
+        return data.remove(0); 
+    }
+
+    public void lihatTerdepan() {
+        if (isEmpty()) {
+            System.out.println("Antrian kosong.");
+        } else {
+            System.out.print("Mahasiswa terdepan: ");
+            System.out.println("NIM - NAMA - PRODI - KELAS");
+            data.get(0).tampilkanData();
+        }
+    }
+
+    // Method Baru: Mengecek mahasiswa di antrian paling belakang
+    public void lihatAkhir() {
+        if (isEmpty()) {
+            System.out.println("Antrian kosong.");
+        } else {
+            System.out.print("Mahasiswa paling belakang: ");
+            System.out.println("NIM - NAMA - PRODI - KELAS");
+            // Mengambil data pada indeks terakhir
+            data.get(data.size() - 1).tampilkanData(); 
+        }
+    }
+
+    public void tampilkanSemua() {
+        if (isEmpty()) {
+            System.out.println("Antrian kosong.");
+            return;
+        }
+        System.out.println("Daftar Mahasiswa dalam Antrian:");
+        System.out.println("NIM - NAMA - PRODI - KELAS");
+        for (int i = 0; i < data.size(); i++) {
+            System.out.print((i + 1) + ". ");
+            data.get(i).tampilkanData();
+        }
+    }
+
+    public int getJumlahAntrian() {
+        return data.size();
+    }
+}
+```
+
+Perubahan LayananAkademinSIAKAD4.java
+```JAVA
+import java.util.Scanner;
+
+public class LayananAkademikSIAKAD4 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        AntrianLayanan4 antrian = new AntrianLayanan4(5);
+        int pilihan;
+
+        do {
+            System.out.println("\n=== Menu Antrian Layanan Akademik ===");
+            System.out.println("1. Tambah Mahasiswa ke Antrian");
+            System.out.println("2. Layani Mahasiswa");
+            System.out.println("3. Lihat Mahasiswa Terdepan");
+            System.out.println("4. Lihat Semua Antrian");
+            System.out.println("5. Jumlah Mahasiswa dalam Antrian");
+            System.out.println("6. Cek Antrian paling belakang"); // Penambahan menu 6
+            System.out.println("0. Keluar");
+            System.out.print("Pilih menu: ");
+            pilihan = sc.nextInt(); sc.nextLine();
+
+            switch (pilihan) {
+                case 1:
+                    System.out.print("NIM   : ");
+                    String nim = sc.nextLine();
+                    System.out.print("Nama  : ");
+                    String nama = sc.nextLine();
+                    System.out.print("Prodi : ");
+                    String prodi = sc.nextLine();
+                    System.out.print("Kelas : ");
+                    String kelas = sc.nextLine();
+                    Mahasiswa4 mhs = new Mahasiswa4(nim, nama, prodi, kelas);
+                    antrian.tambahAntrian(mhs);
+                    break;
+                case 2:
+                    Mahasiswa4 dilayani = antrian.layaniMahasiswa();
+                    if (dilayani != null) {
+                        System.out.println("Melayani mahasiswa: ");
+                        dilayani.tampilkanData();
+                    }
+                    break;
+                case 3:
+                    antrian.lihatTerdepan();
+                    break;
+                case 4:
+                    antrian.tampilkanSemua();
+                    break;
+                case 5:
+                    System.out.println("Jumlah dalam antrian: " + antrian.getJumlahAntrian());
+                    break;
+                case 6: // Case baru untuk mengeksekusi method lihatAkhir()
+                    antrian.lihatAkhir();
+                    break;
+                case 0:
+                    System.out.println("Terima kasih.");
+                    break;
+                default:
+                    System.out.println("Pilihan tidak valid.");
+            }
+        } while (pilihan != 0);
+
+        sc.close();
+    }
+}
+```
+
 ## 2.3 Tugas
 Buatlah program antrian untuk mengilustasikan antrian persetujuan Kartu Rencana Studi (KRS) Mahasiswa oleh Dosen Pembina Akademik (DPA). Ketika seorang mahasiswa akan mengantri, maka dia harus mendaftarkan datanya (data mahasiswa seperti pada praktikum 2). Gunakan class untuk antrian seperti pada Praktikum 1 dan 2, dengan method-method yang berfungsi : 
 • Cek antrian kosong, Cek antrian penuh, Mengosongkan antrian. 
@@ -860,3 +1007,181 @@ public class MainKRS {
 ```
 
 Hasil runningan 
+```
+=========================================
+     SISTEM ANTRIAN KRS DPA
+=========================================
+1. Tambah Mahasiswa ke Antrian
+2. Panggil Antrian untuk Proses KRS (2 orang)
+3. Tampilkan Semua Antrian
+4. Tampilkan 2 Antrian Terdepan
+5. Tampilkan Antrian Paling Akhir
+6. Cek Statistik Antrian
+7. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 1
+
+-- Pendaftaran Antrian --
+NIM   : 123
+Nama  : Aryakavi
+Prodi : Informatika
+Kelas : 1F
+Aryakavi berhasil masuk ke antrian KRS.
+
+=========================================
+     SISTEM ANTRIAN KRS DPA
+=========================================
+1. Tambah Mahasiswa ke Antrian
+2. Panggil Antrian untuk Proses KRS (2 orang)
+3. Tampilkan Semua Antrian
+4. Tampilkan 2 Antrian Terdepan
+5. Tampilkan Antrian Paling Akhir
+6. Cek Statistik Antrian
+7. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 1
+
+-- Pendaftaran Antrian --
+NIM   : 456
+Nama  : Raditya
+Prodi : SIB
+Kelas : 1A
+Raditya berhasil masuk ke antrian KRS.
+
+=========================================
+     SISTEM ANTRIAN KRS DPA
+=========================================
+1. Tambah Mahasiswa ke Antrian
+2. Panggil Antrian untuk Proses KRS (2 orang)
+3. Tampilkan Semua Antrian
+4. Tampilkan 2 Antrian Terdepan
+5. Tampilkan Antrian Paling Akhir
+6. Cek Statistik Antrian
+7. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 1
+
+-- Pendaftaran Antrian --
+NIM   : 789
+Nama  : Imaran
+Prodi : Informatika
+Kelas : 1I
+Imaran berhasil masuk ke antrian KRS.
+
+=========================================
+     SISTEM ANTRIAN KRS DPA
+=========================================
+1. Tambah Mahasiswa ke Antrian
+2. Panggil Antrian untuk Proses KRS (2 orang)
+3. Tampilkan Semua Antrian
+4. Tampilkan 2 Antrian Terdepan
+5. Tampilkan Antrian Paling Akhir
+6. Cek Statistik Antrian
+7. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 3
+
+--- Daftar Antrian KRS Saat Ini ---
+1. 123 - Aryakavi - Informatika - 1F
+2. 456 - Raditya - SIB - 1A
+3. 789 - Imaran - Informatika - 1I
+
+=========================================
+     SISTEM ANTRIAN KRS DPA
+=========================================
+1. Tambah Mahasiswa ke Antrian
+2. Panggil Antrian untuk Proses KRS (2 orang)
+3. Tampilkan Semua Antrian
+4. Tampilkan 2 Antrian Terdepan
+5. Tampilkan Antrian Paling Akhir
+6. Cek Statistik Antrian
+7. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 4
+
+--- 2 Antrian Terdepan ---
+1. 123 - Aryakavi - Informatika - 1F
+2. 456 - Raditya - SIB - 1A
+
+=========================================
+     SISTEM ANTRIAN KRS DPA
+=========================================
+1. Tambah Mahasiswa ke Antrian
+2. Panggil Antrian untuk Proses KRS (2 orang)
+3. Tampilkan Semua Antrian
+4. Tampilkan 2 Antrian Terdepan
+5. Tampilkan Antrian Paling Akhir
+6. Cek Statistik Antrian
+7. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 5
+
+--- Antrian Paling Akhir ---
+789 - Imaran - Informatika - 1I
+
+=========================================
+     SISTEM ANTRIAN KRS DPA
+=========================================
+1. Tambah Mahasiswa ke Antrian
+2. Panggil Antrian untuk Proses KRS (2 orang)
+3. Tampilkan Semua Antrian
+4. Tampilkan 2 Antrian Terdepan
+5. Tampilkan Antrian Paling Akhir
+6. Cek Statistik Antrian
+7. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 6
+
+-- Statistik Antrian KRS --
+Jumlah mahasiswa yang sedang mengantri saat ini: 3
+Jumlah mahasiswa yang SUDAH selesai proses KRS: 0
+Sisa kuota mahasiswa DPA yang BELUM proses KRS: 30 dari total 30
+
+=========================================
+     SISTEM ANTRIAN KRS DPA
+=========================================
+1. Tambah Mahasiswa ke Antrian
+2. Panggil Antrian untuk Proses KRS (2 orang)
+3. Tampilkan Semua Antrian
+4. Tampilkan 2 Antrian Terdepan
+5. Tampilkan Antrian Paling Akhir
+6. Cek Statistik Antrian
+7. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 2
+
+--- PANGGILAN PROSES KRS ---
+Memanggil antrian ke-1: 123 - Aryakavi - Informatika - 1F
+Memanggil antrian ke-2: 456 - Raditya - SIB - 1A
+
+=========================================
+     SISTEM ANTRIAN KRS DPA
+=========================================
+1. Tambah Mahasiswa ke Antrian
+2. Panggil Antrian untuk Proses KRS (2 orang)
+3. Tampilkan Semua Antrian
+4. Tampilkan 2 Antrian Terdepan
+5. Tampilkan Antrian Paling Akhir
+6. Cek Statistik Antrian
+7. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 7
+
+Antrian berhasil dikosongkan.
+
+=========================================
+     SISTEM ANTRIAN KRS DPA
+=========================================
+1. Tambah Mahasiswa ke Antrian
+2. Panggil Antrian untuk Proses KRS (2 orang)
+3. Tampilkan Semua Antrian
+4. Tampilkan 2 Antrian Terdepan
+5. Tampilkan Antrian Paling Akhir
+6. Cek Statistik Antrian
+7. Kosongkan Seluruh Antrian
+0. Keluar
+Pilih Menu: 0
+
+Terima kasih. Program selesai.
+PS D:\Algoritma-dan-Struktur-Data> 
+```
