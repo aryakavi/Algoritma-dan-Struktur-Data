@@ -205,25 +205,97 @@ Elemen terdepan: 15
 ### 2.1.3 Pertanyaan 
 
 1. Pada konstruktor, mengapa nilai awal atribut front dan rear bernilai -1, sementara atribut size bernilai 0? 
+
+    Nilai front dan rear diinisialisasi dengan -1 sebagai penanda bahwa queue kosong dan belum ada indeks array yang sedang ditunjuk (di Java, indeks array dimulai dari 0 dan -1 berarti tidka menunjuk elemen apapun). Sementara Size bernilai 0 karenabelum ada data atau elemen tersimpan di dalam queue
+
 2. Pada method Enqueue, jelaskan maksud dan kegunaan dari potongan kode berikut! 
 ```JAVA 
 if(rear == max -1) {
     rear = 0;
 }
 ```
+
+    Kode ini adalah kode yang menjalankan queue di Enqueue. Jika posisi rear elemen paling belakang sudah berada di batas akhir indeks array (max - 1), tetapi queue belum penuh, maka penunjuk rear akan digeser ke indeks aawal yaitu 0.  
+
 3. Pada method Dequeue, jelaskan maksud dan kegunaan dari potongan kode berikut! 
 ```JAVA 
 if(front == max -1) {
     front = 0;
 }
 ```
+
+    Kode ini sedikit berbeda dengan yang enqueue karena ini kode untuk bagian dequeue. Ketika elemen diambil, penunjuk front akan bergeser ke belakang. Jika pointer front sudah di indeks paling akhir array (max - 1) dan masih ada data yang mengantri, maka pointer front dikembalikan ke indeks 0 agar bisa membaca elemen berikutnya dengan benar.
+
 4. Pada method print, mengapa pada proses perulangan variabel i tidak dimulai dari 0 (int i=0), melainkan int i=front? 
+
+    Karena di struktur queue, elemen terdepan ditunjuk sebagai variabel front. Jika perulangan dimulai dari indeks 0, maka urutan yang tercetak akan salah dan mencetak array kosong yang datanya sudah di Dequeue. Print dari front memastikan data tampil sesuai urutan antrean queue.
+
 5. Perhatikan kembali method print, jelaskan maksud dari potongan kode berikut! 
 ```JAVA
 i = (i + 1) % max;
 ```
+
+    Kode tersebut adalah kode untuk melakukan increment atau penambahan nilai. Operator modulo (%) memastikan bahwa nilai i+1 sama seperti kapasitas maksimal array (max), maka nilainya akan 0. 
+        Contohnya, jika max = 5 dan i = 4, maka (4+1)%5 akan menghasilkan 0. Memastkan bahwa proses print dari belakang ke depan array tanpa membuat error IndexOutOfBounds.
+
 6. Tunjukkan potongan kode program yang merupakan queue overflow! 
-7. Pada saat terjadi queue overflow dan queue underflow, program tersebut tetap dapat berjalan dan hanya menampilkan teks informasi. Lakukan modifikasi program sehingga pada saat terjadi queue overflow dan queue underflow, program dihentikan! 
+
+    Queue overflow terjadi saat program menambah data ke dalam antrian yang penuh kapasitasnya. Kode ini dapat ditemukan di method Enqueue :
+    ```JAVA
+        if (IsFull()) {
+        System.out.println("Queue sudah penuh");
+    }   
+    ```
+
+7. Pada saat terjadi queue overflow dan queue underflow, program tersebut tetap dapat berjalan dan hanya menampilkan teks informasi. Lakukan modifikasi program sehingga pada saat terjadi queue overflow dan queue underflow, program dihentikan!
+
+    Untuk menghentikan program secara paksa saat terjadi overflow atau underflow, maka bisa menambakan perintah system.exit (0) di bagian enqueue dan dequeue.
+    - method enqueue :
+    ```JAVA
+    public void Enqueue(int dt) {
+        if (IsFull()) {
+            System.out.println("Queue sudah penuh (Overflow). Program dihentikan.");
+            System.exit(0); // <--- Kode untuk menghentikan program
+        } else {
+            if (IsEmpty()) {
+                front = rear = 0;
+            } else {
+                if (rear == max - 1) {
+                    rear = 0;
+                } else {
+                    rear++;
+                }
+            }
+            data[rear] = dt;
+            size++;
+        }
+    }
+    ```
+
+    - method dequeue :
+    ```JAVA
+    public int Dequeue() {
+    int dt = 0;
+    if (IsEmpty()) {
+        System.out.println("Queue masih kosong (Underflow). Program dihentikan.");
+        System.exit(0); // <--- Kode untuk menghentikan program
+    } else {
+        dt = data[front];
+        size--;
+        if (IsEmpty()) {
+            front = rear = -1;
+        } else {
+            if (front == max - 1) {
+                front = 0;
+            } else {
+                front++;
+            }
+        }
+    }
+    return dt;
+    }
+    ```
+
 
 ## 2.2 Antrian Layanan Akademik 
 Pada percobaan ini, kita akan membuat program yang mengilustrasikan Layanan pada Admin Akademik. 
@@ -786,3 +858,5 @@ public class MainKRS {
     }
 }
 ```
+
+Hasil runningan 
