@@ -23,7 +23,7 @@ Pada percobaan 1 ini akan dibuat class Mahasiswa, Node, dan DoubleLinkedList. Cl
 - penyisipan node setelah data tertentu, 
 - dan menampilkan isi linked list.
 
-Class Mahasiswa04
+1. Class Mahasiswa04
 ```JAVA
 package Jobsheet12;
 
@@ -51,7 +51,7 @@ public class Mahasiswa04 {
 }
 ```
 
-Class Node04
+2. Class Node04
 ```JAVA
 package Jobsheet12;
 
@@ -68,7 +68,7 @@ public class Node04 {
 }
 ```
 
-Class DoublelinkedList04
+3. Class DoublelinkedList04
 ```JAVA
 package Jobsheet12;
 
@@ -149,7 +149,7 @@ public class DoublelinkedList04 {
 }
 ```
 
-Class DoubleLinkedListMain04
+4. Class DoubleLinkedListMain04
 ```JAVA
 package Jobsheet12;
 import java.util.Scanner;
@@ -292,13 +292,17 @@ PS D:\Algoritma-dan-Struktur-Data>
 
 ### 12.2.3 Pertanyaan
 1. Jelaskan perbedaan struktur dan mekanisme traversal antara Single Linked List dan Double Linked List! 
+    
     - Single linked list = Setiap node hanya memiliki 2 bagian, data itu sendiri dan satu pointer yang menunjuk ke node berikutnya. Traversal hanya bisa dilakukan satu arah, yaitu dari head (awal) ke tail (akhir) dengan pointer next.
     - Double linked list = setiap node memiliki 3 bagian, data itu sendiri dan dua pointer, yaitu next yang menunjuk ke node selanjutnya, dan prev yang menunjuk ke node sebelumnya. Traversal bisa dilakukan dua arah, bisa menelusuri dari head ke tail (dengan next), atau dari tail ke head (dengan prev).
 
 2. Perhatikan class Node, di dalamnya terdapat atribut next dan prev. Jelaskan fungsi masing-masing atribut tersebut pada proses traversal dan manipulasi node! 
+    
     - next  = Menyimpan referensi dari node setelahnya. saat melakukan traversal, atribut ini berpindah dari satu node ke node berikutnya. Saat manipulasi seperti insert, next diputus dan disambung ulang untuk memasukaan node baru di depan node saat ini.
     - prev  = Menyimpan referensi dari node sebelumnya. Saat melakukan traversal, atribut ini berpindah dari node saat ini ke node sebelumnya. Saat manipulasi seperti insert, prev menyisipkan node yang baru untuk menunjuk kembali ke node asal di belakangnya, sehingga rantai dua arah tersebut tidak terputus.
+
 3. Perhatikan konstruktor pada class DoubleLinkedList. Jelaskan fungsi konstruktor tersebut terhadap kondisi awal linked list! 
+    
     Pada konstruktor DoublelinkedList04 yang telah dibut
     ```JAVA
     public DoublelinkedList04() {
@@ -315,9 +319,11 @@ head = tail = newNode;
 }
 ``` 
 Mengapa head dan tail harus menunjuk node yang sama ketika linked list masih kosong? 
+    
     Ketika linked list masih kosong, memasukkan node pertama kali membuat node tersebut menjadi satu-satunya elemen di dalam list. Karena ia satu-satunya elemen, maka ia berperan menjadi elemen pertama (head) serta elemen terakhir (tail) disaat bersamaan. Karena itu, kedua pointer (head dan tail) harus menunjuk ke newNode, objek yang sama.
 
 5. Modifikasi method print() agar menampilkan pesan "Linked List masih kosong" ketika tidak terdapat data pada linked list!
+    
     ```JAVA
     public void print() {
         // Tambahan kode ketika list kosong (praktikum 1 pertanyaan 5)
@@ -336,6 +342,7 @@ Mengapa head dan tail harus menunjuk node yang sama ketika linked list masih kos
     ```
 
 6. Modifikasi kode program dengan menambahkan method printReverse() untuk menampilkan seluruh data pada Double Linked List secara terbalik, dimulai dari node tail menuju head!
+    
     ```JAVA
     public void printReverse() {
     if (isEmpty()) {
@@ -357,3 +364,141 @@ Mengapa head dan tail harus menunjuk node yang sama ketika linked list masih kos
 ## 12.3 Percobaan 2 : Operasi Penghapusan pada Double Linked List 
 
 ### 12.3.1 Langkah-Langkah Percobaan
+Pada percobaan 2 akan dibuat beberapa method untuk menghapus node pada Double Linked List. Penghapusan dilakukan melalui: 
+    - node paling depan (removeFirst) 
+    - node paling belakang (removeLast)
+
+Perubahan Class DoublelinkedList04
+```JAVA
+//.... public void print() {}
+public void removeFirst(){
+        if(isEmpty()){
+            System.out.println("Linked List kosong.");
+            return;
+        }
+        
+        if(head == tail){
+            head = tail = null;
+        } else {
+            head = head.next;
+            head.prev = null;
+        }
+}
+
+public void removeLast(){
+    if(isEmpty()){
+        System.out.println("Linked List kosong.");
+        return;
+    } 
+        
+    if(head == tail){
+        head = tail = null;
+    } else {
+        tail = tail.prev;
+        tail.next = null;
+    }
+}
+}
+```
+
+### 12.3.2 Verifikasi Hasil Percobaan
+
+```
+===== MENU DOUBLE LINKED LIST =====
+1. Tambah data di awal
+2. Tambah data di akhir
+3. Sisipkan data di tengah (setelah NIM)
+4. Hapus data di awal
+5. Hapus data di akhir
+6. Tampilkan data
+0. Keluar
+Pilih menu: 5
+Data berhasil dihapus
+NIM      : 123010
+Nama     : Potter
+Kelas    : 1B
+IPK      : 3.55
+
+===== MENU DOUBLE LINKED LIST =====
+1. Tambah data di awal
+2. Tambah data di akhir
+3. Sisipkan data di tengah (setelah NIM)
+4. Hapus data di awal
+5. Hapus data di akhir
+6. Tampilkan data
+0. Keluar
+Pilih menu: 6
+NIM      : 123005
+Nama     : Harry
+Kelas    : 1A
+IPK      : 3.76
+
+===== MENU DOUBLE LINKED LIST =====
+1. Tambah data di awal
+2. Tambah data di akhir
+3. Sisipkan data di tengah (setelah NIM)
+4. Hapus data di awal
+5. Hapus data di akhir
+6. Tampilkan data
+0. Keluar
+Pilih menu: 0
+Program selesai.
+PS D:\Algoritma-dan-Struktur-Data> 
+```
+
+### 12.3.3 Pertanyaan
+1. Perhatikan potongan kode berikut pada method removeFirst(): 
+```
+head = head.next; 
+head.prev = null;
+``` 
+Jelaskan fungsi masing-masing statement tersebut pada proses penghapusan node! 
+    
+    - head = head.next;
+        Berfungsi untuk menggeser posisi head ke node urutan kedua. di kode tersebut node yang berada setelah node pertama mengambil alih peran sebagai elemen terdepan (head) yang baru di dalam LinkedList.
+    - head.prev = null;
+        Berfungsi untuk memuturs referensi ke node pertama yang lama. Karena head sekarang sudah ada di node baru,kode tersebut memastikan bahwa node tidak lagi menunjuk mundur. 
+
+2. Modifikasi method removeFirst() dan removeLast() agar program menampilkan data yang berhasil dihapus! 
+    
+    ```JAVA
+    public void removeFirst(){
+        if(isEmpty()){
+            System.out.println("Linked List kosong.");
+            return;
+        }
+        //Menyimpan data dari head sebelum pointer digeser
+        Mahasiswa04 deletedData = head.data;
+        
+        if(head == tail){
+            head = tail = null;
+        } else {
+            head = head.next;
+            head.prev = null;
+        }
+        // Menampilkan pesan dan method print()
+        System.out.println("Data berhasil dihapus.");
+        deletedData.tampil();
+    }
+
+    public void removeLast(){
+        if(isEmpty()){
+            System.out.println("Linked List kosong.");
+            return;
+        } 
+        //Menyimpan data dari tail sebelum pointer digeser
+        Mahasiswa04 deletedData = tail.data;
+        
+        if(head == tail){
+            head = tail = null;
+        } else {
+            tail = tail.prev;
+            tail.next = null;
+        }
+        // Menampilkan pesan dan method print()
+        System.out.println("Data berhasil dihapus.");
+        deletedData.tampil();
+    }
+    }
+    ```
+

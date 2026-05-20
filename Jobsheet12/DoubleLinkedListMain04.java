@@ -51,10 +51,10 @@ public class DoubleLinkedListMain04 {
                     list.insertAfter(keyNim, dataBaru);
                     break;
                 case 4:
-                    // list.removeFirst(); // Method ini baru dibuat pada Percobaan 2
+                    list.removeFirst(); 
                     break;
                 case 5:
-                    // list.removeLast(); // Method ini baru dibuat pada Percobaan 2
+                    list.removeLast(); 
                     break;
                 case 6:
                     list.print();
