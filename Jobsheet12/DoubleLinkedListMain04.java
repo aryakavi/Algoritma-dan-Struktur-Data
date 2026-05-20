@@ -29,6 +29,14 @@ public class DoubleLinkedListMain04 {
             System.out.println("4. Hapus data di awal");
             System.out.println("5. Hapus data di akhir");
             System.out.println("6. Tampilkan data");
+            System.out.println("7. Hapus data setelah NIM");
+            System.out.println("8. Hapus data pada indeks tertentu");
+            System.out.println("9. Cetak data pertama");
+            System.out.println("10. Cetak data terakhir");
+            System.out.println("11. Cetak data pada indeks tertentu");
+            System.out.println("12. Tampilkan semua data");
+            System.out.println("13. Tampilkan semua data terbalik");
+            System.out.println("14. Tampilkan jumlah data saat ini");
             System.out.println("0. Keluar");
             System.out.print("Pilih menu: ");
             pilihan = scan.nextInt();
@@ -58,6 +66,38 @@ public class DoubleLinkedListMain04 {
                     break;
                 case 6:
                     list.print();
+                    break;
+                    case 7:
+                    System.out.print("Masukkan NIM dari node (hapus node setelahnya): ");
+                    String keyNimDel = scan.nextLine();
+                    list.removeAfter(keyNimDel);
+                    break;
+                case 8:
+                    System.out.print("Masukkan indeks node yang akan dihapus: ");
+                    int idxDel = scan.nextInt();
+                    scan.nextLine();
+                    list.remove(idxDel);
+                    break;
+                case 9:
+                    list.getFirst();
+                    break;
+                case 10:
+                    list.getLast();
+                    break;
+                case 11:
+                    System.out.print("Masukkan indeks yang ingin ditampilkan: ");
+                    int idxGet = scan.nextInt();
+                    scan.nextLine();
+                    list.getIndex(idxGet);
+                    break;
+                case 12:
+                    list.print();
+                    break;
+                case 13:
+                    list.printReverse();
+                    break;
+                case 14:
+                    System.out.println("Jumlah data (size) saat ini: " + list.size() + " mahasiswa.");
                     break;
                 case 0:
                     System.out.println("Program selesai.");

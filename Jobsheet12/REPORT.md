@@ -502,3 +502,161 @@ Jelaskan fungsi masing-masing statement tersebut pada proses penghapusan node!
     }
     ```
 
+## 12.5 Tugas Praktikum 
+1. Tambahkan method add(int index, Mahasiswa data) untuk menambahkan node pada indeks tertentu! 
+    ```JAVA
+    public void add(int index, Mahasiswa04 data) {
+        if (index < 0 || index > size) {
+            System.out.println("Indeks di luar batas.");
+            return;
+        }
+        if (index == 0) {
+            addFirst(data);
+        } else if (index == size) {
+            addLast(data);
+        } else {
+            Node04 current = head;
+            for (int i = 0; i < index; i++) {
+                current = current.next;
+            }
+            Node04 newNode = new Node04(data);
+            newNode.next = current;
+            newNode.prev = current.prev;
+            current.prev.next = newNode;
+            current.prev = newNode;
+            size++;
+            System.out.println("Data berhasil ditambahkan pada indeks " + index);
+        }
+    }
+    ```
+
+2. Tambahkan method removeAfter() untuk menghapus node setelah node yang memiliki data key tertentu! 
+    ```JAVA
+    public void removeAfter(String keyNim) {
+        if (isEmpty()) {
+            System.out.println("Linked List kosong.");
+            return;
+        }
+        Node04 current = head;
+        while (current != null && !current.data.nim.equals(keyNim)) {
+            current = current.next;
+        }
+        if (current == null) {
+            System.out.println("Data dengan NIM " + keyNim + " tidak ditemukan.");
+            return;
+        }
+        if (current == tail) {
+            System.out.println("Tidak ada data setelah NIM " + keyNim + " (NIM ini berada di akhir).");
+            return;
+        }
+
+        Node04 target = current.next;
+        Mahasiswa04 deletedData = target.data;
+
+        if (target == tail) {
+            current.next = null;
+            tail = current;
+        } else {
+            current.next = target.next;
+            target.next.prev = current;
+        }
+        size--;
+        System.out.println("Data setelah NIM " + keyNim + " berhasil dihapus:");
+        deletedData.tampil();
+    }
+    ```
+
+3. Tambahkan method remove(int index) untuk menghapus node pada indeks tertentu! 
+    ```JAVA
+    public void remove(int index) {
+        if (isEmpty()) {
+            System.out.println("Linked List kosong.");
+            return;
+        }
+        if (index < 0 || index >= size) {
+            System.out.println("Indeks di luar batas.");
+            return;
+        }
+        if (index == 0) {
+            removeFirst();
+        } else if (index == size - 1) {
+            removeLast();
+        } else {
+            Node04 current = head;
+            for (int i = 0; i < index; i++) {
+                current = current.next;
+            }
+            Mahasiswa04 deletedData = current.data;
+            current.prev.next = current.next;
+            current.next.prev = current.prev;
+            size--;
+            System.out.println("Data pada indeks " + index + " berhasil dihapus:");
+            deletedData.tampil();
+        }
+    }
+    ```
+4. Tambahkan method: 
+    a. getFirst() 
+    b. getLast() 
+    c. getIndex() 
+untuk menampilkan data pada node pertama, node terakhir, dan node pada indeks tertentu. 
+
+    ```JAVA
+    public void getFirst() {
+        if (isEmpty()) {
+            System.out.println("Linked List kosong.");
+            return;
+        }
+        System.out.println("=== Data Pertama ===");
+        head.data.tampil();
+    }
+
+    public void getLast() {
+        if (isEmpty()) {
+            System.out.println("Linked List kosong.");
+            return;
+        }
+        System.out.println("=== Data Terakhir ===");
+        tail.data.tampil();
+    }
+
+    public void getIndex(int index) {
+        if (isEmpty()) {
+            System.out.println("Linked List kosong.");
+            return;
+        }
+        if (index < 0 || index >= size) {
+            System.out.println("Indeks di luar batas.");
+            return;
+        }
+        Node04 current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        System.out.println("=== Data pada Indeks " + index + " ===");
+        current.data.tampil();
+    }
+    ```
+
+5. Tambahkan atribut dan method untuk menghitung jumlah data (size) pada Double Linked List. 
+    ```JAVA
+    public class DoublelinkedList04 {
+    Node04 head;
+    Node04 tail;
+    int size;
+
+    ublic DoublelinkedList04() {
+        head = null;
+        tail = null;
+        size = 0;
+    }
+
+    public boolean isEmpty() {
+        return head == null;
+    }
+
+    public int size() {
+        return size;
+    }
+    // .... public void addFirst(Mahasiswa04 data) {}
+    ```
