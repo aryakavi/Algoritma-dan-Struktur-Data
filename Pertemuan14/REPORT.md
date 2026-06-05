@@ -379,7 +379,7 @@ parent = current;
     - if (mahasiswa.ipk < current.mahasiswa.ipk); Bagian ini membandingkan IPK mahsiswa baru dengan IPK mahasiswa pada node current. Jika IPK lebih kecil maka penelusuran akan diarahkan ke cabang kiri (current = current.left;)
     - if (current == null) : Jika cabang kiri ternyata kosong atau null, maka posisi yang tepat ditemukan. Node baru ditambahkan di anak kiri dari parent (parent.left = newNode;), lalu proses dihentikan (return;)
     - else : kondisi lain jika IPK mahasiswa barulebih besar atau sama dengan IPK node current, maka penelusuran diarahkan ke cabang atau anak sebelah kanan ( current = current.right;) Jika cabang kanan kosong (current == null), maka newNode ditambahkan sebagai anak kanan dari parent (parent.right = newNode;) dan proses dihentikan (return;)
-    
+
 6. Jelaskan langkah-langkah pada method delete() saat menghapus sebuah node yang memiliki dua anak. Bagaimana method getSuccessor() membantu dalam proses ini? 
 
 ## 14.3 Kegiatan Praktikum 2
@@ -444,11 +444,27 @@ public class BinaryTreeArrayMain04 {
 
 ### 14.3.2 Pertanyaan Percobaan
 1. Apakah kegunaan dari atribut data dan idxLast yang ada di class BinaryTreeArray? 
+    Atribut dataMahasiswa berfungsi sebagai struktur data utama yaitu berupa array untuk menyimpan node atau elemen binary tree. (objek Mahsiswa04). Sementara atribut idxLast, berfungsi untuk mencatat indeks dari elemen terakhir di dalam array yang valid dan merupakan bagian dari tree. Atribut ini berguna untuk membantu program mengetahui batas akhir dari tree.
+
 2. Apakah kegunaan dari method populateData()? 
+    Kegunaan dari method poulateData() adalah untuk memasukkan sekumpulan data sekaligus ke dalam binary tree. Method menerima parameter berupa array objek mahasiswa dan nilai indeks terakhirnya, lalu memasukkannya ke dalam atribut dataMahasiswa dan idxLast di class BinaryTreeArray04
+
 3. Apakah kegunaan dari method traverseInOrder()? 
+    Kegunaan dari method traverseInOrder() adalah untuk menelusuri atau mentraversal dan mengeprint isi binary tree dengan metode In-Order (kiri - root - kanan). Metode ini menggunakan cara rekursif untuk membaca array, dimana ia mengecek anak kiri, mencetak informasi mahasiswa di indeks saat ini, lalu mengecek anak kanannya.
+
 4. Jika suatu node binary tree disimpan dalam array indeks 2, maka di indeks berapakah posisi left child dan right child masing-masing? 
-5. Apa kegunaan statement int idxLast = 6 pada praktikum 2 percobaan nomor 4? 
+    Jika suatu node disimpan dalam array di indeks 2, maka perhitungan posisi anak-anaknya berdasarkan rumus array dengan index nol adalah
+    - Left child    = 2 * i + 1 = 2 * 2 + 1 = Indeks 5
+    - Right child   = 2 * i + 2 = 2 * 2 + 2 = Indeks 6
+    
+5. Apa kegunaan statement int idxLast = 6 pada praktikum 2 percobaan nomor 4?
+    Kegunaan statement int idxLast = 6; ialah untuk memberitahu tree bahwa batas elemen terakhir yang memiliki data ada di indeks 6. Sehingga mencegah method penelusuran seperti traverseInOrder untuk memproses indeks 7, 8, dan 9 yang nilainnya null.
+
 6. Mengapa indeks 2*idxStart+1 dan 2*idxStart+2 digunakan dalam pemanggilan rekursif, dan apa kaitannya dengan struktur pohon biner yang disusun dalam array?
+    Karena menggunakan array di dalam binary tree, maka tidak akan ada atribut pointer seperti left atau right untuk menyambungkan node. Namun diganti dan dipetakan secara matematis dengan indeks array itu. Untuk array yang dimulai 0, maka sudah defaulnya bahwa untuk node induk di indeks i
+    - Child kiri di posisi 2 * i + 1
+    - Child kanan di posisi 2 * i + 2
+    KArena itu, method traverseInOrder() menggunakan perhitungan di dalam pemanggilan rekursifnya untuk mensimulasikan pergerakan dari node induk menuju kecabang kiri dan kanannya di dalm array
 
 ## 14.4 Tugas Praktikum  
 1. Buat method di dalam class BinaryTree00 yang akan menambahkan node dengan cara rekursif (addRekursif()). 
