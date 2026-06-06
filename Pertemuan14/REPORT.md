@@ -468,8 +468,131 @@ public class BinaryTreeArrayMain04 {
 
 ## 14.4 Tugas Praktikum  
 1. Buat method di dalam class BinaryTree00 yang akan menambahkan node dengan cara rekursif (addRekursif()). 
+```JAVA
+/// Line kode BinaryTree04 sebelumnya
+public void addRekursif(Mahasiswa04 mahasiswa) {
+        root = addRekursif(root, mahasiswa);
+    }
+
+    private Node04 addRekursif(Node04 current, Mahasiswa04 mahasiswa) {
+        if (current == null) {
+            return new Node04(mahasiswa);
+        }
+
+        if (mahasiswa.ipk < current.mahasiswa.ipk) {
+            current.left = addRekursif(current.left, mahasiswa);
+        } 
+        else if (mahasiswa.ipk >= current.mahasiswa.ipk) {
+            current.right = addRekursif(current.right, mahasiswa);
+        }
+
+        return current;
+    }
+```
+
 2. Buat method di dalam class BinaryTree00 untuk menampilkan data mahasiswa dengan IPK  paling kecil dan IPK yang paling besar (cariMinIPK() dan cariMaxIPK()) yang ada di dalam binary search tree. 
+```JAVA
+/// Line kode BinaryTree04 sebelumnya
+
+    /// Mencari nilai IPK minimum
+    public void cariMinIPK() {
+        if (isEmpty()) {
+            System.out.println("Tree kosong, tidak ada data mahasiswa.");
+            return;
+        }
+        Node04 current = root;
+        while (current.left != null) {
+            current = current.left;
+        }
+        System.out.println("\nMahasiswa dengan IPK terkecil:");
+        current.mahasiswa.tampilInformasi();
+    }
+
+    /// Mencari nilai IPK maksimum
+    public void cariMaxIPK() {
+        if (isEmpty()) {
+            System.out.println("Tree kosong, tidak ada data mahasiswa.");
+            return;
+        }
+        Node04 current = root;
+        while (current.right != null) {
+            current = current.right;
+        }
+        System.out.println("\nMahasiswa dengan IPK terbesar:");
+        current.mahasiswa.tampilInformasi();
+    }
+```
+
 3. Buat method dalam class BinaryTree00 untuk menampilkan data mahasiswa dengan IPK di atas suatu batas tertentu, misal di atas 3.50 (tampilMahasiswaIPKdiAtas(double ipkBatas)) yang ada di dalam binary search tree. 
+```JAVA
+/// Line kode BinaryTree04 sebelumnya
+public void tampilMahasiswaIPKdiAtas(double ipkBatas) {
+        System.out.println("\nDaftar Mahasiswa dengan IPK di atas " + ipkBatas + ":");
+        tampilMahasiswaIPKdiAtas(root, ipkBatas);
+    }
+
+    private void tampilMahasiswaIPKdiAtas(Node04 current, double ipkBatas) {
+        if (current == null) {
+            return;
+        }
+
+        if (current.mahasiswa.ipk > ipkBatas) {
+            tampilMahasiswaIPKdiAtas(current.left, ipkBatas);
+
+            current.mahasiswa.tampilInformasi();
+
+            tampilMahasiswaIPKdiAtas(current.right, ipkBatas);
+        } else {
+            tampilMahasiswaIPKdiAtas(current.right, ipkBatas);
+        }
+    }
+```
+
 4. Modifikasi class BinaryTreeArray00 di atas, dan tambahkan :  
 - method add(Mahasiswa data) untuk memasukkan data ke dalam binary tree  
 - method traversePreOrder() 
+
+```JAVA
+/// Line kode BinaryTreeArray04 sebelumnya
+public void add(Mahasiswa04 data) {
+        if (dataMahasiswa[0] == null) {
+            dataMahasiswa[0] = data;
+            idxLast = 0; 
+            return;
+        }
+
+        int currentIdx = 0;
+        while (true) {
+            if (currentIdx >= dataMahasiswa.length) {
+                System.out.println("Kapasitas array penuh, tidak dapat menambah data.");
+                return;
+            }
+
+            if (dataMahasiswa[currentIdx] == null) {
+                dataMahasiswa[currentIdx] = data;
+                if (currentIdx > idxLast) {
+                    idxLast = currentIdx; 
+                }
+                break;
+            }
+
+            if (data.ipk < dataMahasiswa[currentIdx].ipk) {
+                currentIdx = 2 * currentIdx + 1;
+            } 
+            else {
+                currentIdx = 2 * currentIdx + 2;
+            }
+        }
+    }
+
+    public void traversePreOrder(int idxStart) {
+        if (idxStart <= idxLast) {
+            if (dataMahasiswa[idxStart] != null) {
+                dataMahasiswa[idxStart].tampilInformasi();
+                traversePreOrder(2 * idxStart + 1);
+                traversePreOrder(2 * idxStart + 2);
+            }
+        }
+    }
+```
+
