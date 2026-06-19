@@ -70,8 +70,8 @@ PS D:\Algoritma-dan-Struktur-Data>
 ```
 
 ### 16.2.3. Pertanyaan Percobaan
-1. Perhatikan baris kode 25-36, mengapa semua jenis data bisa ditampung ke dalam sebuah Arraylist? 
-2. Modifikasi baris kode 25-36 seingga data yang ditampung hanya satu jenis atau spesifik tipe tertentu! 
+1. Perhatikan baris kode 25-36, mengapa semua jenis data bisa ditampung ke dalam sebuah Arraylist? list l = new ArrayList(); ... l.get(lsize()-1)); 
+2. Modifikasi baris kode 25-36 seingga data yang ditampung hanya satu jenis atau spesifik tipe tertentu! list l = new ArrayList(); ... l.get(lsize()-1));
 3. Ubah kode pada baris kode 38  menjadi seperti ini 
 ```java
 LinkedList<String> names = new LinkedListr<>();
@@ -146,10 +146,21 @@ PS D:\Algoritma-dan-Struktur-Data>
 
 ### 16.3.3. Pertanyaan Percobaan
 1. Apakah perbedaan fungsi push() dan add() pada objek fruits? 
+    - push (E item) : Method ini memiliki struktur data Stack yang menggunakan LIFO atau Las In, First Out. Fungsinya untuk menaruh elemen di posisi paling akhhir tumpukan dan mengembalikan nilai elemen itu sendiri.
+    - add (E e)     : Bagian ini adalah method turunan dari Collection/list. Method ini menambahkan elemen ke akhir list dan mengembalikan nilai boolean (true if success)
+
 2. Silakan hilangkan baris 43 dan 44, apakah yang akan terjadi? Mengapa bisa demikian? 
+    Jika kedua barus dihapus, maka kode akan tetap berjalan tanpa error. Namun output pada perulangan dibawahnya akan kosong dan tidak mencetak elemen apapun. Perulangan while tersebut mengeksekusi fruits.pop() terus-menerus sampai Stack benar-benar kosong (!fruits.empty()). Akibatnya, semua buah yang ada di Stack (Banana, Orange, Watermelon, Leci, Salak) telah dikeluarkan dan dihapus.
+
 3. Jelaskan fungsi dari baris 46-49? 
+    - fruits.iterator(): Membuat objek iterator yang bertugas menunjuk elemen-elemen di dalam koleksi.
+    - it.hasNext(): Mengecek apakah masih ada elemen berikutnya di dalam koleksi. Jika ada, perulangan terus berjalan.
+    - it.next(): Mengambil elemen yang sedang ditunjuk saat ini dan memajukan kursor iterator ke elemen selanjutnya.
+
 4. Silakan ganti baris kode 25, Stack<String> menjadi List<String> dan apakah yang terjadi? Mengapa bisa demikian? 
+
 5. Ganti elemen terakhir dari dari objek fruits menjadi “Strawberry”! 
+
 6. Tambahkan 3 buah seperti “Mango”,”guava”, dan “avocado” kemudian dilakukan sorting! 
 
 ## 16.4. Kegiatan Praktikum 3
@@ -247,8 +258,59 @@ PS D:\Algoritma-dan-Struktur-Data>
 
 ### 16.4.3. Pertanyaan Percobaan
 1. Pada fungsi tambah() yang menggunakan unlimited argument itu menggunakan konsep apa? Dan kelebihannya apa? 
+    Konsep yang digunakan adalah Varargs atau variable length argument. Dimana sintaks ini ditandai dengan ... (titik tiga) setelah tipe data di parameter method. Di dalam prosesnya, parameter berjalan seperti array. Kelebihannya adalah dari fleksibilitas, dimna memanggil method bisa dengan jumlah dinamis tanpa membuat methos yang banyak. Selain itu kode bisa lebih bersih dan praktis, tidak perlu mendeklarasikan tipe objek array secara manual saat method dipanggil.
+
 2. Pada fungsi linearSearch() di atas, silakan diganti dengan fungsi binarySearch() dari collection! 
+    ```JAVA
+    //(... Method public void tampil ())
+    public int binarySearch(String nim) {
+        sortAscending();
+        Mahasiswa04 searchKey = new Mahasiswa04(nim, "", "");
+        return Collections.binarySearch(mahasiswas, searchKey, Comparator.comparing(m -> m.nim));
+    }
+    ```
+
 3. Tambahkan fungsi sorting baik secara ascending ataupun descending pada class tersebut! 
+    ```JAVA
+    //(... Method public int binarySearch(String nim))
+    public void sortAscending() {
+        Collections.sort(mahasiswas, Comparator.comparing(m -> m.nim));
+    }
+
+    public void sortDescending() {
+        Collections.sort(mahasiswas, (m1, m2) -> m2.nim.compareTo(m1.nim));
+    }
+
+    public static void main(String[] args) {
+        ListMahasiswa04 lm = new ListMahasiswa04();
+        Mahasiswa04 m = new Mahasiswa04("201234", "Noureen", "021xx1");
+        Mahasiswa04 m1 = new Mahasiswa04("201235", "Akhleema", "021xx2");
+        Mahasiswa04 m2 = new Mahasiswa04("201236", "Shannum", "021xx3");
+
+        // Menambah objek mahasiswa
+        lm.tambah(m, m1, m2);
+        
+        System.out.println("--- Data Awal ---");
+        lm.tampil();
+
+        // Pencarian dan update mahasiswa mdengan Binary Search
+        int searchIndex = lm.binarySearch("201235"); 
+        if (searchIndex >= 0) {
+            lm.update(searchIndex, new Mahasiswa04("201235", "Akhleema Lela", "021xx2"));
+        } else {
+            System.out.println("\nData tidak ditemukan!");
+        }
+        
+        System.out.println("\n--- Setelah di-update (otomatis tersortir Ascending Binary Search) ---");
+        lm.tampil();
+        
+        // Uji coba Sorting Descending
+        System.out.println("\n--- Setelah disortir secara Descending ---");
+        lm.sortDescending();
+        lm.tampil();
+    }
+}
+    ```
 
 ## 16.5. Tugas Praktikum
 1. Buatlah implementasi program daftar nilai mahasiswa semester, minimal memiliki 3 class yaitu Mahasiswa, Nilai, dan Mata Kuliah. Data Mahasiswa dan Mata Kuliah perlu melalui penginputan data terlebih dahulu.Ilustrasi Program Menu Awal dan Penambahan Data 
