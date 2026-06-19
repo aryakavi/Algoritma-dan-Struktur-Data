@@ -70,12 +70,41 @@ PS D:\Algoritma-dan-Struktur-Data>
 ```
 
 ### 16.2.3. Pertanyaan Percobaan
-1. Perhatikan baris kode 25-36, mengapa semua jenis data bisa ditampung ke dalam sebuah Arraylist? list l = new ArrayList(); ... l.get(lsize()-1)); 
-2. Modifikasi baris kode 25-36 seingga data yang ditampung hanya satu jenis atau spesifik tipe tertentu! list l = new ArrayList(); ... l.get(lsize()-1));
+1. Perhatikan baris kode 25-36, mengapa semua jenis data bisa ditampung ke dalam sebuah Arraylist? 
+    Di line list l - new ArrayList(); Karena tidak menggunakan kurung siku maka mendeklarasikan sebagai raw type (hasil search google). Secara default, jika tipe data tidak spesifik. Maka java akan menganggap koleksi tersebut berisi tipe object. KArena semua tipe data referensi di Java adalah turunan object, maka ArrayList bebas menerima berbagai jenis tipe data apapun secara bersamaan.
+
+2. Modifikasi baris kode 25-36 sehingga data yang ditampung hanya satu jenis atau spesifik tipe tertentu! 
+    ```JAVA
+    //(... public static void main(String[] args))
+    List<Integer> l = new ArrayList<>();
+        l.add(1);
+        l.add(2);
+        l.add(3);
+        // l.add("Cireng"); Di bagian ini di disable karena dispesifikasikan emnggunakan Integer
+        System.out.printf("Elemen 0: %d total elemen: %d elemen terakhir: %d\n",
+                l.get(0), l.size(), l.get(l.size() - 1));
+
+        l.add(4);
+        l.remove(0);
+    
+        System.out.printf("Elemen 0: %d total elemen: %d elemen terakhir: %d\n",
+                l.get(0), l.size(), l.get(l.size() - 1));
+    ```
+
 3. Ubah kode pada baris kode 38  menjadi seperti ini 
 ```java
 LinkedList<String> names = new LinkedListr<>();
 ```
+    ```JAVA
+    /// (...System.out.printf)
+    LinkedList<String> names = new LinkedList<>();
+        names.add("Noureen");
+        names.add("Akhleema");
+        names.add("Shannum");
+        names.add("Uwais");
+        names.add("Al-Qarni");
+    ```
+
 4. Tambahkan juga baris berikut ini, untuk memberikan perbedaan dari tampilan yang sebelumnya 
 ```java
 names.push("Mei-mei);
@@ -83,7 +112,35 @@ System.out.printf("Elemen 0: %s total elemen: %s elemen terakhir: %s\n",
     names.getFist(), names.size(), names.getLast());
 System.out.println("Names: " + names.toString());
 ```
+    ```JAVA
+    /// (... System.out.println("Names: " + names.toString());)
+    
+    ```
 5. Dari penambahan kode tersebut, silakan dijalankan dan apakah yang dapat Anda jelaskan! 
+    Dari hasil modifikasi kode diatas dihasilkan output 
+    ```
+    Elemen 0: 1 total elemen: 3 elemen terakhir: 3
+    Elemen 0: 2 total elemen: 3 elemen terakhir: 4
+    Elemen 0: Noureen total elemen: 5 elemen terakhir: Al-Qarni
+    Elemen 0: My kid total elemen: 5 elemen terakhir: Al-Qarni
+    Names: [My kid, Akhleema, Shannum, Uwais, Al-Qarni]
+    Elemen 0: Mei-mei total elemen: 6 elemen terakhir: Al-Qarni
+    Names: [Mei-mei, My kid, Akhleema, Shannum, Uwais, Al-Qarni]
+    PS D:\Algoritma-dan-Struktur-Data>  
+    ```
+    Jika kode dari nomor 3 dan 4 dijalankan, maka Mei-mei akan berada di posisi paling awal. Dan output tambahan yang dihasilkan menjadi 
+    ```
+    Elemen 0: Mei-mei total elemen: 6 elemen terakhir: Al-Qarni
+    
+    Names: [Mei-mei, My kid, Akhleema, Shannum, Uwais, Al-Qarni]
+    Perubahan terjadi karena
+    ```
+    A. Perubahan referensi, referensi awal menggunakan List<String> names = new LinkedList<>(); dimana List tidak memiliki fungsi push(), getFirst(), dan getLast();/ Dengan mengubah menjadi LinkedList<String> names = new LinkedList<>(); maka membuka fungsi bawaan LinkedList.
+    
+    B. Fungsi push(E e) di Linked list mensimulasikan stack, yaitu memasukkan elemen paling depan sebagai Head. Karena itu, "Mei-mei" mengeeser "My Kid" dan meenjadikan elemen di indeks ke-0.
+    
+    C. Fungsing getFirst() dan getLast() adalah metode milik LinkedList untuk memanggil elemen pada posisi pertama dan terakhir tanpa harus secara manual memanggil indeks dengan get(0) atau get(names.size() - 1).
+
 
 ## 16.3. Kegiatan Praktikum 2
 
