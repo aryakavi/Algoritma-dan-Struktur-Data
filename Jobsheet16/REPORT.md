@@ -158,10 +158,30 @@ PS D:\Algoritma-dan-Struktur-Data>
     - it.next(): Mengambil elemen yang sedang ditunjuk saat ini dan memajukan kursor iterator ke elemen selanjutnya.
 
 4. Silakan ganti baris kode 25, Stack<String> menjadi List<String> dan apakah yang terjadi? Mengapa bisa demikian? 
+    Jika mengubah baris deklarasi Stack<String> menjadi List<String> fruits = new Stack<>();, program akan mengalami Error Kompilasi (Compile-time Error). Meski objek asli yang dibuat adalah Stack, namun referensi yang menampung adalah List. List tidak memiliki method push(), pop(), dan empty(). Karena itu, saat Java mencoba menjalankan fruits.pus("Banana") atau fruits.pop() compiler akan mengeluarkan error "Cannot find symbol" karena method tidak dikenali oleh List.
 
 5. Ganti elemen terakhir dari dari objek fruits menjadi “Strawberry”! 
+    ```JAVA
+    // Elemen terakhir di indeks (list - 1) diganti dengan Strawberry
+        if (!fruits.isEmpty()) {
+            fruits.set(fruits.size() - 1, "Strawberry");
+        }
+        
+        System.out.println("\nSetelah elemen terakhir diganti Strawberry:");
+        System.out.println(fruits);
+    ```
 
 6. Tambahkan 3 buah seperti “Mango”,”guava”, dan “avocado” kemudian dilakukan sorting! 
+    ```JAVA
+    fruits.push("Mango");
+        fruits.push("guava");
+        fruits.push("avocado");
+        
+        // Melakukan sorting sesiao alphabet
+        Collections.sort(fruits);
+        System.out.println("\nSetelah penambahan 3 buah dan dilakukan Sorting:");
+        System.out.println(fruits);
+    ```
 
 ## 16.4. Kegiatan Praktikum 3
 
